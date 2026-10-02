@@ -1,712 +1,247 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scriptorium</title>
-  <!-- Google Fonts para Tipografia Vintage -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
-  
-  <style>
-    /* ==========================================================================
-       VARIÁVEIS E ESTILOS GLOBAIS - PALETA DE CORES PERGAMINHO E VINTAGE
-       ========================================================================== */
-    :root {
-      --bg-dark: #120c08;
-      --paper-base: #f3e5ab;
-      --paper-dark: #d2b48c;
-      --paper-aged: #e6c894;
-      --ink-black: #2b1e16;
-      --ink-brown: #3d2314;
-      --gold-primary: #d4af37;
-      --gold-dark: #aa7c11;
-      --gold-bright: #ffd700;
-      --burgundy: #6b1d2f;
-      --leather: #4a2511;
-      --border-ornate: #8b5a2b;
-      --shadow-soft: rgba(0, 0, 0, 0.4);
-      --shadow-heavy: rgba(0, 0, 0, 0.75);
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guardiãs Estelares: O Legado de Prata</title>
+    <style>
+        :root {
+            --bg-primary: #0a0c10;
+            --bg-secondary: #121620;
+            --bg-card: #1a202c;
+            --accent-blue: #70d6ff;
+            --accent-red: #ff70a6;
+            --accent-yellow: #ffd670;
+            --accent-silver: #e0e6ed;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #2d3748;
+        }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      user-select: none;
-    }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-    body {
-      background-color: var(--bg-dark);
-      background-image: 
-        radial-gradient(circle at center, rgba(30, 18, 10, 0.8) 0%, rgba(10, 5, 2, 0.98) 100%),
-        url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134-7 7 3.134-7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43 -7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 1.343 3 3 3z' fill='%3C/svg%3E");
-      color: var(--ink-black);
-      font-family: 'IM Fell English', serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      overflow-x: hidden;
-      padding: 20px 10px;
-    }
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 50px;
+        }
 
-    input, textarea, p, h1, h2, h3, h4, span {
-      user-select: text;
-    }
+        header {
+            background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+            border-bottom: 2px solid var(--border-color);
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
 
-    /* Scrollbar Vintage */
-    ::-webkit-scrollbar {
-      width: 12px;
-    }
-    ::-webkit-scrollbar-track {
-      background: var(--leather);
-      border: 1px solid var(--gold-dark);
-    }
-    ::-webkit-scrollbar-thumb {
-      background: var(--burgundy);
-      border: 1px solid var(--gold-primary);
-      border-radius: 2px;
-    }
+        header h1 {
+            font-size: 2.2rem;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-red), var(--accent-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
 
-    /* Navegação Superior */
-    .nav-header {
-      width: 100%;
-      max-width: 1100px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 25px;
-      margin-bottom: 25px;
-      background: linear-gradient(180deg, #3d2010 0%, #201007 100%);
-      border: 2px solid var(--gold-primary);
-      box-shadow: 0 5px 15px var(--shadow-heavy), inset 0 0 10px rgba(212, 175, 55, 0.3);
-      border-radius: 4px;
-      position: relative;
-      z-index: 100;
-    }
+        header p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
 
-    .brand-title {
-      font-family: 'Cinzel Decorative', serif;
-      color: var(--gold-bright);
-      font-size: 1.5rem;
-      text-shadow: 2px 2px 4px #000;
-      letter-spacing: 2px;
-      cursor: pointer;
-    }
+        nav.tabs {
+            display: flex;
+            justify-content: center;
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-    .nav-buttons {
-      display: flex;
-      gap: 15px;
-    }
+        nav.tabs button {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
 
-    .nav-btn {
-      background: linear-gradient(180deg, #5c1827 0%, #3a0d17 100%);
-      color: var(--gold-primary);
-      border: 1px solid var(--gold-primary);
-      padding: 8px 18px;
-      font-family: 'Cinzel', serif;
-      font-size: 0.9rem;
-      font-weight: 600;
-      cursor: pointer;
-      letter-spacing: 1px;
-      transition: all 0.3s ease;
-      border-radius: 2px;
-    }
+        nav.tabs button:hover {
+            color: var(--text-main);
+            background-color: rgba(255, 255, 255, 0.03);
+        }
 
-    .nav-btn:hover, .nav-btn.active {
-      background: linear-gradient(180deg, var(--gold-primary) 0%, var(--gold-dark) 100%);
-      color: #1a0d00;
-      box-shadow: 0 0 10px var(--gold-primary);
-    }
+        nav.tabs button.active {
+            color: var(--accent-blue);
+            border-bottom-color: var(--accent-blue);
+            background-color: rgba(112, 214, 255, 0.05);
+        }
 
-    /* Container das Páginas */
-    .page-container {
-      width: 100%;
-      max-width: 1100px;
-      min-height: 80vh;
-      display: none;
-    }
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
 
-    .page-container.active-page {
-      display: flex;
-      flex-direction: column;
-      animation: fadeInPage 0.5s ease;
-    }
+        .tab-content {
+            display: none;
+        }
 
-    @keyframes fadeInPage {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+        .tab-content.active {
+            display: block;
+        }
 
-    /* Moldura de Livro Vintage */
-    .book-frame {
-      width: 100%;
-      background-color: var(--paper-base);
-      background-image: 
-        radial-gradient(ellipse at center, rgba(255,255,255,0.4) 0%, rgba(210,180,140,0.6) 100%),
-        url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
-      border: 12px solid #2d180c;
-      outline: 3px solid var(--gold-primary);
-      outline-offset: -8px;
-      box-shadow: 0 0 0 15px #1a0d06, 0 20px 40px var(--shadow-heavy), inset 0 0 100px rgba(80, 50, 20, 0.5);
-      position: relative;
-      padding: 40px;
-      box-sizing: border-box;
-      border-radius: 6px;
-      display: flex;
-      flex-direction: column;
-    }
+        .chapter-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.8rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
 
-    /* Cantoneiras */
-    .corner-ornament {
-      position: absolute;
-      width: 50px;
-      height: 50px;
-      pointer-events: none;
-      z-index: 10;
-    }
-    .corner-top-left { top: 5px; left: 5px; border-top: 4px double var(--gold-dark); border-left: 4px double var(--gold-dark); }
-    .corner-top-right { top: 5px; right: 5px; border-top: 4px double var(--gold-dark); border-right: 4px double var(--gold-dark); }
-    .corner-bottom-left { bottom: 5px; left: 5px; border-bottom: 4px double var(--gold-dark); border-left: 4px double var(--gold-dark); }
-    .corner-bottom-right { bottom: 5px; right: 5px; border-bottom: 4px double var(--gold-dark); border-right: 4px double var(--gold-dark); }
+        .chapter-card h2 {
+            color: var(--accent-blue);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 0.5rem;
+        }
 
-    .ornamental-divider {
-      text-align: center;
-      margin: 20px 0;
-      color: var(--burgundy);
-      font-size: 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 15px;
-    }
-    .ornamental-divider::before, .ornamental-divider::after {
-      content: '';
-      flex: 1;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--burgundy), transparent);
-    }
+        .chapter-card p {
+            margin-bottom: 1rem;
+            color: #cbd5e1;
+            text-align: justify;
+            white-space: pre-line;
+        }
 
-    /* HOME */
-    #home-page .book-frame {
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      min-height: 75vh;
-    }
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
 
-    .home-title-box {
-      border: 3px double var(--burgundy);
-      padding: 40px 60px;
-      background: rgba(245, 233, 200, 0.6);
-      margin-bottom: 30px;
-    }
+        .char-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-    .home-title {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: 3.2rem;
-      color: var(--burgundy);
-    }
+        .char-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
 
-    .home-buttons-container {
-      display: flex;
-      gap: 30px;
-      justify-content: center;
-    }
+        .char-header {
+            padding: 1.2rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
 
-    .vintage-main-btn {
-      background: linear-gradient(180deg, #4a1521 0%, #2b0a13 100%);
-      color: var(--gold-bright);
-      border: 2px solid var(--gold-primary);
-      padding: 18px 40px;
-      font-family: 'Cinzel', serif;
-      font-size: 1.3rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.3s;
-      border-radius: 4px;
-    }
+        .char-card.bruna .char-header { background: rgba(112, 214, 255, 0.1); border-top: 4px solid var(--accent-blue); }
+        .char-card.nayra .char-header { background: rgba(255, 112, 166, 0.1); border-top: 4px solid var(--accent-red); }
+        .char-card.carolina .char-header { background: rgba(255, 214, 112, 0.1); border-top: 4px solid var(--accent-yellow); }
+        .char-card.kaelen .char-header { background: rgba(224, 230, 237, 0.1); border-top: 4px solid var(--accent-silver); }
+        .char-card.william .char-header { background: rgba(255, 255, 255, 0.1); border-top: 4px solid #fff; }
+        .char-card.mae-bruna .char-header { background: rgba(0, 180, 216, 0.1); border-top: 4px solid #00b4d8; }
+        .char-card.mae-carolina .char-header { background: rgba(255, 183, 3, 0.1); border-top: 4px solid #ffb703; }
 
-    .vintage-main-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 0 15px var(--gold-primary);
-    }
+        .char-header h3 {
+            font-size: 1.3rem;
+            color: var(--text-main);
+        }
 
-    /* FORMULÁRIO DE CRIAÇÃO */
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-bottom: 20px;
-    }
+        .char-header span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-    .vintage-label {
-      font-family: 'Cinzel', serif;
-      font-weight: 700;
-      color: var(--burgundy);
-      font-size: 1.1rem;
-    }
+        .char-body {
+            padding: 1.2rem;
+        }
 
-    .vintage-input, .vintage-textarea {
-      background: rgba(255, 252, 240, 0.85);
-      border: 2px solid var(--border-ornate);
-      padding: 12px 16px;
-      font-family: 'IM Fell English', serif;
-      font-size: 1.1rem;
-      color: var(--ink-black);
-      border-radius: 3px;
-    }
+        .char-body p {
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            margin-bottom: 1rem;
+        }
 
-    .vintage-textarea {
-      min-height: 180px;
-      resize: vertical;
-    }
+        .skills-list {
+            list-style: none;
+        }
 
-    .image-upload-wrapper {
-      border: 2px dashed var(--border-ornate);
-      padding: 20px;
-      text-align: center;
-      background: rgba(240, 225, 195, 0.4);
-      cursor: pointer;
-    }
+        .skills-list li {
+            font-size: 0.85rem;
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            border-left: 3px solid var(--border-color);
+        }
 
-    .image-preview {
-      max-width: 100%;
-      max-height: 250px;
-      border: 4px double var(--leather);
-      margin-top: 15px;
-      display: none;
-    }
+        .skills-list li strong {
+            color: var(--text-main);
+            display: block;
+        }
 
-    .chapters-section {
-      background: rgba(230, 205, 160, 0.3);
-      border: 1px solid var(--border-ornate);
-      padding: 20px;
-      margin-top: 10px;
-    }
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 3rem;
+        }
 
-    .chapter-card {
-      background: rgba(255, 252, 242, 0.9);
-      border: 1px solid var(--border-ornate);
-      padding: 18px;
-      margin-bottom: 15px;
-      position: relative;
-    }
-
-    .btn-remove-chapter {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: var(--burgundy);
-      color: white;
-      border: none;
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      cursor: pointer;
-    }
-
-    .action-btn-secondary {
-      background: linear-gradient(180deg, #8b5a2b 0%, #5c3a1a 100%);
-      color: var(--gold-bright);
-      border: 1px solid var(--gold-primary);
-      padding: 10px 20px;
-      font-family: 'Cinzel', serif;
-      cursor: pointer;
-    }
-
-    .save-book-btn {
-      background: linear-gradient(180deg, #1e4620 0%, #0d260f 100%);
-      color: #d4f0d5;
-      border: 2px solid #3e8e43;
-      padding: 16px 36px;
-      font-family: 'Cinzel', serif;
-      font-size: 1.2rem;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    /* PÁGINA OBRAS: ESTANTE DE LIVROS */
-    .books-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 25px;
-      margin-top: 20px;
-    }
-
-    .book-card-item {
-      background: linear-gradient(180deg, #2d180c 0%, #1a0d06 100%);
-      border: 2px solid var(--gold-dark);
-      padding: 20px;
-      border-radius: 6px;
-      box-shadow: 0 5px 15px var(--shadow-heavy);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      color: var(--paper-base);
-      transition: transform 0.3s;
-    }
-
-    .book-card-item:hover {
-      transform: translateY(-5px);
-      border-color: var(--gold-bright);
-    }
-
-    .book-card-title {
-      font-family: 'Cinzel Decorative', serif;
-      color: var(--gold-bright);
-      font-size: 1.3rem;
-      margin-bottom: 8px;
-    }
-
-    .book-card-author {
-      font-style: italic;
-      color: var(--paper-dark);
-      margin-bottom: 15px;
-    }
-
-    .book-card-actions {
-      display: flex;
-      gap: 10px;
-      margin-top: 15px;
-    }
-
-    .btn-read-book {
-      flex: 2;
-      background: linear-gradient(180deg, #6b1d2f 0%, #3d0e19 100%);
-      color: var(--gold-bright);
-      border: 1px solid var(--gold-primary);
-      padding: 10px;
-      font-family: 'Cinzel', serif;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .btn-edit-book, .btn-delete-book {
-      flex: 1;
-      background: var(--leather);
-      color: var(--gold-bright);
-      border: 1px solid var(--gold-dark);
-      cursor: pointer;
-      font-family: 'Cinzel', serif;
-    }
-
-    .btn-delete-book { background: #5a1212; }
-
-    /* PÁGINA LEITURA EXCLUSIVA EM TELA CHEIA */
-    .reader-page-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 2px double var(--burgundy);
-      padding-bottom: 15px;
-      margin-bottom: 25px;
-    }
-
-    .back-btn {
-      background: var(--burgundy);
-      color: var(--gold-bright);
-      border: 1px solid var(--gold-primary);
-      padding: 8px 18px;
-      font-family: 'Cinzel', serif;
-      cursor: pointer;
-    }
-
-    .reader-book-title {
-      font-family: 'Cinzel Decorative', serif;
-      color: var(--burgundy);
-      font-size: 2.2rem;
-      text-align: center;
-    }
-
-    .reader-book-author {
-      text-align: center;
-      font-style: italic;
-      color: var(--ink-brown);
-      margin-top: 5px;
-      margin-bottom: 20px;
-    }
-
-    .reader-cover-image {
-      max-width: 320px;
-      max-height: 400px;
-      object-fit: contain;
-      margin: 0 auto 25px auto;
-      display: block;
-      border: 6px double var(--leather);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
-    }
-
-    .chapter-tabs {
-      display: flex;
-      gap: 8px;
-      border-bottom: 2px solid var(--border-ornate);
-      margin-bottom: 25px;
-      overflow-x: auto;
-      padding-bottom: 5px;
-    }
-
-    .chapter-tab {
-      background: rgba(210, 180, 140, 0.4);
-      border: 1px solid var(--border-ornate);
-      padding: 10px 20px;
-      font-family: 'Cinzel', serif;
-      font-size: 0.95rem;
-      cursor: pointer;
-      white-space: nowrap;
-    }
-
-    .chapter-tab.active {
-      background: var(--burgundy);
-      color: var(--gold-bright);
-      border-color: var(--gold-primary);
-      font-weight: bold;
-    }
-
-    .reader-content-text {
-      font-size: 1.2rem;
-      line-height: 1.9;
-      color: var(--ink-black);
-      text-align: justify;
-      white-space: pre-wrap;
-      padding: 10px 20px;
-    }
-
-    .first-letter-cap::first-letter {
-      font-family: 'UnifrakturMaguntia', serif;
-      font-size: 4rem;
-      float: left;
-      line-height: 0.8;
-      padding-top: 4px;
-      padding-right: 10px;
-      color: var(--burgundy);
-    }
-
-    /* Toast */
-    .vintage-toast {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background: #1a0a03;
-      color: var(--gold-bright);
-      border: 2px solid var(--gold-primary);
-      padding: 15px 25px;
-      font-family: 'Cinzel', serif;
-      display: none;
-      z-index: 1000;
-    }
-  </style>
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.6rem; }
+            nav.tabs button { padding: 0.8rem 0.8rem; font-size: 0.85rem; }
+            .chapter-card { padding: 1.2rem; }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- NAVEGAÇÃO SUPERIOR -->
-  <nav class="nav-header">
-    <div class="brand-title" onclick="switchPage('home')">Scriptorium</div>
-    <div class="nav-buttons">
-      <button class="nav-btn active" id="nav-home" onclick="switchPage('home')">Início</button>
-      <button class="nav-btn" id="nav-criacao" onclick="switchPage('criacao')">Criação</button>
-      <button class="nav-btn" id="nav-obras" onclick="switchPage('obras')">Obras</button>
-    </div>
-  </nav>
+    <header>
+        <h1>Guardiãs Estelares</h1>
+        <p>O Legado de Prata & A Saga das Estrelas</p>
+    </header>
 
-  <!-- PÁGINA 1: HOME PAGE -->
-  <main id="home-page" class="page-container active-page">
-    <div class="book-frame">
-      <div class="corner-ornament corner-top-left"></div>
-      <div class="corner-ornament corner-top-right"></div>
-      <div class="corner-ornament corner-bottom-left"></div>
-      <div class="corner-ornament corner-bottom-right"></div>
+    <nav class="tabs">
+        <button class="tab-btn active" onclick="openTab(event, 'temp1')">Temporada 1</button>
+        <button class="tab-btn" onclick="openTab(event, 'temp2')">Temporada 2</button>
+        <button class="tab-btn" onclick="openTab(event, 'habilidades')">Habilidades</button>
+    </nav>
 
-      <div class="home-title-box">
-        <h1 class="home-title">Scriptorium</h1>
-        <div class="ornamental-divider">❦ ════════ ❦</div>
-      </div>
-
-      <div class="home-buttons-container">
-        <button class="vintage-main-btn" onclick="switchPage('criacao')">Criação</button>
-        <button class="vintage-main-btn" onclick="switchPage('obras')">Obras</button>
-      </div>
-    </div>
-  </main>
-
-  <!-- PÁGINA 2: CRIAÇÃO DE LIVROS -->
-  <main id="criacao-page" class="page-container">
-    <div class="book-frame">
-      <div class="corner-ornament corner-top-left"></div>
-      <div class="corner-ornament corner-top-right"></div>
-      <div class="corner-ornament corner-bottom-left"></div>
-      <div class="corner-ornament corner-bottom-right"></div>
-
-      <h2 style="font-family: 'Cinzel Decorative', serif; color: var(--burgundy); text-align: center; font-size: 2rem;" id="editor-main-title">
-        Ateliê de Escrita
-      </h2>
-      <div class="ornamental-divider">☙ ❦ ❧</div>
-
-      <form id="book-form" onsubmit="handleSaveBook(event)">
-        <input type="hidden" id="edit-book-id" value="">
-
-        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px;">
-          <div class="form-group">
-            <label class="vintage-label">❖ Título da Obra *</label>
-            <input type="text" id="book-title" class="vintage-input" placeholder="Ex: Guardiãs Estelares" required>
-          </div>
-          <div class="form-group">
-            <label class="vintage-label">❖ Autor / Pseudônimo</label>
-            <input type="text" id="book-author" class="vintage-input" placeholder="Ex: Guardiã Mãe">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label class="vintage-label">❖ Ilustração de Capa (Opcional)</label>
-          <div class="image-upload-wrapper" onclick="document.getElementById('book-image-input').click()">
-            <p style="font-style: italic; color: var(--ink-brown);">Clique para carregar uma imagem do dispositivo</p>
-            <input type="file" id="book-image-input" accept="image/*" style="display: none;" onchange="handleImagePreview(event)">
-            <img id="image-preview" class="image-preview" alt="Pré-visualização">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label class="vintage-label">❖ Formato da Obra</label>
-          <div style="display: flex; gap: 20px; margin-top: 5px;">
-            <label style="cursor: pointer; font-weight: bold;"><input type="radio" name="structure-type" value="single" checked onchange="toggleStructureType()"> Texto Único</label>
-            <label style="cursor: pointer; font-weight: bold;"><input type="radio" name="structure-type" value="chapters" onchange="toggleStructureType()"> Dividido em Capítulos</label>
-          </div>
-        </div>
-
-        <div id="single-text-container" class="form-group">
-          <label class="vintage-label">❖ Conteúdo Principal</label>
-          <textarea id="single-content" class="vintage-textarea" placeholder="Escreva sua história aqui..."></textarea>
-        </div>
-
-        <div id="chapters-container" class="chapters-section" style="display: none;">
-          <div class="vintage-label" style="margin-bottom: 15px;">❖ Capítulos da Obra</div>
-          <div id="chapters-list"></div>
-          <button type="button" class="action-btn-secondary" onclick="addChapterInput()">+ Adicionar Capítulo</button>
-        </div>
-
-        <div style="margin-top: 30px; display: flex; justify-content: flex-end; gap: 15px;">
-          <button type="button" class="action-btn-secondary" onclick="resetForm(); switchPage('obras');">Cancelar</button>
-          <button type="submit" class="save-book-btn">🖋 Salvar Obra</button>
-        </div>
-      </form>
-    </div>
-  </main>
-
-  <!-- PÁGINA 3: OBRAS (GALERIA/ESTANTE) -->
-  <main id="obras-page" class="page-container">
-    <div class="book-frame">
-      <div class="corner-ornament corner-top-left"></div>
-      <div class="corner-ornament corner-top-right"></div>
-      <div class="corner-ornament corner-bottom-left"></div>
-      <div class="corner-ornament corner-bottom-right"></div>
-
-      <h2 style="font-family: 'Cinzel Decorative', serif; color: var(--burgundy); text-align: center; font-size: 2rem;">
-        Biblioteca de Obras
-      </h2>
-      <div class="ornamental-divider">❦ ════════ ❦</div>
-
-      <div id="bookshelf-grid" class="books-grid">
-        <!-- Cartões de livros injetados aqui -->
-      </div>
-    </div>
-  </main>
-
-  <!-- PÁGINA DE LEITURA DEDICADA EM TELA CHEIA -->
-  <main id="leitura-page" class="page-container">
-    <div class="book-frame">
-      <div class="corner-ornament corner-top-left"></div>
-      <div class="corner-ornament corner-top-right"></div>
-      <div class="corner-ornament corner-bottom-left"></div>
-      <div class="corner-ornament corner-bottom-right"></div>
-
-      <div class="reader-page-header">
-        <button class="back-btn" onclick="switchPage('obras')">⬅ Voltar às Obras</button>
-        <div>
-          <button class="back-btn" style="background: var(--leather);" id="btn-edit-reading" onclick="">✎ Editar</button>
-        </div>
-      </div>
-
-      <h1 class="reader-book-title" id="read-title">Título da Obra</h1>
-      <div class="reader-book-author" id="read-author">Por Autor</div>
-
-      <img id="read-cover" class="reader-cover-image" src="" alt="Capa da Obra" style="display: none;">
-
-      <!-- Abas para capítulos se houver -->
-      <div id="reader-chapter-tabs" class="chapter-tabs" style="display: none;"></div>
-
-      <!-- Texto de Leitura -->
-      <div class="reader-content-text first-letter-cap" id="read-body-text"></div>
-    </div>
-  </main>
-
-  <!-- TOAST NOTIFICAÇÃO -->
-  <div id="toast" class="vintage-toast">
-    <span id="toast-message">Obra salva com sucesso!</span>
-  </div>
-
-  <script>
-    let books = [];
-    let currentBookId = null;
-    let currentChapterIdx = 0;
-    let currentBase64Image = "";
-
-    document.addEventListener("DOMContentLoaded", () => {
-      loadBooks();
-      
-      // Carrega a obra completa por padrão
-      createSampleBook();
-      
-      renderBookshelf();
-    });
-
-    function switchPage(pageId) {
-      document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-      const activeNav = document.getElementById(`nav-${pageId}`);
-      if (activeNav) activeNav.classList.add('active');
-
-      document.querySelectorAll('.page-container').forEach(page => page.classList.remove('active-page'));
-      const targetPage = document.getElementById(`${pageId}-page`);
-      if (targetPage) targetPage.classList.add('active-page');
-
-      if (pageId === 'obras') renderBookshelf();
-    }
-
-    function loadBooks() {
-      const stored = localStorage.getItem('scriptorium_books');
-      if (stored) {
-        try { books = JSON.parse(stored); } catch(e) { books = []; }
-      }
-    }
-
-    function saveBooks() {
-      localStorage.setItem('scriptorium_books', JSON.stringify(books));
-    }
-
-    /* ==========================================================================
-       SUA OBRA COMPLETA PERMANENTE
-       ========================================================================== */
-    function createSampleBook() {
-      books = [{
-        id: 'obra-principal',
-        title: 'Guardiãs Estelares: O Legado de Prata',
-        author: 'Guardiã Mãe',
-        image: '',
-        hasChapters: true,
-        content: '',
-        chapters: [
-          { 
-            title: 'Capítulo 1: O Despertar das Estrelas', 
-            content: `No Início de Tudo
+    <div class="container">
+        
+        <!-- TEMPORADA 1 -->
+        <div id="temp1" class="tab-content active">
+            
+            <div class="chapter-card">
+                <h2>Capítulo 1: O Despertar das Estrelas</h2>
+                <p>No Início de Tudo
 Antes de enfrentarem generais do vácuo, demônios e duques interdimensionais. Existia três garotas: Bruna, Nayra e Carolina. Elas eram apenas garotas comuns que frequentavam a mesma escola de ensino médio, embora vivessem em mundos completamente diferentes e mal se falassem nos corredores.
 
-Bruna era uma jovem negra focada, disciplinada e de poucas palavras. Ela passava os seus finais de tarde treinando exaustivamente ginástica rítmica e acrobatas, usando a alta intensidade dos exercícios físicos como uma válvula de escape para preencher um vazio que sempre sentiu no peito. Além do amor pelos aparelhos de ginástica, Bruna tinha uma paixão avassaladora e contagiante por K-pop.
-Ela sabia todas as coreografias, colecionava photocards e passava horas imersa no universo dos idols, que traziam cor e alegria para a sua rotina rígida.
+Bruna era uma jovem negra focada, disciplinada e de poucas palavras. Ela passava os seus finais de tarde treinando exaustivamente ginástica rítmica e acrobatas, usando a alta intensidade dos exercícios físicos como uma válvula de escape para preencher um vazio que sempre sentiu no peito. Além do amor pelos aparelhos de ginástica, Bruna tinha uma paixão avassaladora e contagiante por K-pop. Ela sabia todas as coreografias, colecionava photocards e passava horas imersa no universo dos idols, que traziam cor e alegria para a sua rotina rígida.
 Bruna cresceu acreditando ser filha única. Ela não fazia a menor ideia de que tinha uma irmã perdida chamada Pirolina, cuja existência havia sido apagada de seu passado, e muito menos sabia sobre a existência de qualquer espada mágica. Sua única conexão com o passado de sua família era um relógio de pulso antigo, herdado de sua falecida mãe. Durante anos, o acessório permaneceu parado em seu braço direito, com os ponteiros travados. No entanto, na noite em que um misterioso eclipse começou a se desenhar no céu, o relógio de repente ganhou vida. Além de emitir uma pulsação azul-bebê e funcionar como um rastreador mágico para achar objetos perdidos, ele manifestou uma habilidade oculta: a Manipulação Cinética de Impacto. Sempre que Bruna sofria uma queda ou um golpe violento, o relógio absorvia a força do impacto e a convertia em impulso físico, permitindo que ela realizasse saltos e acrobacias com o dobro da altura e velocidade sobre-humanas.
 Guiada pelos estalos magnéticos do relógio em seu braço, Bruna foi levada para os confins da cidade, onde a civilização dava lugar a uma floresta densa e esquecida. Lá estava a árvore mais antiga daquela cidade, uma estrutura colossal com raízes que pareciam abraçar a própria terra. O relógio de pulso brilhou intensamente quando Bruna se aproximou do tronco oco da árvore ancestral. Ao colocar a mão em uma fenda na casca antiga, seus dedos tocaram o cabo de uma espada perdida, desgastada pelo tempo.
-No momento em que Bruna puxou a lâmina para fora, uma onda de memórias esquecidas inundou sua mente, junto com uma revelação avassaladora: a essência de sua irmã perdida, Pirolina, estava ali. Pirolina fora uma guardiã ancestral e, para proteger o universo e salvar a linhagem de sua família do avanço devastador da entidade Eclipse, havia sacrificado sua forma física. Ela transferira toda a sua alma e energia cósmica para dentro daquele metal antigo, adormecendo na árvore mais antiga do mundo até que o relógio de braço herdado da mãe guiasse Bruna para encontrá-la. A relíquia passou a pulsar com uma aura azul-bebê calorosa ao toque de Bruna, restabelecendo um laço de sangue que o tempo tentou apagar.
+No momento em que Bruna puxou a lâmina para fora, uma onda de memórias esquecidas inundou sua mente, junto com uma revelação avassaladora: a essência de sua irmã perdida, Pirolina, estava ali. Pirolina fora uma guardiã ancestral e, para proteger o universo e salvar a linhagem de sua família do avanço devastador da entidade Eclipse, havia sacrificado sua forma física. Ela transferira toda a sua alma e energia cósmica para dentro daquele metal antigo, adormecendo na árvore mais antiga do mundo até que o relógio de braço herdado da mãe guiasse Bruna para encontrá-la. A relíquia passou a pulsar com uma aura azul-bebê calorosa ao toque de Bruna, restabelecendo um laço de sangue que o time tentou apagar.
 
 Nayra vivia uma realidade completamente interna. Ela era uma garota profundamente introvertida e rebelde, que usava uma parede de silêncio para se proteger do mundo. Seu maior refúgio era a arte da maquiagem, que ela dominava com traços ousados, cores escuras e contornos marcantes, transformando seu próprio rosto em uma espécie de escudo para o cotidiano. Nayra quase sempre chegava à escola parecendo zangada, com uma expressão fechada e fones de ouvido enormes no talo. Ela passava os dias isolada escutando o rock mais pesado e rebelde que encontrava, batendo cabeça e se desligando do mundo ao redor. Ela se sentia uma peça que não se encaixava em lugar nenhum, sem saber que sua fúria e isolamento eram, na verdade, o reflexo de uma energia vermelha ardente latente de herança familiar em sua alma, esperando o momento certo para se libertar em forma de proteção e combate.
 
@@ -714,345 +249,430 @@ Carolina era o mistério acadêmico da escola. Branca, de cabelos ondulados e un
 
 O destino das três colidiu de forma abrupta numa tarde de tempestade violenta, semanas após Bruna resgatar a espada. O céu havia escurecido e a biblioteca da escola estava praticamente vazia. Carolina manuseava um pergaminho antigo que havia encontrado esquecido nos arquivos proibidos, decifrando notas sobre o alinhamento das estrelas e a iminente abertura de fendas sombrias. Quando ela murmurou em voz alta sobre a "energia estelar aprisionada em objetos estelares", uma vibração estranha correu pelo ar, foi como um feitiço citado.
 Bruna, que estava fazendo seus alongamentos perto das janelas imaginando as coreografias de seus grupos favoritos, com a espada escondida em sua bolsa de treino, e Nayra, que escutava um rock ensurdecedor em seus fones sentada no chão, com sua habitual expressão brava e maquiagem impecável, pararam instantaneamente. Um chamado silencioso, mas esmagador, ecoou no peito de cada uma. No mesmo segundo, três jóias mágicas ocultas no teto da biblioteca despencaram e brilharam com uma intensidade divina:
+- Uma jóia azul-bebê prendeu-se ao cabelo de Bruna, transformando-se em uma piranha de cabelo estilizada;
+- Uma joia vermelha fundiu-se ao cabo dos fones de ouvido de Nayra, transformando o fio instantaneamente em um poderoso chicote adornado com pedras preciosas brilhantes;
+- Uma jóia amarela incrustou-se na armação dos óculos de Carolina e um pesado machado mágico apareceu instantaneamente.
 
-• Uma jóia azul-bebê prendeu-se ao cabelo de Bruna, transformando-se em uma piranha de cabelo estilizada;
-• Uma joia vermelha fundiu-se ao cabo dos fones de ouvido que estavam no pescoço de Nayra, transformando o fio instantaneamente em um poderoso chicote adornado com pedras preciosas brilhantes;
-• Uma jóia amarela incrustou-se na armação dos óculos de Carolina e em um pesado machado mágico que estava guardado na joia mágica apareceu instantaneamente.
+A conexão mental foi instantânea. Suas mentes se abriram e elas compreenderam que eram as últimas Guardiãs Estelares. Carolina era a mente tática. Nayra encontrou no rock a força para o chicote. Bruna, unida à alma de sua irmã Pirolina, assumiu a liderança com saltos potencializados pelo relógio cinético.</p>
+            </div>
 
-A conexão mental foi instantânea. Suas mentes se abriram e elas compreenderam, sem precisar de palavras, que eram as últimas Guardiãs Estelares. Carolina finalmente entendeu o porquê de seu chamado pela astrofísica e a familiaridade com as runas: ela era a mente tática que decodificaria o universo. Nayra encontrou em sua rebeldia e no ritmo do rock a força motriz para lutar com o chicote vermelho, que apenas membros de sua família a gerações antigas poderiam fazer o manuseio. Bruna, unida pelo calor da alma de sua querida irmã Pirolina — que finalmente despertou dentro da lâmina —, assumiu a liderança com sua flexibilidade impecável, a paixão brilhante pela cultura pop que trazia leveza ao grupo, e os saltos potencializados pelo relógio cinético.
-Durante meses, elas treinaram em segredo absoluto na dimensão mágica que se abria ao recitarem uma magia unindo todas suas jóias, aprimorando seus poderes e combinando suas habilidades de combate.
+            <div class="chapter-card">
+                <h2>Capítulo 2: O Ataque na Arena K-Pop</h2>
+                <p>Hoje era o grande dia em que o idol extremamente famoso ia dar um show naquela cidade. Bruna havia implorado e arrastado as amigas para a primeira fileira. Nayra aceitou ir pela amiga, e Carolina para observar a acústica e o comportamento das massas. Tudo estava perfeito, mas no ápice da performance, o teto da arena desabou sob o peso de uma névoa negra. As sombras do Vazio atacaram e o idol foi arremessado ao chão. Sem hesitar, Bruna, Nayra e Carolina invocaram seus trajes de Magical Girls e saltaram em direção ao palco destruído.
 
-Um show de kpop de um idol extremamente famoso foi anunciado…` 
-          },
-          { 
-            title: 'Capítulo 2: O Ataque na Arena K-Pop', 
-            content: `Hoje era o grande dia em que o idol extremamente famoso ia dar um show naquela cidade. O dia do grande show de K-pop chegou. Bruna havia implorado, comprado os ingressos na pré-venda e arrastado as amigas para a primeira fileira da arena para ver o grupo de seu idol favorito. Nayra aceitou ir apenas pelo fato de sua amiga estar extremamente feliz e Carolina para observar a acústica e o comportamento das massas. Tudo estava perfeito, mas no ápice da performance, o teto da arena desabou sob o peso de uma névoa negra. As sombras do Vazio atacaram e o idol masculino foi arremessado ao chão, ferido e cercado. Sem hesitar, Bruna, Nayra e Carolina invocaram seus trajes de Magical Girls e saltaram em direção ao palco destruído.
-
-A poeira cósmica ainda flutuava sobre a estrutura devastada. O trio de garotas mágicas respirava com dificuldade após conter a primeira horda da invasão das sombras. Ao fundo, o jovem idol resgatado por Bruna — que usou o impulso cinético de seu relógio para saltar sobre os destroços e defendê-lo — era levado em segurança por paramédicos, enquanto a multidão na arena ainda ecoava gritos de desespero e espanto.
-Bruna olhou para sua espada do poder. O brilho azul-bebê na lâmina pulsava de forma fraca e trêmula. Ela sentia que a alma de Pirolina estava exausta e confusa; a batalha havia exigido energia demais.
-– Conseguimos... mas o preço foi alto – sussurrou a líder, tocando as pedras mágicas em seu peito, que agora pareciam opacas.
-Nayra guardou seu chicote de coração, que já não brilhava com a mesma intensidade. Ela olhou para a mais alta do grupo, Carolina, que limpava o sangue escuro das sombras de seu enorme machado kawaii. Seus óculos com joias refletiam a escuridão que ainda rondava o horizonte.
-– Ainda não acabou, meninas – disse Carolina, com sua voz fria e cortante que sempre impunha respeito. – Olhem para o céu.
-O teto desabado da arena revelava uma fenda dimensional que começava a se abrir novamente. O relógio de pulso de Bruna começou a girar ao contrário, como se estivesse possuído por uma força estranha, emitindo um bipe desesperador. Uma onda de energia gravitacional esmagadora atingiu o trio, forçando-as a se ajoelharem e sussurrar de dor. O chão tremeu. Três portais gigantescos se abriram simultaneamente no alto, e de dentro deles, criaturas colossais e os generais do Vazio, começaram a emergir.
-O trio estava esgotado. Nayra mal conseguia levantar o chicote, e o véu amarelo da saia de Carolina desfazia-se em partículas sem brilho. Bruna segurou a espada com as duas mãos, lágrimas nos olhos ao perceber que forçar mais um ataque poderia apagar a essência de Pirolina para sempre.
-– Eu preciso de respostas... – chorou a protagonista, abraçando o cabo da espada enquanto os monstros estendiam suas garras. A derrota parecia inevitável.
+Após conter a primeira horda, Bruna resgatou o idol usando o impulso cinético de seu relógio. O brilho azul-bebê na lâmina pulsava de forma fraca; a alma de Pirolina estava exausta. Nayra guardou seu chicote e Carolina limpava o sangue escuro de seu enorme machado.
+Contudo, três portais gigantescos se abriram no alto e criaturas colossais emergiram. O trio estava esgotado. Bruna segurava a espada chorando ao perceber que forçar mais um ataque apagaria a essência de Pirolina para sempre.
 
 TOC. TOC. TOC.
-Um som rítmico e metálico ecoou por toda a arena, sobrepondo-se ao rugido dos monstros. Não vinha do céu, mas das sombras dos escombros do palco. Os monstros pararam no ar, como se estivessem paralisados por uma força desconhecida.
-Passos calmos avançaram pela fumaça. Uma silhueta esguia revelou-se. Era um garoto de cabelos brancos curtos e olhos completamente cinzentos, sem vida. Ele vestia um terno preto impecável, adornado apenas por correntes de prata pura que flutuavam ao seu redor como serpentes vivas. Em sua mão direita, ele carregava uma imensa foice de cristal negro que absorvia a pouca luz que restava no ambiente.
-Ele parou exatamente à frente do trio de joias. Não olhou para trás, mantendo os olhos fixos nos generais do Vazio.
-– Vocês lutaram bem, Novas Guardiãs – a voz do jovem era um sussurro ecoante que fez o próprio espaço-tempo vibrar. – “O equilíbrio exige o Fim, e o fim sou eu”.
-Com um único gesto movimento circular de sua foice, o garoto de terno preto cortou o ar. Uma fenda de vácuo absoluto rasgou o cenário, engolindo os três generais colossais instantaneamente, fechando os portais em uma fração de segundo.
-Ele virou-se lentamente para o trio, a foice disappearing em partículas de cinzas. Seu olhar frio fixou-se no relógio de Bruna, que havia parado de girar. Ele estendeu a mão para ajudá-la a se levantar.
-– Meu nome é Kaelen, o Ceifador do Eclipse – disse ele.` 
-          },
-          { 
-            title: 'Capítulo 3: A Origem de Kaelen', 
-            content: `No instante em que Kaelen pronunciou seu nome, o relógio de pulso no braço de Bruna reagiu à presença do rapaz. Os ponteiros mágicos vibraram intensamente e uma poderosa explosão mágica involuntária se abriu, projetando a trágica história de Kaelen diretamente da mente dele na mente do trio de guardiãs.
+Um som rítmico e metálico ecoou pela arena. Os monstros pararam no ar. Passos calmos avançaram pela fumaça. Uma silhueta esguia revelou-se: um garoto de cabelos brancos curtos e olhos cinzentos sem vida, vestindo um terno preto impecável com correntes de prata pura e uma imensa foice de cristal negro.
+ Ele parou à frente do trio e disse: “O equilíbrio exige o Fim, e o fim sou eu”. Com um único movimento circular de sua foice, ele rasgou uma fenda que engoliu os generais e fechou os portais.
+Ele virou-se para o trio, estendeu a mão para Bruna e disse:
+— Meu nome é Kaelen, o Ceifador do Eclipse.</p>
+            </div>
 
-Muito antes de Bruna resgatar sua espada, o Quadrante de Prata do universo era um lugar de paz absoluta, protegido pela Ordem dos Cavaleiros do Prisma. Lá vivia Kaelen, um jovem guerreiro promissor de cabelos pretos como a asa de um corvo e olhos cinzentos que, na época, transbordavam determinação, vida e esperança. Kaelen não andava sozinho; ele tinha como seu braço direito, mentor e melhor amigo um cavaleiro lendário chamado William.
+            <div class="chapter-card">
+                <h2>Capítulo 3: A Origem de Kaelen: O Caminho do Ceifador</h2>
+                <p>O relógio de Bruna reagiu à presença de Kaelen e uma projeção da mente do rapaz invadiu a mente das garotas.
+Muito antes, o Quadrante de Prata era um lugar de paz protegido pela Ordem dos Cavaleiros do Prisma. Lá vivia Kaelen, um jovem guerreiro de cabelos pretos e olhos cinzentos cheios de vida, e seu mentor e melhor amigo, William — o portador da Lâmina do Alvorecer.
 
-William era o guerreiro mais brilhante da ordem. Ele possuía cabelos brancos, olhos cinzas e uma presença calorosa e era o portador da lendária Lâmina do Alvorecer. Kaelen e William eram inseparáveis. Juntos, eles patrulhavam as fronteiras dimensionais e protegiam os portões sagrados que mantinham a escuridão do Eclipse exilada nos confins do universo. William era quem ensinava Kaelen a canalizar a energia cósmica pura e, acima de tudo, era quem mantinha o jovem com os pés no chão, lembrando-o sempre de que um verdadeiro cavaleiro luta para proteger a vida e seus princípios. Kaelen via em William o irmão mais velho que nunca teve, e a lealdade entre os dois era o maior pilar de defesa daquele quadrante que os unia.
+A tragédia começou quando o Eclipse envenenou a mente do Alto Comandante da ordem. Na "Queda de Prata", o Comandante traiu seu povo e abriu os portais para as hordas do Vazio. Na sala do trono, William usou seu último resto de energia vital para criar uma barreira protetora ao redor de Kaelen e avançou sozinho. William derrotou o Comandante, mas a explosão de antimatéria consumiu seu corpo. Antes de desintegrar, William sorriu e disse: "Sobreviva, Kaelen... proteja a luz do universo."
 
-No entanto, a tragédia que destruiu o Quadrante de Prata começou com um sussurro maligno. A entidade conhecida como “O Eclipse” percebeu que a única forma de derrubar as defesas do Prisma era quebrando a ordem por dentro. Sorrateiramente, ele começou a envenenar a mente do Alto Comandante da ordem, alimentando sua ganância por poder e medo da morte.
+Tomado pelo desespero e ódio, Kaelen mergulhou os braços diretamente na poeira negra e corrupta do Eclipse. A agonia arrancou toda a cor de seu corpo: seus cabelos pretos tornaram-se brancos e seus olhos viraram poços cinzentos sem vida. Renascido como o Ceifador do Eclipse, ele forjou suas correntes de prata e a foice de cristal negro, adotando o terno preto para caçar o Eclipse pelas dimensões.</p>
+            </div>
 
-Na noite que ficou conhecida como “A Queda de Prata”, o Comandante traiu seu próprio povo. Ele desativou os escudos planetários e abriu os portais sagrados de dentro para fora, permitindo que as hordas do Vazio invadissem o planeta. Kaelen e William acordaram com os céus queimando em chamas roxas e pretas. O pânico foi absoluto. Os cavaleiros tentaram resistir, mas a traição foi avassaladora. Um a um, os companheiros de Kaelen eram derrubados e transformados em estátuas de cinzas corruptas ambulantes pelas forças do Eclipse.
-
-No meio do caos do palácio central, Kaelen e William abriram caminho à força até a sala do trono para confrontar o traidor. Mas o que encontraram foi uma armadilha. Eles foram emboscados pelo próprio Comandante, que agora canalizava um poder sombrio colossal, que podia matar alguém com um só golpe. A batalha foi brutal. Kaelen foi arremessado contra as colunas de cristal, ferido e sem forças. Ao ver o amigo prestes a ser executado, William usou o restante de sua energia vital para criar uma barreira protetora ao redor de Kaelen e avançou sozinho para o ataque final.
-
-William conseguiu desferir um golpe fatal no Comandante traidor, mas o preço foi devastador. A energia escura acumulada no corpo do Comandante explodiu, liberando uma onda de anti-matéria que começou a consumir a Lâmina do Alvorecer e o próprio corpo de William.
-Kaelen esmurrou a barreira protetora, gritando em desespero enquanto assistia ao horror. A escuridão subia pelas pernas de William, transformando sua carne em cinzas negras. Antes de desintegrado por completo na imensidão do vácuo, William olhou para Kaelen com os olhos marejados, sorriu e usou seu último suspiro para dizer: "Sobreviva, Kaelen... proteja a luz do universo."
-
-O escudo se desfez e Kaelen caiu de joelhos no chão cinzento, completamente sozinho no meio das ruínas de seu mundo. A dor da perda de William, misturada ao ódio pela traição e pela impotência, quebrou algo dentro do jovem guerreiro. Ele percebeu que a luz pura dos cavaleiros não havia sido suficiente para salvar as pessoas que ele amava. Se ele quisesse vingança e uma forma de selar o Eclipse para sempre, ele precisaria usar as armas do próprio inimigo.
-
-Tomado pelo rastro da loucura e do desespero, Kaelen caminhou até o epicentro da explosão, onde a matéria escura do Eclipse borbulhava nas cinzas de William. Sem hesitar, ele mergulhou os braços diretamente na poeira negra e corrupta.
-A agonia foi indescritível. Era como se sua alma estivesse sendo rasgada e reconstruída mil vezes por segundo. A energia do vácuo foi tão violenta e invasiva que arrancou violentamente toda a cor e a vivacidade de seu corpo: seus cabelos pretos tornaram-se brancos como a neve em uma fração de segundo, e o brilho castanho de seus olhos foi completamente apagado, transformando-se em poços cinzentos, frios e sem vida.
-
-Kaelen não morreu, mas o cavaleiro que ele fora um dia deixou de existir ali. Ele renasceu como o Ceifador do Eclipse. Usando a matéria escura que agora corria em suas veias, ele forjou suas correntes de prata — símbolos dos laços que o prendiam ao seu passado e à promessa feita a William — e a sua imensa foice de cristal negro, uma arma terrível capaz de cortar o próprio tecido do espaço-tempo e ceifar a escuridão. Como um ato definitivo de isolamento e rejeição às cores vibrantes da Ordem do Prisma, ele adotou um terno preto impecável, tornando-se um vigilante sombrio e solitário que vagava pelas dimensões.
-
-Por anos, Kaelen caçou maneiras de reviver William, procurando de mundo em mundo, movido pelo fantasma de William e pelo desejo de cumprir sua última promessa. Quando ele finalmente sentiu a colossal onda de energia estelar vinda do planeta Terra — desencadeada pelo despertar da espada de Bruna durante o ataque ao show de K-pop —, ele soube que era o Eclipse, ele havia encontrado seu alvo final. Ele cruzou as barreiras dimensionais e surgiu no palco destruído bem a tempo de interceptar os monstros.` 
-          },
-          { 
-            title: 'Capítulo 4: A Jornada Oculta', 
-            content: `A visão do passado de Kaelen se dissipou na mente das garotas, deixando o trio ofegante diante da revelação. O Ceifador soltou a mão da líder e encarou o grupo com firmeza.
-– Eu vim avisar que o verdadeiro inimigo de vocês acabou de acordar – continuou Kaelen. – Vocês acham que Pirolina foi selada por acidente? O Eclipse não é um fenômeno, é uma entidade. E ele quer o que está aí dentro para abrir o verdadeiro Portal do Fim. Os templos das Guardiãs Estelares em outros quadrantes caíram nesta noite. Vocês três são as últimas de sua geração.
-
+            <div class="chapter-card">
+                <h2>Capítulo 4: A Jornada Oculta</h2>
+                <p>A visão do passado de Kaelen se dispensou na mente das garotas, deixando o trio ofegante diante da revelation. O Ceifador soltou a mão da líder e encarou o grupo com firmeza.
+— Eu vim avisar que o verdadeiro inimigo de vocês acabou de acordar — continuou Kaelen. — Vocês acham que Pirolina foi selada por acidente? O Eclipse não é um fenômeno, é uma entidade. E ele quer o que está aí dentro para abrir o verdadeiro Portal do Fim. Os templos das Guardiãs Estelares em outros quadrantes caíram nesta noite. Vocês três são as últimas de sua geração.
 Kaelen estendeu a mão livre para o alto. As correntes de prata ao seu redor começaram a girar rapidamente, abrindo um portal de sombras cinzentas no chão sob os pés do grupo.
-– Para onde vamos agora? – perguntou Bruna, assumindo seu papel de líder, apesar do medo.
-– Para o único lugar onde a luz de vocês não pode ser rastreada: o Submundo do Eclipse.
-
+— Para onde vamos agora? — perguntou Bruna, assumindo seu papel de líder, apesar do medo.
+— Para o único lugar onde a luz de vocês não pode ser rastreada: o Submundo do Eclipse.
 Sem tempo para hesitar, Nayra saltou primeiro, seguida por Carolina, que exibia um sorriso desafiador diante do perigo. Bruna olhou para a arena vazia uma última vez antes de pular junto com Kaelen, deixando para trás o mundo humano que cresceu em ruínas.
-
 O portal se fechou, e o silêncio dominou o local por alguns instantes. No entanto, o chão onde Kaelen havia desferido o golpe começou a borbulhar. Da fenda dimensional restante, uma gosma negra e brilhante subiu, moldando-se lentamente na forma de um trono.
 Uma gargalhada ecoou pelas paredes desabadas. Sentado no trono, um novo personagem observava os rastros de energia das garotas mágicas. Ele usava uma armadura feita de espelhos quebrados que refletiam o vazio e uma máscara teatral que sorria malevolamente.
-– Corram o quanto quiserem, criaturinhas estelares – sibilou o Duque dos Espelhos Partidos, o braço direito do Eclipse, enquanto estilhaçava um photocard do idol que havia sido deixado para trás. – O Ceifador acha que pode escondê-las... mas o reflexo de vocês já me pertence.` 
-          },
-          { 
-            title: 'Capítulo 5: Confronto Final', 
-            content: `O portal de sombras de Kaelen cuspiu o grupo diretamente no coração do Submundo do Eclipse, uma dimensão distorcida onde o ar era pesado, não existia vida, o chão era feito de puro vidro negro e o céu brilhava em tons de cinza e roxo. No entanto, eles não estavam seguros. O chão começou a rachar ao redor deles, e reflexos distorcidos das próprias garotas mágicas emergiram das fendas, soltando uma risada extremamente alta.
-– Ele nos encontrou rápido demais – rosnou Carolina, apertando o cabo de seu machado de batalha, seus olhos brilhando através dos óculos rúnicos com pedras preciosas enquanto assumia sua postura mais ameaçadora.
+— Corram o quanto quiserem, criaturinhas estelares — sibilou o Duque dos Espelhos Partidos, o braço direito do Eclipse, enquanto estilhaçava um photocard do idol que havia sido deixado para trás. — O Ceifador acha que pode escondê-las... mas o reflexo de vocês já me pertence.</p>
+            </div>
 
+            <div class="chapter-card">
+                <h2>Capítulo 5: Confronto Final</h2>
+                <p>O portal de sombras de Kaelen cuspiu o grupo diretamente no coração do Submundo do Eclipse, uma dimensão distorcida onde o ar era pesado, não existia vida, o chão era feito de puro vidro negro e o céu brilhava em tons de cinza e roxo. No entanto, eles não estavam seguros. O chão começou a rachar ao redor deles, e reflexos distorcidos das próprias garotas mágicas emergiram das fendas, soltando uma risada extremamente alta.
+— Ele nos encontrou rápido demais — rosnou Carolina, apertando o cabo de seu machado de batalha, seus olhos brilhando através dos óculos rúnicos com pedras preciosas enquanto assumia sua postura mais ameaçadora.
 Do centro dos espelhos partidos, a silhueta do Duque surgiu, flutuando com sua máscara sorridente.
-– Vocês não podem se esconder do próprio reflexo! O Eclipse exige a alma da espada! – ele gritou, disparando centenas de estilhaços de espelhos cortantes na direção do grupo.
-– Fiquem atrás de mim! – comandou Nayra. Com uma fúria rebelde sintonizada ao ritmo de suas guitarras mentais, ela girou seu chicote em alta velocidade, criando um escudo de faíscas vermelhas e brilhantes que estraçalhou os projéteis no ar.
-
+— Vocês não podem se esconder do próprio reflexo! O Eclipse exige a alma da espada! — ele gritou, disparando centenas de estilhaços de espelhos cortantes na direção do grupo.
+— Fiquem atrás de mim! — comandou Nayra. Com uma fúria rebelde sintonizada ao ritmo de suas guitarras mentais, ela girou seu chicote em alta velocidade, criando um escudo de faíscas vermelhas e brilhantes que estraçalhou os projéteis no ar.
 Kaelen avançou pelas laterais, correntes de prata voando como serpentes enquanto ele desferia um golpe devastador com sua foice de cristal negro contra o vilão. O impacto rachou a armadura de espelhos do Duque, mas a energia do Eclipse começou a sobrecarregar o lugar. Rachaduras de luz negra cobriram o teto da dimensão, ameaçando colapsar tudo e destruir o universo estelar.
-
-– Bruna! Não há energia suficiente para derrotá-lo e fechar a fenda! – gritou Carolina, analisando a estrutura do portal que desmoronava com seus conhecimentos de astrofísica. – Alguém precisa servir de catalisador... ou todos nós desapareceremos para sempre!
-
+— Bruna! Não há energia suficiente para derrotá-lo e fechar a fenda! — gritou Carolina, analisando a estrutura do portal que desmoronava com seus conhecimentos de astrofísica. — Alguém precisa servir de catalisador... ou todos nós desapareceremos para sempre!
 Bruna olhou para sua espada do poder. Dentro da lâmina, a forma de fada de Pirolina pulsava com um brilho azul-bebê puro e caloroso, contrastando com a frieza daquele submundo. Bruna entendeu o que precisava ser feito, e as lágrimas escorreram por seu rosto negro.
-– Não... eu acabei de te encontrar, queria te conhecer de verdade... – sussurrou Bruna para a espada.
-
+— Não... eu acabei de te encontrar, queria ter conhecer de verdade... — sussurrou Bruna para a espada.
 A voz de Pirolina ecoou diretamente na mente de Bruna, doce e reconfortante: "Minha querida irmã, meu poder sempre foi o seu amor. Deixe-me ir para que você possa viver. Eu sempre estarei nas estrelas que você protege. Sua jornada está apenas começando."
-
 Com um grito de dor e determinação, Bruna ergueu a espada ao céu. A alma de Pirolina se libertou da lâmina em uma explosão de luz azul-bebê incandescente, transformando-se em uma fênix de energia estelar pura. A criatura de luz incandescente avançou contra o Duque dos Espelhos Partidos, estraçalhando sua armadura e sua máscara, se fundindo de uma vez por todas, enquanto a onda de poder da junção selava todas as fendas dimensionais do Eclipse.
-
 Quando a luz finalmente baixou, o silêncio dominou o Submundo. O Duque havia sumido, e a dimensão escura agora estava banhada por poeira estelar azulada.
 Bruna caiu de joelhos. Sua espada do poder agora era uma lâmina comum de aço brilhante, sem a alma de sua irmã. Nayra e Carolina correram para abraçá-la, chorando junto com a líder. Kaelen aproximou-se lentamente, recolhendo sua foice e olhando para o céu que agora exibia uma constelação inédita no formato de uma fada.
+— Ela não desapareceu — disse Kaelen, com um raro tom de suavidade em sua voz fria. — Ela se tornou o próprio selo que protegerá o universo para sempre. Ela não estava limitada a uma espada.
+Bruna limpou as lágrimas, olhou para as suas fiéis amigas, Nayra e Carolina, e depois para o céu estrelado do submundo. Pirolina havia partido, mas o sacrifício de seu amor fraternal havia dado ao trio de guardiãs, e ao seu novo aliado Kaelen, a chance de um novo amanhecer. O universo estava, finalmente, salvo.</p>
+            </div>
 
-– Ela não desapareceu – disse Kaelen, com um raro tom de suavidade em sua voz fria. – Ela se tornou o próprio selo que protegerá o universo para sempre. Ela não estava limitada a uma espada.
-
-Bruna limpou as lágrimas, olhou para as suas fiéis amigas, Nayra e Carolina, e depois para o céu estrelado do submundo. Pirolina havia partido, mas o sacrifício de seu amor fraternal havia dado ao trio de guardiãs, e ao seu novo aliado Kaelen, a chance de um novo amanhecer. O universo estava, finalmente, salvo.` 
-          },
-          { 
-            title: 'Epílogo: O Brilho de um Novo Amanhecer', 
-            content: `Semanas se passaram desde a queda do Duque dos Espelhos Partidos. Na superfície, a vida na Terra lentamente retornava ao normal. A arena de K-pop havia sido interditada para reformas sob a justificativa governamental de uma "falha estrutural grave". O idol resgatado estava totalmente recuperado e postava mensagens nas redes sociais procurando pelas misteriosas salvadoras.
-
+            <div class="chapter-card">
+                <h2>Capítulo 6: Epílogo: O Brilho de um Novo Amanhecer</h2>
+                <p>Semanas se passaram desde a queda do Duque dos Espelhos Partidos. Na superfície, a vida na Terra lentamente retornava ao normal. A arena de K-pop havia sido interditada para reformas sob a justificativa governamental de uma "falha estrutural grave". O idol resgatado estava totalmente recuperado e postava mensagens nas redes sociais procurando pelas misteriosas salvadoras.
 No colégio, Bruna, Nayra e Carolina já não andavam mais separadas. O segredo que compartilhavam e os laços forjados no campo de batalha as uniram para sempre. Elas se encontravam todos os dias no telhado da escola durante o intervalo.
 Nayra agora usava o chicote de pedras preciosas em treinos escondidos, canalizando a energia vermelha que possuía sua alma. Carolina continuava seus estudos na biblioteca, mas agora usava seus conhecimentos de astrofísica para monitorar o céu e runas para trancar novos possíveis perigos.
-
 Bruna ainda carregava sua espada de família na mochila de ginástica. A arma não brilhava mais sozinha, mas o metal agora ostentava um polimento perfeito e indestrutível. Bruna encontrou paz. Ela sabia que sua amada irmã cumpriu sua missão e que seu espírito agora velava pelo mundo do alto.
-
 Em uma noite de céu limpo, o trio se reuniu no topo do prédio mais alto da cidade para fofocar e ter uma noite das garotas. Kaelen surgiu silenciosamente por entre as sombras do prédio, com as correntes de prata descansando tranquilamente ao redor de seu terno preto. Ele olhou para as garotas e deu um aceno sutil com a cabeça.
-– O quadrante está limpo. O sacrifício dela garantiu séculos de segurança – informou o Ceifador, mantendo o tom calmo.
-– E o que você vai fazer agora, Kaelen? – perguntou Bruna, ajeitando a piranha azul-bebê em seu coque.
-– Continuar minha missão principal. Não descansarei até achar uma forma de trazer os cavaleiros de volta da escuridão. Mas, por enquanto... aproveitem a juventude de vocês.
+— O quadrante está limpo. O sacrifício dela garantiu séculos de segurança — informou o Ceifador, mantendo o tom calmo.
+— E o que você vai fazer agora, Kaelen? — perguntou Bruna, ajeitando a piranha azul-bebê em seu coque.
+— Continuar minha missão principal. Não descansarei até achar uma forma de trazer os cavaleiros de volta da escuridão. Mas, por enquanto... aproveitem a juventude de vocês.
+Kaelen desapareceu em uma névoa cinzenta, deixando as três garotas sob a luz do luar. Bruna olhou para cima. Bem no centro do céu noturno, a constelação em formato de fada brilhava intensamente em azul-bebê. Nayra segurou sua mão esquerda, e Carolina colocou a mão firmemente em seu ombro direito. Bruna sorriu, respirando fundo. Elas eram, para sempre, as Guardiãs Estelares.</p>
+            </div>
 
-Kaelen desapareceu em uma névoa cinzenta, deixando as três garotas sob a luz do luar. Bruna olhou para cima. Bem no centro do céu noturno, a constelação em formato de fada brilhava intensamente em azul-bebê. Nayra segurou sua mão esquerda, e Carolina colocou a mão firmemente em seu ombro direito. Bruna sorriu, respirando fundo. Elas eram, para sempre, as Guardiãs Estelares.` 
-          }
-        ]
-      }];
-      saveBooks();
-    }
-
-    // CRIAÇÃO E EDIÇÃO
-    function toggleStructureType() {
-      const isChapters = document.querySelector('input[name="structure-type"]:checked').value === 'chapters';
-      document.getElementById('single-text-container').style.display = isChapters ? 'none' : 'flex';
-      document.getElementById('chapters-container').style.display = isChapters ? 'block' : 'none';
-      if (isChapters && document.querySelectorAll('.chapter-card').length === 0) addChapterInput();
-    }
-
-    let chapterCounter = 0;
-    function addChapterInput(title = '', content = '') {
-      chapterCounter++;
-      const list = document.getElementById('chapters-list');
-      const div = document.createElement('div');
-      div.className = 'chapter-card';
-      div.id = `chap-${chapterCounter}`;
-      div.innerHTML = `
-        <button type="button" class="btn-remove-chapter" onclick="document.getElementById('chap-${chapterCounter}').remove()">×</button>
-        <div class="form-group">
-          <label class="vintage-label">Título do Capítulo</label>
-          <input type="text" class="vintage-input chap-title" value="${title}" placeholder="Ex: Capítulo ${list.children.length + 1}">
         </div>
-        <div class="form-group">
-          <label class="vintage-label">Conteúdo do Capítulo</label>
-          <textarea class="vintage-textarea chap-content">${content}</textarea>
+
+      <!-- TEMPORADA 2 -->
+        <div id="temp2" class="tab-content">
+            
+            <div class="chapter-card">
+                <h2>Capítulo 1: Eco nos Salões de Cristal</h2>
+                <p>Muito antes de a escuridão riscar o céu da Terra e pintar o destino dos mortais com sangue e cinzas, o cosmos respirava sob a égide da paz celestial. O coração pulsante dessa era de ouro localizava-se no Palácio de Cristal, no Reino Prisma, uma estrutura arquitetônica monumental que desafiava as próprias leis da física e da geometria cósmica. Suas torres colossais eram feitas de um quartzo translúcido divino que não apenas refletia, mas canalizava e amplificava a luz mais pura emitida pelos três sóis que orbitavam o quadrante. Os salões eram tão vastos que o piso, polido como um espelho místico, parecia refletir galáxias inteiras flutuando em um oceano de calmaria. Naquela tarde eterna, o silêncio reconfortante do palácio era quebrado apenas pelo tinido rítmico e metálico de ferramentas de manutenção e pelo eco suave de passos sobre o cristal.
+William, o mais brilhante e respeitado cavaleiro da Ordem, examinava minuciosamente as ranhuras e o fio de sua armadura dourada. Sentado em um bloco de quartzo, ele passava um pano embebido em essência de estrelas pelas manoplas que traziam o brasão do sol nascente esculpido em alto-relevo. A poucos metros dali, seu braço direito, mentorado e melhor amigo, Kaelen, dedicava-se ao mesmo ritual com sua espada curta. Naquela época, Kaelen ainda ostentava orgulhosamente seus cabelos pretos originais, curtos e brilhantes como a asa de um corvo, e seus olhos cinzentos transbordavam uma vivacidade e uma determinação que o vácuo ainda não havia conseguido apagar. Suas correntes de prata pura repousavam inertes ao lado de suas botas, reluzindo sob a claridade dos sóis.
+— Você está tenso hoje, Kaelen — comentou William, sem desviar os olhos do polimento de sua manopla esquerda. Sua voz, como sempre, carregava uma presença calorosa que parecia dissipar qualquer sombra de dúvida no ambiente. — O reflexo do metal não mente; vejo seu rosto fechado há horas. A Ordem do Prisma precisa de mentes límpidas e corações calmos. Nós somos a primeira linha de defesa, e a hesitação é o primeiro passo para a queda.
+Kaelen interrompeu o movimento rítmico do polimento. Ele segurou a espada curta à altura dos olhos, observando o próprio reflexo nos cabelos negros antes de embainhá-la com um estalo seco e preciso. Ele soltou um suspiro pesado, caminhando em direção à imensa mesa de quartzo central, onde mapas estelares e gráficos de energia flutuavam em holograma azuis e mutáveis.
+— Não consigo ignorar o silêncio que vem da fronteira, William — respondeu Kaelen, cruzando os braços e encarando as coordenadas flutuantes. — Gareth e Lyra foram destacados para checar as bordas externas do cinturão de asteroides há três ciclos. Eles deveriam ter enviado relatórios detalhados a cada alinhamento solar, mas não recebemos um único sinal. Esse silêncio absoluto me incomoda muito mais do que um rugido direto das hordas do Vazio. Algo está se movendo no escuro, e nós estamos aqui, parados.
+Antes que William pudesse responder, passos calmos e flutuantes ecoaram pelo salão de cristal. A mãe de Bruna, a soberana absoluta da luz azul-bebê e líder das Guardiãs Estelares Ancestrais, aproximou-se do mapa holográfico. Ela era uma mulher negra de postura impecável, cujos cabelos longos e trançados eram adornados com pequenas presilhas de cristal que cintilavam a cada movimento. Em seus braços, ela trazia com extremo zelo sua filha mais velha, a pequena Pirolina. A bebê, dotada de uma origem misteriosa e de uma conexão cósmica assustadora, brincava distraidamente com o ar, fazendo com que pequenas partículas de poeira estelar azul-bebê flutuassem e girassem ao redor de suas mãozinhas gordinhas.
+— Kaelen está coberto de razão em manter-se vigilante, William — disse a soberana, sua voz ecoando suave, mas dotada de uma autoridade que calou o tilintar dos metais no salão. — O fluxo de antimatéria nas linhas externas do nosso quadrante está oscilando em padrões que eu nunca vi em toda a minha existência. Não é uma simples tempestade magnética. Há uma pressão esmagadora crescendo no tecido do espaço, como se algo estivesse forçando a entrada em nossa realidade.
+A mãe de Bruna olhou com ternura para Pirolina, mas seu olhar carregava uma melancolia oculta. O que ninguém na Ordem do Prisma sabia — exceto William, que guardava o segredo sob o mais estrito voto de confidencialidade dos cavaleiros — era que aquela poderosa guardiã vivia uma vida dupla. Em uma de suas patrulhas secretas pelo universo, ela havia descido a um planeta primitivo e isolado e lá cometera o maior tabu de sua linhagem: apaixonara-se por um mortal. Desse amor proibido, ela estava grávida de sua segunda filha, Bruna, cujo nascimento ocorrerá em segredo absoluto na Terra para que a menina não nascesse condenada a viver no campo de batalha do espaço.
+— Se até você consegue sentir essa perturbação no éter, soberana... — William levantou-se lentamente, embainhando a Lâmina do Alvorecer com um movimento nobre. — Então a calmaria realmente chegou ao fim. Onde está a Guardiã Amarela? Precisamos dos relatórios rúnicos.
+Como se respondesse ao chamado, a mãe de Carolina juntou-se ao grupo, cruzando o salão com passos rápidos. Seus longos cabelos ondulados flutuavam levemente devido à própria aura de energia amarela que ela emanava, e suas unhas longas, afiadas e banhadas com ouro líquido místico reluziam contra o quartzo do piso. Ela ajustou seus óculos rúnicos de grau, que piscavam enquanto decodificavam sequências complexas de luz e símbolos universais. O semblante de Carolina mais velha estava visivelmente desgastado.
+— Estou aqui. E as leituras das runas estelares são catastróficas — anunciou a mãe de Carolina, passando os dedos longos sobre a mesa de quartzo e substituindo o mapa azul por um holograma dourado e pulsante. — Há uma infiltração massiva e coordenada se consolidando em uma velocidade alarmante. O Vazio não está atacando as nossas fronteiras fortificadas. Eles encontraram um ponto cego. Um planeta jovem, de energia cósmica latente e isolada, que serve de âncora para o equilíbrio de todo este sistema.
+Assim como a mãe de Bruna, a mãe de Carolina também escondia um segredo doloroso no peito. Durante uma missão de reconhecimento que deu errado no passado, ela havia engravidado por acidente de um mortal naquele mesmo mundo distante. Ela dera à luz Carolina e, apavorada com a possibilidade de ver seu bebê ser caçado pelos demônios do Vazio, escondera a filha na biblioteca mais antiga do planeta, permitindo que a menina crescesse como uma humana normal, sem saber que seu sangue pertencia à elite do cosmos.
+William inclinou-se sobre a mesa holográfica, seus olhos fixando-se nas coordenadas tridimensionais do planeta azul e verde que brilhava no centro do mapa.
+— A Terra — constatou o cavaleiro, a seriedade pesando em suas palavras.
+— Sim, a Terra — confirmou a mãe de Bruna, apertando a pequena Pirolina contra o peito protetor, enquanto o relógio de pulso mágico em seu braço direito, uma relíquia rúnica de sua família, começava a emitir pequenos bipes de alerta. — A entidade conhecida como o Eclipse está movendo suas forças principais em direção àquele quadrante. Eles não querem apenas conquistar; eles querem usar o núcleo daquele mundo como um receptáculo para injetar antimatéria e corromper toda a nossa rede de luz de dentro para fora. Se eles tomarem a Terra, o Palácio de Cristal será o próximo a desabar.
+— Nós não podemos permitir que as garras das sombras sequer toquem aquele solo — declarou Kaelen, com os punhos cerrados e a mandíbula travada de fúria. As pontas de seus cabelos pretos pareceram agitar-se com a própria oscilação de sua energia. — Mandaremos uma guarnição de batedores imediatamente para reforçar a órbita?
+— Não — William interveio, sua voz calorosa assumindo o tom definitivo de comandante supremo da Ordem. — Uma anomalia e uma ameaça dessa magnitude exigem força total e esmagadora. O Alto Conselho já emitiu o decreto: uma missão urgente e obrigatória foi instaurada. Todos os doze Cavaleiros do Prisma de elite e as Guardiãs Estelares Ancestrais partirão agora mesmo. Nós vamos descer naquele planeta, usar as florestas como camuflagem e nos entrincheirar na Terra. Se o Eclipse quer uma guerra, ele a terá sob a sombra das árvores mortais.</p>
+            </div>
+
+            <div class="chapter-card">
+                <h2>Capítulo 2: A batalha na árvore ancestral</h2>
+                <p>O deslocamento através do vácuo foi uma operação executada sob o manto do silêncio absoluto. Para não alertar os radares biológicos dos nativos humanos e, principalmente, para não denunciar a movimentação mística à sensibilidade aguçada do Vazio, a Ordem dos Cavaleiros do Prisma e as Guardiãs Estelares Ancestrais romperam a atmosfera terrestre sem deixar rastros térmicos. Eles estabeleceram sua base militar e santuário místico nos confins de uma floresta densa, úmida e intocada pela civilização, exatamente sob as raízes colossais da árvore mais antiga daquela cidade. A árvore era uma estrutura monumental de madeira ancestral, cujas entranhas profundas emanavam uma energia telúrica pura, perfeita para camuflar as auras douradas e azul-bebê dos guerreiros divinos.
+A estadia forçada naquele mundo primitivo prolongou-se por meses extenuantes. Os cavaleiros passavam os dias caçando pequenas infiltrações de antimatéria que brotavam como fungos negros pelo solo. Foi nesse período de isolamento e constante vigília que o destino das futuras guardiãs foi selado. A mãe de Bruna deu à luz secretamente sua segunda filha, Bruna, escondendo a bebê recém-nascida em um berço esculpido em puro quartzo místico, oculto em uma fenda profunda nas raízes da árvore antiga. Apenas a pequena Pirolina sabia da existência de sua irmãzinha, passando os dias sentada ao lado do berço, cantando melodias cósmicas para ninar a bebê. Quase ao mesmo tempo, a mãe de Carolina também trouxe sua filha para o santuário sob a árvore, deitando a pequena Carolina em um berço idêntico de quartzo, camuflado pelas grossas cascas de madeira. As duas mães sabiam que o tempo delas estava se esgotando, mas o amor fraternal de Pirolina mantinha o ambiente aquecido e mais calmo.
+A calmaria e o isolamento do refúgio terrestre foram brutalmente estraçalhados em uma noite em que o eclipse começou a cobrir a lua, fazendo os céus da Terra sangrarem em tons violentos de roxo e preto. O exército principal do Eclipse havia rastreado a assinatura mágica da missão e desceu sobre a floresta como uma maré compacta, faminta e implacável de piche vivo e carne retorcida.
+O que se seguiu foi um massacre sem precedentes na história do universo, uma exibição de horror puro e mutilação visceral. Os doze Cavaleiros do Prisma formaram uma barreira circular defensiva ao redor do tronco da árvore ancestral, empunhando suas espadas, mas a horda sombria avançou com uma fúria cega que ignorava a própria morte. O cavaleiro Gareth, guerreiro dos mares, foi o primeiro a ser atingido de forma fatal; uma lança de antimatéria pura perfurou sua couraça de lado a lado. O impacto rasgou seu peito, quebrando suas costelas com um estalo seco e expondo seus pulmões de forma grotesca. Seu sangue místico azul jorrou pesado contra as folhas secas antes que seu corpo entrasse em colapso e evaporasse em uma fumaça negra e fedorenta.
+Lyra, portadora da arma da vida, soltou um grito de puro horror ao testemunhar Gareth ser desmembrado vivo por criaturas rastejantes que arrancaram seus braços com dentes de obsidiana afiados. Tomada pelo desespero, Lyra brandiu sua lança longa e afiada, canalizada por magia hostil, com uma fúria cega, decapitando três espectros antes que ela percebesse que uma garra invisível e colossal rasgasse violentamente sua garganta de ponta a ponta. Era o Eclipse usando seu poder de copiar os seres, usando a pele de seu companheiro Gareth, que minutos antes, ela havia visto seu corpo desmembrado. O sangue de Lyra esguichou em alta pressão sobre o solo da Terra, tingindo as raízes da árvore de vermelho escuro enquanto sua carne virava cinzas corruptas sob o olhar horrorizado dos sobreviventes. A sombra de Gareth se dispensou.
+William e Kaelen lutavam lado a lado no epicentro daquela carnificina, pisando sobre pedaços de carne rasgada, órgãos expostos e armaduras despedaçadas de seus irmãos de guerra. William, com os cabelos brancos ensanguentados, canalizou sua imensa energia mágica e desferiu a técnica Explores Navidus. Uma lâmina de plasma solar fervente disparou de sua espada, decapitando uma dezena de demônios instantaneamente, enquanto Kaelen, com seus cabelos pretos originais empapados de suor e sangue, conjurava suas correntes para dilacerar e mutilar os flancos dos monstros que avançavam. Mas a força de invasão do Eclipse parecia infinita.
+No centro do santuário, a mãe de Bruna e a mãe de Carolina lutavam contra demônios sobre as raízes da árvore protetora. A sombra de Gareth apareceu na sua forma real, o Eclipse, as mães sob aquela adrenalina, uniram suas jóias estelares para erguer um ataque absoluto de luz sobre as fendas e um escudo protetor onde as duas bebês humanas estavam escondidas. O Eclipse concentrou toda a sua maldade e poder destrutivo nas duas mulheres. Um feixe espesso de pura energia negra atravessou o abdômen da mãe de Carolina com um impacto brutal. A carne de sua cintura e de seu ventre foi violentamente estraçalhada, fazendo-a expelir uma imensa lufada de sangue denso sobre seus próprios óculos rúnicos. Mesmo com o corpo praticamente partido ao meio e os órgãos internos colapsando em uma agonia indescritível, ela se arrastou pelo chão de terra com os dedos e unhas longas, usando seu próprio sangue como tinta para cravar runas de cegueira, usada para cegar o Eclipse temporariamente e uma de ocultação na casca da árvore ancestral, garantindo que o berço de Carolina ficasse camuflado e invisível aos olhos de Eclipse antes que a luz deixasse seus olhos de forma definitiva.
+A mãe de Bruna, testemunhando o massacre brutal de sua companheira, liberou toda a energia estelar restante de seu corpo em uma explosão de luz azul-bebê em direção ao Eclipse. No entanto, o efeito da runa de cegueira tinha acabado, fazendo o Eclipse contra-atacar impiedosamente, disparando estacas de cristal negro que estilhaçaram suas pernas em pedaços e perfuraram seu tórax. O osso de seu esterno quebrou com um estalo ensurdecedor, e o sangue jorrou abundante de sua boca enquanto ela caía de joelhos sobre as raízes. Sabendo que suas filhas seriam trituradas se ela falhasse, ela agarrou a pequena Pirolina pelo braço com suas mãos ensanguentadas e iniciou o feitiço proibido de transmigração cósmica.
+A pele de Pirolina começou a descascar em partículas de luz brilhante enquanto sua alma era arrancada à força de seu corpo físico, sendo sugada para dentro do metal da espada ancestral da família para servir como o mecanismo de defesa definitivo. O corpo vazio, sem vida e ensanguentado de Pirolina desabou no chão da floresta como uma casca oca e inútil. Gorfando muito sangue, a mãe de Bruna arrastou-se até a fenda oculta e, com os dedos trêmulos, prendeu o relógio de pulso mágico no braço da bebê Bruna, fazendo a bebê ser teletransportada daquela árvore. Em seguida, seu núcleo estelar explodiu em uma onda purificadora monumental que desintegrou todos os monstros ao redor e selou a fenda dimensional temporariamente.
+Kaelen e William testemunharam o solo ao redor da árvore ancestral transformado em um necrotério de carne rasgada, órgãos expostos e poças espessas de sangue místico e humano. Dos doze cavaleiros de elite que haviam saído do luxuoso Palácio de Cristal no Reino Prisma para aquela missão na Terra, apenas os dois sobreviveram àquela noite de horror puro. O trauma, a culpa e a brutalidade extrema daquela matança mudariam a mentalidade de Kaelen para sempre, pavimentando seu caminho sombrio até o mergulho na matéria escura que, anos mais tarde, tornaria seus cabelos pretos em brancos como a neve e seus olhos em poços de puro cinza sem vida.</p>
+            </div>
+
+            <div class="chapter-card">
+                <h2>Capítulo 3: O Renascimento do Ceifador</h2>
+                <p>O retorno ao Palácio de Cristal, no Reino Prisma, não foi uma retirada estratégica; foi uma fuga desesperada através do vácuo, deixando para trás um rastro de sangue místico que atraía os demônios como tubarões no éter. William guiava o que restava da energia da Ordem, mantendo seus cabelos brancos colados à testa pelo suor e pelo sangue ressecado dos companheiros mortos. Ao seu lado, Kaelen, ainda ostentando seus cabelos pretos originais, empunhava sua espada curta com as mãos trêmulas pela exaustão. Atrás deles, a escuridão do Eclipse estendia-se como tentáculos famintos, rasgando o tecido do espaço conforme as hordas rastejantes seguiam os dois últimos sobreviventes da matança na Terra.
+Quando os portões transparentes do palácio se abriram para recebê-los, os dois guerreiros desabaram sobre o piso de quartzo translúcido. O silêncio outrora sereno do Reino Prisma agora estava impregnado por uma atmosfera pesada de pânico. As torres de cristal, que antes canalizavam a luz mais pura do cosmos, piscavam em tons opacos e agonizantes.
+— Comandante! — gritou William, usando a Lâmina do Alvorecer como apoio para se levantar, com a respiração cortada pela dor de suas costelas machucadas. — O santuário na Terra foi pulverizado! Gareth, Lyra... todos foram desmembrados. Precisamos erguer os escudos planetários agora mesmo! O Eclipse está logo atrás de nós!
+No topo do altar central, a silhueta imponente do Alto Comandante da Ordem revelou-se. No entanto, sua armadura de prisma já não reluzia. Seus olhos, outrora cheios de sabedoria, estavam completamente negros e injetados de uma gosma escura que escorria por suas bochechas. Ele segurava um cajado corrompido, cuja ponta pulsava em sincronia com a muralha de escuridão que começava a sitiar o planeta.
+O Comandante soltou uma gargalhada doentia, um som distorcido que fez as colunas de quartzo trincarem.
+— Escudos? Vocês trouxeram a praga até a nossa porta, tolos! — sibilou o Comandante, sua voz ecoando com o peso da traição e da loucura. — O Eclipse me ofereceu a eternidade. A luz do Prisma é uma mentira que consome suas vidas por nada. Para que o novo mundo nasça, a Ordem precisa ser triturada de dentro para fora!
+Antes que Kaelen pudesse reagir, o Comandante bateu o cajado contra o solo. O piso de cristal sob os pés dos dois guerreiros explodiu em uma onda de choque de antimatéria. O ataque violento arremessou Kaelen contra as paredes do palácio, fraturando sua clavícula. No mesmo instante, os portões de Prata cederam de vez, e as hordas do Vazio invadiram o salão principal, bloqueando qualquer rota de fuga.
+William, percebendo que a mente do Comandante havia sido totalmente devorada pela entidade escura, reuniu as últimas forças de sua alma. Ele se colocou à frente do Comandante, bloqueando um feixe de energia negra com sua espada dourada.
+— Kaelen! Fique atrás da barreira! — rugiu William, seus olhos brilhando em dourado puro enquanto o metal de sua Lâmina do Alvorecer começava a trincar sob a pressão.
+Com um comando desesperado, William fincou a espada no chão, conjurando a técnica Aegis Luminis, criando uma cúpula de prismas hexagonais de luz sólida que isolou Kaelen em um campo de proteção impenetrável. Kaelen esmurrou o vidro místico por dentro, gritando de desespero enquanto assistia ao horror que se desenhava do outro lado.
+William avançou sozinho contra o Comandante traidor. Ele canalizou todo o restante de seu plasma solar e desferiu o feitiço Explores Navidus, partindo a armadura do Comandante ao meio e degolando o traidor com um golpe limpo de sua lâmina fervente. Porém, o ato final do Comandante foi cruel. Ao morrer, seu corpo corrompido explodiu em uma erupção de anti-matéria instável vinda diretamente do núcleo do Eclipse.
+A explosão negra engoliu William por inteiro. Kaelen assistiu, em choque e impotente, enquanto a escuridão subia pelas pernas de seu mentor e melhor amigo. A carne de William foi violentamente consumida, transformando-se em cinzas negras que se desfaziam no ar, partículas em cinza no ar e uma energia negra completa no vácuo. Antes de virar matéria escura, William olhou para trás através da barreira mística, sorriu com os lábios ensanguentados e usou seu último suspiro para dizer: "Sobreviva, Kaelen... proteja o que restar da luz."
+O escudo de luz sólida desfez-se em poeira e Kaelen caiu de joelhos no chão de quartzo destruído, completamente sozinho no meio das ruínas ensanguentadas do Reino Prisma. A dor dilacerante da perda de William, misturada à fúria cega pela traição de seu líder e pela própria impotência, quebrou a sanidade e a humanidade do jovem cavaleiro. Ele percebeu que a luz pura da Ordem não havia sido suficiente para salvar as pessoas que ele amava. Se ele quisesse vingança e uma forma de selar o Eclipse para sempre, precisaria usar as armas do próprio inimigo.
+Tomado pelo desespero e pela loucura, Kaelen rastejou até o corpo do guerreiro, onde o poço de matéria escura deixado pelo mesmo borbulhava no solo do palácio. Sem hesitar, ele mergulhou os braços diretamente no líquido negro e corrupto.
+A agonia foi indescritível e visceral, muito pior do que qualquer ferimento de lâmina. Era como se sua alma estivesse sendo rasgada, queimada e reconstruída mil vezes por segundo. A energia do vácuo penetrou suas veias como chumbo derretido, subindo pelo seu pescoço e invadindo sua cabeça. O impacto da corrupção arrancou violentamente toda a cor e a vivacidade de seu corpo: seus cabelos pretos originais tornaram-se brancos como a neve em uma fração de segundo, e o brilho castanho de seus olhos foi completamente apagado, transformando suas pupilas em poços de puro cinza, frios e sem vida.
+Kaelen não morreu, mas o cavaleiro que ele fora um dia deixou de existir ali. Ele renasceu como o Ceifador do Eclipse. Usando a matéria escura que agora corria em suas veias e se fundia ao seu sangue, ele estendeu as mãos e moldou suas correntes de prata pura — símbolos dos laços eternos que o prendiam ao fantasma de seu mentor — e a sua imensa foice de cristal negro, uma arma terrível capaz de cortar o próprio tecido do espaço-tempo. Rejeitando as cores vibrantes do Reino Prisma que agora estava morto, ele adotou um terno preto impecável, tornando-se o vigilante sombrio e solitário que vagaria pelas dimensões caçando os generais das sombras até o início dos acontecimentos atuais.</p>
+            </div>
+
+            <div class="chapter-card">
+                <h2>Capítulo 4: Calmaria Ilusória</h2>
+                <p>*LINHA DO TEMPO ATUAL*
+O sol nasceu sobre a metrópole na manhã seguinte ao confronto final no Submundo, cobrindo o topo dos arranha-céus com uma luz alaranjada que parecia zombar da escuridão que quase engolira o universo poucas horas antes. Para o restante do mundo humano, aquela era apenas mais uma manhã de domingo comum. A grande mídia já havia replicado a versão oficial das autoridades: a destruição parcial da arena de K-pop e o desabamento do teto haviam sido causados por uma "macrofalha na infraestrutura de sustentação devido a tremores de terra isolados". O jovem idol resgatado por Bruna estava sob observação médica em um hospital privado de segurança máxima, postando mensagens confusas em suas redes sociais sobre "anjos armados com glitter, vestindo azul, vermelho e amarelo" que o arrancaram do meio dos escombros.
+Para as três estudantes, no entanto, o peso da realidade era bem diferente. O silêncio que se instalara na cidade após a partida de Kaelen e o desaparecimento definitivo da fênix de luz de Pirolina parecia denso, quase sufocante. Elas precisavam de um ponto de ancoragem, de algo que as lembrasse de que ainda pertenciam ao mundo dos vivos e que eram, antes de tudo, adolescentes comuns.
+O ponto de encontro escolhido para aquela tarde foi o salão de beleza e manicure localizado no centro comercial do bairro. Bruna tentava disfarçar a exaustão física que travava seus ombros após a batalha da noite anterior, mas sua mente estava fixada na mochila de ginástica encostada no canto da parede, onde a espada de sua família agora descansava. A lâmina estava fria, fosca e completamente desprovida da aura azul-bebê que a alimentava. Ela sentia que uma parte de sua própria alma havia sido arrancada junto com o sacrifício fraternal de sua irmã perdida, que nem mesmo a conhecia direito, apenas por memórias.
+Para afastar os pensamentos sombrios, Bruna puxou o celular e começou a passar os dedos pela tela, imergindo de forma obsessiva em vídeos de K-pop. Suas pastas e a capa do aparelho exibiam orgulhosamente os photocards holográficos de seus idols favoritos, uma tentativa deliberada de trazer de volta a cor e a vivacidade que o Submundo tentara apagar.
+— Eu ainda acho que você deveria usar um tom de esmalte azul-claro para combinar com essa piranha de cabelo nova que você não tira da cabeça, Bruna — comentou Carolina, empurrando os óculos de grau trincados com desdém para o topo do nariz e com uma tentativa de diminuir o clima ruim.
+Carolina estava sentada na cadeira ao lado, mantendo suas unhas longas, afiadas e impecavelmente pintadas de azul estendidas sobre a mesa da manicure. Mesmo após a batalha, ela exibia sua postura imponente, ameaçadora e calculista, afastando qualquer tentativa de conversa fiada dos outros clientes do salão. Seus pensamentos rúnicos operavam a mil por hora; ela usava seus conhecimentos avançados de astrofísica quântica para cruzar dados mentais sobre a mecânica celeste da noite anterior para tentar entender por completo a situação, tentando decifrar se a barreira deixada por Pirolina seria realmente indestrutível ou se havia algo a mais.
+— Deixem as cores claras de lado por cinco minutos. Eu passei a semana inteira esperando para testar esse tom de preto fosco com detalhes em prata — reclamou Nayra, que apesar de manter sua expressão fechada e zangada de sempre, estava genuinamente aliviada por estar ali e de que por hora tudo aquilo acabou. Seus olhos traziam a maquiagem escura e o delineado geométrico marcante intactos, funcionando como sua armadura habitual. Seus fones de ouvido enormes repousavam ao redor do pescoço, emitindo o zumbido abafado de um rock pesado e distorcido que servia para isolar sua mente do falatório fútil da batalha.
+A tarde de garotas estendeu-se até o apartamento de Bruna para uma clássica festa do pijama. Elas precisavam daquele espaço seguro. O chão da sala foi completamente forrado com edredons grossos, almofadas coloridas e baldes imensos de pipoca com manteiga e queijo. Nayra deitou-se de costas, batendo a cabeça de leve no ritmo da música que vinha de seus fones, enquanto Bruna insistia em mostrar as novas tendências de dança que havia aprendido nas redes sociais. Carolina permanecia sentada perto da janela, observando o céu limpo através das lentes de seus óculos, com um baralho de runas antigas espalhado sobre os joelhos. Sempre que tocava as pedras rúnicas, a sensação de déjà vu e familiaridade retornava, como se os mesmos símbolos que sua mãe biológica usara para camuflá-la no berço da árvore ancestral estivessem sussurrando avisos de perigo.
+Por volta das três horas da manhã, quando o cansaço finalmente começou a vencer o trio, a ilusão de normalidade foi estraçalhada. 
+Um zumbido magnético violento cortou o ar da sala. O relógio de pulso antigo no braço direito de Bruna — a herança de sua falecida mãe que havia despertado na árvore ancestral — começou a piscar freneticamente, mas não em azul-bebê. O visor emitia pulsações de uma luz azul escuro e alarmante. As imensas janelas de vidro do apartamento começaram a vibrar e a rachar de dentro para fora, dividindo a luz da lua em reflexos geométricos distorcidos que cobriram as paredes. 
+Uma fenda dimensional imensa, de bordas rasgadas e violentas, abriu-se no centro da sala de estar, liberando uma névoa roxa e gélida que congelou instantaneamente a pipoca nos potes e fez o ar do ambiente ficar escasso. De dentro do vácuo, emergiu uma silhueta feminina monumental. Ela vestia uma armadura pesada forjada em obsidiana pura e carregava um cetro longo de metal negro. Na ponta do cetro, brilhava uma joia substituída que exalava uma pressão gravitacional esmagadora: o Coração do Vácuo. 
+O artefato místico havia encontrado e absorvido os resquícios da entidade primordial do Eclipse, que não havia sido destruída no passado, mas sim alimentada e amplificada de forma assustadora pelo ódio acumulado após a queda do Duque dos Espelhos Partidos. — O Eclipse havia retornado mais forte do que nunca na história do cosmos. A mulher falava com um sorriso e uma malícia teatral, fazendo os móveis do apartamento levitarem devido à densidade da energia sombria.
+— As pequenas e patéticas guardiãs mera humanas acharam mesmo que o sacrifício daquela fada tola traria um amanhecer eterno? — sibilou a invasora, sua voz ecoando como metal retorcido quebrando as paredes. — O Eclipse nunca morre de verdade. Ele apenas aguarda o momento em que a luz abaixa a guarda para consumir o que restou. Eu sou Vespera, a Heralda do Vácuo, e vim em nome de meu mestre esmagar as últimas linhagens do Prisma e buscar a espada que nos pertence por direito!
+Bruna saltou do edredom em um movimento acrobático fluído, seu relógio de pulso absorvendo a primeira onda de impacto cinético do ambiente para arremessar seu corpo em posição de combate. Nayra arrancou os fones de ouvido com fúria, e Carolina levantou-se e invocou o machado já materializando-se em suas mãos longas. A calmaria havia acabado. O trabalho das guardiãs estava oficialmente longe de chegar ao fim.</p>
+            </div>
+
+            <div class="chapter-card">
+                <h2>Capítulo 5: Vespera, A Heralda Do Vácuo</h2>
+                <p>O vidro das janelas do apartamento de Bruna não apenas quebrou; ele explodiu para o interior da sala, transformando-se em uma tempestade de estilhaços afiados de vidro que cortavam o ar com um zunido mortal. A pressão gravitacional emanada pelo Coração do Vácuo na ponta do cetro de Vespera era tão avassaladora que o piso de madeira começou a ceder, afundando sob os pés das garotas. A poeira e o gesso do teto desabavam como uma chuva cinzenta sobre os edredons coloridos da festa do pijama. A Heralda flutuava a poucos centímetros do chão, os olhos de piche puro fixos nas três.
+— Vocês não passam de cascas vazias se arrastando pelo chão de um mundo condenado — sibilou Vespera, erguendo o cetro de obsidiana.
+Com um movimento seco, a vilã liberou o verdadeiro e aterrorizante poder do Coração do Vácuo. A joia pulsou, ativando a Singularidade do Vácuo Absoluto. O ar da sala foi violentamente sugado para o centro da joia, criando uma força de atração gravitacional tão severa que os móveis pesados, a televisão e as paredes de gesso começaram a ser triturados e puxados para o vórtice. Não era apenas força física; o artefato exalava uma névoa roxa que corroía a matéria, desintegrando os tecidos das sacolas de compras e transformando a pipoca com manteiga e queijo em cinzas ácidas num microssegundo.
+Bruna reagiu por puro instinto de atleta e líder. Utilizando sua flexibilidade extrema de ginasta rítmica, ela executou uma sequência de saltos mortais para trás para escapar da atração do vórtice, ativando a Manipulação Cinética de Impacto de seu relógio de pulso antigo no momento em que seus pés tocaram o chão. O visor azul-escuro absorveu a onda de choque gravitacional, convertendo o dano em impulso físico puro e jogando seu corpo em direção à mochila de treino, onde agarrou a espada de família.
+Ao ver a gravidade do ataque inimigo e as joias cósmicas reagindo violentamente em seus corpos, Bruna ergueu a espada ao alto e guiou o poder que existe em sua alma diretamente para a espada. A espada não era mais “inútil”. Seus olhos brilharam no tom correspondente a sua joia mais intenso e, com uma voz firme que ecoou como um comando divino sobrepondo-se ao caos, ela disparou a fala que selava o destino do trio:
+— Agora, meninas!
+No mesmo microssegundo, as joias das três explodiram em feixes de luz tricolor. O feitiço de invocação cobriu seus corpos, materializando as lendárias roupas de cristais estelares. Bruna surgiu com sua saia azul-escuro e corpete branco cravejado de pedras mágicas que reluziam como diamantes cósmicos; Nayra manifestou seu traje branco e vermelho adornado por rubis cintilantes; e Carolina vestiu sua saia amarela com o véu de partículas e óculos ornamentados com safiras douradas. Aquelas vestes de cristais puros não eram apenas estéticas; elas funcionavam como condutores mágicos que amplificavam a força física e espiritual das guardiãs a níveis sobre-humanos, preparando-as para conter o avanço do mal no universo. 
+
+Avançando com a força física recém-amplificada, Bruna liderou o ataque com a lâmina em punho. Vespera sorriu com escárnio teatral e conjurou sua segunda técnica: os Espelhos Cortantes do Vácuo. O ar ao redor do trio congelou em dezenas de painéis de vidro negro flutuantes. De dentro de cada espelho, réplicas sombrias e distorcidas das próprias guardiãs emergiram, atacando com garras afiadas.
+
+— Depois tenho que agradecer meu mestre por empresta-me um pouco de seu poder! 
+Exclamou Vespera.
+
+— Fiquem atrás de mim, agora! — gritou Nayra. 
+Arrancando os fones de ouvido enormes do pescoço com fúria, ela liberou a energia vermelha latente de sua joia. O fio de plástico e metal esticou-se, transformando-se instantaneamente em um chicote pesado e incrustado de pedras preciosas brilhantes. Sintonizando sua mente ao ritmo do rock pesado e destrutivo que escutava segundos atrás, ela desferiu a técnica Tempestade de Riffs. O chicote cortou o ar em movimentos frenéticos, criando ondas de choque sonoras e centelhas vermelhas violentas que estilhaçaram os espelhos e as réplicas escuras criadas pela Heralda. 
+
+Ao ver suas réplicas serem destruídas, a Heralda do Vácuo inflou o peito e abriu a boca, liberando uma de suas habilidades mais devastadoras e aterrorizantes: o Grito Agônico. O som não era humano; era um rugido sônico e místico de frequência destrutiva, misturado aos lamentos das almas devoradas pelo Vazio. A onda de choque invisível atingiu a arena do apartamento com o impacto de uma explosão física. O gesso restante do teto virou pó instantaneamente, os tímpanos das garotas sangraram e a Tempestade de Riffs de Nayra foi completamente obliterada. O impacto jogou Nayra violentamente para trás.
+
+Para piorar, Vespera emendou o grito apontando o cetro diretamente para ela, disparando o Feixe de Antimatéria Decadente. A rajada roxa perfurou o ambiente. O chicote de Nayra explodiu sob a pressão, e a energia residual atingiu seus braços em cheio, rasgando a pele em carne viva e expondo o tecido muscular de seus antebraços em um corte úmido e profundo. O sangue vermelho e quente jorrou pesado, destruindo por completo sua maquiagem marcante e escura. Ela caiu de joelhos, emitindo um grito de agonia pura.
+
+Carolina, vendo a companheira ser ferida, ativou seus poderes com precisão quântica. Seus óculos rúnicos de cristais brilharam em amarelo intenso. Ela correu na direção de Vespera, erguendo o pesado machado cravejado de pedras preciosas, e desferiu a técnica Ruptura de Astrofísica: Colapso Estelar. Ao golpear o ar, Carolina alterou a densidade de massa ao redor da vilã, criando uma microzona de gravidade esmagadora que forçou as pernas de armadura de Vespera a afundarem no concreto do piso. Vespera definitivamente saiu machucada após o golpe.
+
+— Morra, demônio! — gritou Carolina, desferindo um corte oblíquo para mirar o pescoço da Heralda.
+
+Mas Vespera, em um ato de desespero, soltou outro grito sônico curto e agudo, uma barreira de som destrutiva que desacelerou o machado, e utilizou a terceira e mais temível habilidade do Coração do Vácuo: a Inversão de Causalidade. A joia brilhou em um tom roxo fosco e, em vez de o machado cortar a vilã, a força do próprio impacto de Carolina foi multiplicada por três e devolvida contra ela mesma. Carolina sentiu o impacto esmagar suas costelas. Suas unhas longas pintadas de azul quebraram e sangraram intensamente enquanto ela era arremessada contra a parede, caindo inconsciente em uma poça de sangue rúnico.   
+
+Bruna saltou para conter a vilã, desferindo o Corte Estelar Purificador. A espada da família cortou a névoa, mas Vespera desviou com facilidade e desferiu um golpe horizontal com o cetro de obsidiana diretamente contra Bruna. Bruna ergueu o braço direito para bloquear com o relógio, ativando a absorção cinética. A força do impacto de Vespera foi tão violenta e massiva que o osso do rádio no antebraço direito de Bruna estalou com uma fratura por estresse audível, causando uma dor lancinante que quase a fez apagar. O relógio absorveu o golpe, mas rachou, convertendo a energia em um último impulso que jogou Bruna para trás, ao lado de Nayra e do corpo caído de Carolina.   
+
+Elas haviam perdido. Vespera flutuava sobre eles, o cetro erguido, exalando a fumaça roxa da vitória iminente. O Eclipse havia vencido por completo novamente. 
+
+— Meras humanas — zombou Vespera, abrindo a boca mais uma vez para canalizar o Grito Agônico final junto com toda a antimatéria do Coração do Vácuo na ponta do cetro, disposta a pulverizar o apartamento e as guardiãs de uma vez por todas. 
+Foi no limiar da morte que a conexão das três mentes, forjada pelo sangue de suas mães e pelo trauma compartilhado, atingiu um nível nunca antes visto na história do cosmos. Bruna, mesmo com o braço quebrado, estendeu a mão esquerda e tocou o ombro de Nayra. Nayra, com os braços machucados e ensanguentados, arrastou-se e segurou a mão de Carolina, que despertou em um espasmo de pura adrenalina. Os cristais de seus trajes começaram a pulsar em uma frequência idêntica, gerando uma ressonância mística que fez o Palácio de Cristal e a árvore ancestral ecoarem através das dimensões. 
+
+Elas não eram mais três guerreiras separadas; elas eram uma única entidade de luz. Pela primeira vez desde a criação do universo, um trio de guardiãs manifestou a lendária Trindade Cósmica Prismática, um feitiço supremo que combinava estratégia, fúria, liderança e poder. 
+
+Um eco misterioso ecoava das joias, mandando-as sibilar as palavras.
+— meninas, o que foi isso? Carolina falava.
+—eu também conseguir sentir. Bruna e Nayra falavam em mesmo tom de dor.
+O eco continuava a falar as palavras a serem ditas. As garotas prestes a morrer diante da pressão do grito sonico, se renderam ao eco e finalmente o trio retomou as quase últimas forças para dizer juntas:
+— Prisma Navidus Universum! — as três vozes ecoaram em uníssono, uma voz divina que sobrepôs-se ao rugido e ao próprio grito de Vespera. 
+
+Uma explosão de luz tricolor — um feixe trançado em azul escuro incandescente, vermelho ardente e amarelo solar — irrompeu do centro do trio. O feitiço supremo foi tão massivo que anunciou instantaneamente a Singularidade do Vácuo Absoluto e engoliu a onda sônica da vilã. O feixe de luz atingiu Vespera em cheio antes que ela pudesse desviar. A armadura de obsidiana da Heralda rachou em milhares de pedaços, e a joia do Coração do Vácuo sofreu uma fissura profunda, liberando um fluido negro e espesso de seu núcleo. Vespera emitiu um grito de dor puríssima — desta vez um clamor real de agonia — quando a luz tricolor queimou sua carne cinzenta, arremessando-a de volta para dentro da fenda dimensional moribunda, que ia se fechar violentamente, selando o perigo e matando-a.Antes da fenda se fechar, a Heralda deixou o coração do vácuo cair do cetro, que estava danificado.
+
+A batalha havia terminado, mas a destruição deixada para trás era absoluta. O apartamento de Bruna estava completamente devastado; as paredes haviam sumido, o teto estava desabado e a mobília fora reduzida a pó e escombros retorcidos. Elas estavam expostas ao vento frio da madrugada no topo do prédio destruído. 
+
+Nayra, caída de joelhos com o sangue escorrendo de seus antebraços, olhou para o rastro de destruição. A voz novamente ecoou em sua mente e fez com que ela atingisse um novo ápice de compreensão cósmica. Ela percebeu que a música que amava não era apenas sobre destruição e peso, mas sobre reconstrução através do ritmo. Sentindo a jóia vermelha pulsar em seu peito, ela reuniu o restante de suas forças para um feito inédito.
+
+Com um grito de determinação, Nayra juntou os pedaços estilhaçados de seu chicote e o jogou com toda a sua força para o alto, em direção ao centro do teto do apartamento destruído.
+— Aria de Sangue — rugiu Nayra.
+Ao atingir o ápice do voo, o chicote de pedras preciosas dissolveu-se, transformando-se em uma imensa e brilhante cortina de energia vermelha pura e pulsante. A luz vermelha não queimou; ela fluiu como um líquido luminoso e quente sobre toda a destruição. Onde a energia toda tocava, o tempo parecia correr ao contrário de forma mágica: o gesso do teto flutuou de volta para o lugar, reatando-se perfeitamente; os tijolos e as paredes de alvenaria se reergueram; os estilhaços de vidro das janelas voaram de volta para as molduras, colando-se sem deixar uma única trinca; os baldes de pipoca com manteiga e queijo e os edredons da festa do pijama refizeram-se exatamente como estavam às três da manhã. A energia vermelha de Nayra "curou" e reconstruiu cada centímetro da matéria que havia sido pulverizada pela batalha insana. 
+Quando a cortina de luz vermelha finalmente baixou, o apartamento de Bruna estava completamente intacto, silencioso e seguro, como se Vespera e o Coração do Vácuo nunca tivessem pisado ali. Bruna caiu sentada no edredom reconstruído analisando o coração do vácuo e segurando seu braço direito aliviado. O feitiço tinha feito isso. Carolina desabou de costas nas almofadas, exausta, e Nayra permitiu-se finalmente fechar os olhos, com os antebraços curados pelo próprio feitiço, mas com a mente exangue pelo esforço titânico. O trio de guardiãs havia realizado um feito lendário, mas a guerra contra o Eclipse estava apenas começando.</p>
+            </div>
+
+            <div class="chapter-card">
+                <h2>Capítulo 6: A Pedra do Vácuo</h2>
+                <p>O zumbido intermitente do Coração do Vácuo ecoava pelas paredes perfeitamente alinhadas da sala de estar de Bruna. O feitiço de reversão de Nayra havia operado um milagre completo na estrutura física do apartamento, mas a presença daquela relíquia de obsidiana trincada impedia qualquer sensação real de segurança. A joia no centro do metal negro vazava pequenos filetes de uma gosma preta e espessa, que evaporavam em fumaça roxa antes mesmo de tocar o piso de madeira.
+Bruna permanecia sentada no edredom da festa do pijama, com os olhos fixos no objeto. Seu braço direito, curado de forma mágica, movia-se sem nenhuma dor, mas ela sentia o magnetismo pesado da jóia atrair a lâmina de sua espada ancestral, que descansava sobre seus joelhos. O metal da arma, que antes parecia inútil, agora vibrava em perfeita sincronia com o fluxo de energia de sua própria alma, deixando-a mais forte, mesmo que não quisesse.
+— Isso não devia estar aqui — murmurou Bruna, quebrando o silêncio ensurdecedor. Ela passou os dedos pelo visor de seu relógio, herança de sua falecida mãe, cujos ponteiros agora giravam em uma velocidade azul-escura constante. — O relógio parou de piscar em tom alarmante, mas sinto uma vibração fria vindo dessa pedra. É como se ela estivesse... respirando.
+Nayra puxou as mangas longas de seu casaco, cobrindo os antebraços que haviam sido restaurados pela Aria de Sangue. Ela caminhou até a mesa da cozinha, trazendo três xícaras de café forte, e sentou-se exausta ao lado de Bruna. Seus fones de ouvido no pescoço estavam completamente destruídos pela antimatéria; ela teria que enfrentar o cotidiano sem sua trilha sonora para se proteger. Sua maquiagem marcante e escura exibia pequenas falhas pelo suor do combate, mas sua expressão feliz de antes havia dado lugar a uma seriedade profunda.
+
+— Minha mente quase derreteu para consertar esta sala — admitted Nayra, dando um gole longo no café. — Quando joguei o chicote para o alto e invoquei a reversão, o ritmo do feitiço parecia... maior do que eu. Mas o pior não foi o cansaço físico. Foi a voz. Aquele eco misterioso que entrou nas nossas cabeças no meio da luta e nos mandou dizer o feitiço em trio... ele voltou a sussurrar na minha mente quando o chicote dissolveu. Ele me disse o feitiço que eu nem sequer sabia da existência e além disso, de eu poderia usá-lo.
+
+Carolina, que mantinha suas unhas longas, afiadas e impecavelmente pintadas de azul estendidas sobre os joelhos, aproximou-se lentamente do artefato caído após ouvir o desabafo de Nayra. Ela se agachou a uma distância segura, ajustando os óculos de grau trincados.
+De repente, pequenas partículas brilhantes e escuras começaram a flutuar das rachaduras da jóia de obsidiana, pairando no ar da sala como uma névoa densa. Carolina foi a primeira a notar o fenômeno e identificar a poeira cósmica que emanava do núcleo danificado. Ela percebeu que as partículas carregavam dados trancados por alguém, mas a assinatura de antimatéria bloqueava a leitura.
+— Meninas, olhem para isso — Carolina falou. — Essa poeira cósmica... ela está tentando projetar algo, mas a barreira de vácuo impede que os dados rúnicos se estabilizem. Talvez ela precise de um catalisador para projetar o que o usuário quer. 
+Carolina estendeu a mão longa e, usando a ponta afiada de sua unha pintada de azul, fez um pequeno corte na ponta do próprio dedo. Bruna e Nayra aproximaram-se sem hesitar. Bruna pressionou a lâmina de sua espada de leve contra a pele, extraindo uma gota de sangue negro-estelar, e Nayra fez o mesmo. Carolina misturou as três gotas de sangue do trio e as lançou diretamente contra a nuvem de poeira cósmica.
+ —Queremos saber a verdade — O trio falou.
+No instante em que o sangue tocou as partículas, a barreira de vácuo foi rompida e alterada. A poeira cósmica brilhou intensamente e expandiu-se pela sala de estar, alterando a refração da luz solar e projetando ilusões tridimensionais gigantescas e perfeitamente nítidas no ar do apartamento. O artefato estava liberando suas memórias mais profundas, forçando as garotas a testemunharem a verdade oculta sobre a Guerra de Prisma e a Batalha na Árvore Ancestral. 
+O espaço ao redor delas pareceu desaparecer, substituído pela ilusão vívida do passado. Na primeira projeção, elas viram o imponente Palácio de Cristal, no Reino Prisma, onde torres transparentes de quartzo canalizavam a luz mais pura do cosmos. Elas assistiram ao diálogo místico entre os antigos guerreiros: viram um jovem Kaelen, exibindo orgulhosamente seus cabelos pretos originais e olhos cheios de vida, conversando com seu mentor e melhor amigo, William, que exibia sua armadura. Elas ouviram William falar sobre a força do Prisma e citar os outros cavaleiros da elite que seriam enviados para a missão na Terra. 
+A projeção mudou com brutalidade para o início da tragédia sob a árvore mais antiga daquela cidade. As garotas prenderam a respiração ao verem suas próprias mães biológicas escondendo duas bebês recém-nascidas em berços de quartzo místico sob as raízes de madeira. O desespero da matança na Terra foram projetados em detalhes realistas: viram o cavaleiro Gareth ser desmembrado vivo e o Eclipse copiando sua forma física para enganar e rasgar a garganta de Lyra; viram a mãe de Carolina ter seu abdômen estraçalhado por um feixe de energia negra, expelindo sangue denso sobre os óculos antes de cravar as runas de ocultação e cegueira com as pontas dos dedos. 
+— Aquela... sou eu? — sussurrou Carolina, as lágrimas surgindo através de seu rosto.
+Bruna paralisou ao ver sua mãe, a soberana da luz azul-bebê, gorfando sangue de joelhos sobre as raízes. A poeira cósmica revelou em detalhes o horror do feitiço proibido de transmigração, mostrando a alma de sua irmã perdida, Pirolina, sendo arrancada de seu corpo físico à força e sugada para dentro do metal da espada ancestral, deixando para trás uma casca oca e sem vida. Por fim, viram o relógio de pulso de braço sendo preso à bebê Bruna no momento exato em que o teletransporte a arrancava dali antes da explosão final.
+A poeira cósmica desfez-se de repente, caindo sobre o edredom como cinzas comuns. O apartamento de Bruna voltou à normalidade. As três garotas permaneciam estáticas, com a respiração cortada e os rostos banhados em lágrimas pelo impacto das revelações. O alvorecer daquele dia estava completamente exposto.</p>
+            </div>
+
+            <div class="chapter-card">
+                <h2>Capítulo 7: Estabilização do Cristal</h2>
+                <p>A revelação do passado trouxe um novo senso de maturidade ao trio. Elas compreenderam que a vitória contra Vespera no apartamento havia sido um golpe de sorte e que, se o Eclipse estava retornando fortificado e amplificado por novos artefatos ocultos, elas precisavam ter conhecimento sobre elas mesmas.
+Aproveitando que as aulas daquela segunda-feira haviam sido suspensas, as meninas trancaram-se no apartamento de Bruna para iniciar seu próprio e rigoroso processo de treinamento e conversação tática, utilizando os registros das runas que Carolina havia memorizado das projeções da poeira.
+— Nós não estamos usando nem metade do potencial condutor dessas roupas de cristais — afirmou Carolina, espalhando suas anotações de astrofísica sobre a mesa limpa. Ela apontou para os diagramas de fluxo de massa estelar. — Ontem, quando manifestamos aquele feitiço doido no meio da sala, a sobrecarga quase quebrou nossos corpos porque a energia expandiu para fora em vez de circular pelas joias. Minha mãe usou runas de compressão para cegar o Eclipse. Eu preciso recalibrar o foco dos meus óculos para mapear o fluxo de luz no peito de vocês.
+— O meu chicote explodiu porque eu estava apenas batendo com fúria, como se estivesse em uma roda de mosh em um show de rock pesado — admitted Nayra, ajustando a postura na cadeira e olhando para os próprios braços curados. — A Aria de Sangue funcionou porque eu impus um ritmo para o tempo correr ao contrário. Eu preciso aprender a manter o chicote estabilizado nessa frequência antes do primeiro estalo, para que o metal de rubis não estilhace de novo sob a antimatéria.
+Bruna caminhou até o centro da sala, segurando a espada ancestral com a mão esquerda. Ela olhou para o relógio de pulso em seu braço direito, cujos ponteiros agora giravam em uma velocidade constante e azul-escura.
+— Minha mãe deu a vida para me tirar daquela árvore, e Pirolina abriu mão de sua própria existência humana para se tornar o mecanismo de defesa desta espada. Ela fez tudo isso sem nem me conhecer direito, agindo apenas pela memória de nossa linhagem. Eu não vou deixar que o sacrifício da minha irmã e da minha mãe seja em vão. A Manipulação Cinética de Impacto pode ser usada para focar a força do meu ataque físico. Carolina, use suas runas para criar um campo de pressão gravitacional controlado aqui na sala. Nós vamos treinar até que nossos trajes aguentem o impacto sem trincar.
+O trio posicionou-se em formato triangular no centro do apartamento. Carolina ergueu seu pesado machado amarelo, fechando os olhos e sussurrando os símbolos rúnicos. Uma aura amarela e densa expandiu-se de suas vestes de cristais, criando uma barreira gravitacional pesada que aumentou a pressão do ar na sala em três vezes, forçando os corpos de Bruna e Nayra para baixo.
+— Agora, meninas! — comandou Bruna.
+As joias explodiram em seus trajes de cristais estelares. Sob a pressão esmagadora da gravidade de Carolina, Bruna flexionou os joelhos, usando o impulso cinético do relógio para anular o peso em suas pernas e desferir cortes verticais precisos com a espada no ar. A lâmina azul escuro cortava a densidade do ar com um som limpo, demonstrando uma estabilidade muito superior à do combate contra Véspera.
+Ao mesmo tempo, Nayra concentrou sua energia na jóia de rubi de seu peito, liberando o chicote vermelho com um estalo suave. Em vez de girá-lo com fúria cega, ela manteve os movimentos em um compasso rítmico e constante, criando ondas de choque de centelhas vermelhas que flutuavam ao redor da barreira de Carolina de forma controlada, sem que o chicote sofresse qualquer estresse térmico.
+Elas treinaram durante horas seguidas, conversando e corrigindo as posturas umas das outras a cada falha de energia. A cada ciclo de ativação, os trajes de cristais mostravam-se mais integrados aos seus corpos mortais, absorvendo o cansaço e convertendo a exaustão em estabilidade espiritual pura. Elas compreenderam que o Prisma Universum só seria invocado com segurança se suas mentes estivessem em perfeita sincronia.
+Ao final da tarde, Carolina desfez o campo gravitacional, e as três caíram sentadas nas almofadas, ofegantes, mas com sorrisos sutis nos rostos. Pela primeira vez, os trajes de cristais recolheram-se de forma suave, retornando às joias sem deixar dores nas costelas ou marcas de queimaduras nos antebraços.
+— Nós estamos melhorando — comentou Nayra, limpando o suor da testa e puxando seus fones de ouvido novos para o pescoço. — O fluxo de energia vermelha já não parece uma explosão descontrolada na minha cabeça.
+— Mas ainda estamos jogando na defesa — alertou Carolina. — O Coração do Vácuo está rachado no chão, mas ele ainda emite pulsos de localização para os confins do espaço. Nós precisamos estar prontas para quando a próxima ameaça pisar neste mundo. Bruna olhou para a espada polida em suas mãos. Ela guardou a espada na bolsa e encarou suas fiéis amigas e companheiras de destino.
+— Nós estaremos prontas. O Eclipse pode estar mais forte e amplificado por artefatos, mas nós temos o sangue das mulheres que criaram o Prisma. A partir de hoje, nós lutamos pelo futuro da Terra e pela memória de Prisma. 
+A determinação do trio estava consolidada entre as paredes do apartamento intacto. Elas haviam conquistado a estabilidade que tanto precisavam.</p>
+            </div>
+
+            <div class="chapter-card">
+                <h2>Capítulo 8: Crime Contra A Ordem Natural</h2>
+                <p>O final da tarde trouxe uma calmaria gélida e silenciosa para a sala de estar do apartamento de Bruna. O treino exaustivo de estabilização havia chegado ao fim; as três garotas haviam desabado sobre as almofadas, respirando fundo. Pela primeira vez, os trajes não deixaram marcas nos braços ou dores nas costelas, mas o Coração do Vácuo continuava caído no centro do tapete restaurado por Nayra, pulsando em um tom roxo fraco e intermitente.
+A calmaria do pós-treino durou pouco. No centro exato da sala de estar, o espaço ao redor do artefato de obsidiana começou a retorcer-se de forma violenta. O ar do apartamento ficou subitamente frio, e espirais de fumaça cinzenta e prateada cortaram o teto. Sem emitir um único ruído, um portal dimensional rasgou a realidade bem ali, entre o sofá e a mesa da cozinha.
+De dentro da luz fosca, Kaelen deu um passo firme para fora do portal, pisando no tapete reconstruído, suas imensas correntes de prata pura flutuavam ao redor de seus braços. Seus olhos completamente cinzentos e sem vida varreram o cômodo, congelando instantaneamente ao focar no trio e na jóia de obsidiana caída no chão. 
+— O que vocês pensavam que estavam fazendo? — a voz de Kaelen quebrou o silêncio, fria, cortante e carregada de uma fúria contida que fez o ar sumir da sala. Suas correntes tilintaram agressivamente. Elas se moveram como chicotes metálicos raivosos, raspando as paredes de alvenaria. — O rastro de luz tricolor que vocês dispararam nesta madrugada quase cegou os sensores do Submundo do Eclipse. Vocês manifestaram o Prisma Universum!
+Kaelen deu um passo à frente. A presença imponente e opressora forçava as garotas a recuarem, embora Bruna mantivesse a espada em punho.
+— Vocês têm noção da insanidade que cometeram? — continuou o Ceifador, encarando Bruna com severidade. — Você se machucou? Ceifador perguntou a Bruna. — Não, mas foi por pouco, obrigada por perguntar. O feitiço salvou a gente de uma tal de Véspera! Bruna exclama.
+Suas correntes ergueram-se até a altura do teto. — Esse feitiço exige uma unificação mental absoluta. Nem mesmo as gerações de guardiãs mais experientes e poderosas do Palácio de Cristal conseguiam canalizar essa ressonância sem que a sobrecarga destruísse seus canais místicos, levando todas elas à loucura ou à morte cerebral imediata. Vocês são meras humanas que acabaram de despertar. Como vocês fizeram isso sem ter os cérebros derretidos no processo?
+Carolina deu um passo à frente, empurrando os óculos de grau grossos para o topo do nariz com sua habitual postura. Ela encarou os olhos cinzentos de Kaelen sem demonstrar medo, apontando suas unhas longas pintadas de azul para a mesa da cozinha.
+— Nós não sobrevivemos por acaso, Kaelen — explicou Carolina, a voz firme de estrategista assumindo o controle. — Esta manhã, o Coração do Vácuo liberou uma densa nuvem de poeira cósmica rúnica através de suas rachaduras. Eu identifiquei o fenômeno e percebi que as partículas carregavam os registros trancados da Guerra de Prisma e da Batalha na Árvore Ancestral. Nós usamos o nosso próprio sangue combinado como um catalisador de ressonância para romper a barreira de antimatéria. Nós vimos tudo. Vimos nossas mães, vimos a matança e vimos o Comandante traidor.
+Carolina puxou suas anotações de astrofísica quântica e estendeu os diagramas de fluxo de massa estelar rúnica.
+— O feitiço da Trindade quase nos quebrou na madrugada porque a energia expandiu para fora — continuou Carolina, olhando fixamente para o Ceifador. — Mas tirei um tempo para estudar os registros que a poeira cósmica liberou. Eu decodifiquei as runas que minha mãe usou na árvore e as alterei para aplicar aqui na sala durante a tarde. Criei um campo de pressão gravitacional controlado de três vezes a massa normal para forçar o fluxo de luz a circular diretamente pelas joias de nossos trajes de cristais. Nós passamos horas forçando nossos corpos contra essa gravidade. Foi isso que estabilizou nossa energia e nos deu o conhecimento sobre nós mesmas para suportar o trampo sem que a nossa mente colapsasse.
+Kaelen ouviu a explicação em silêncio absoluto. Suas correntes de prata desaceleraram o movimento fluído, flutuando de forma mais baixa ao redor de seu terno preto conforme ele processava a magnitude do feito daquelas garotas. Elas haviam decifrado sozinhas o segredo que a Ordem do Prisma levara eras para compreender.
+No entanto, as palavras de Carolina sobre as memórias da poeira e os registros dos cavaleiros mortos deixaram um eco pesado no ambiente. O fantasma de William, o maior mentor e amigo de Kaelen que havia se transformado em cinzas no vácuo devido à traição do Comandante, pareceu preencher o silêncio da sala.
+Carolina deu mais um passo à frente, abaixando o tom de voz, seus olhos refletindo uma dúvida que vinha martelando sua mente estratégica desde que vira o colapso do Palácio de Cristal nas projeções.
+— Kaelen... — chamou Carolina, fixando o olhar nas pupilas sem vida do rapaz. — Através das memórias da poeira, nós testemunhamos a forma como o Comandante explodiu e como as cinzas de William se dissiparam no vácuo. Mas eu notei um padrão nas equações rúnicas de transmigração da alma da Pirolina. Se a energia estelar pode mover a essência vital entre corpos e objetos... 
+— Existiria a possibilidade de existir uma runa de ressurreição? Uma combinação quântica capaz de refazer a carne e trazer uma alma de volta do vácuo? — Pergunta Kaelen.
+A pergunta ecoou como um trovão silencioso nas paredes do apartamento. Kaelen estancou no lugar. Suas correntes de prata travaram instantaneamente no ar, emitindo um estalo metálico agudo. O semblante do Ceifador, sempre rígido e inexpressivo, vacilou por um microssegundo, atingido em cheio pela lembrança do sorriso ensanguentado de William antes de sumir na escuridão. O desejo de trazer seu mentor de volta era a ferida aberta que sangrava em sua alma há milênios, a promessa de sobrevivência que ele carregava em seu terno preto.
+Ele encarou Carolina com uma intensidade sombria, a voz descendo para um sussurro tenso.
+— Se tal runa existir... ela viola as leis mais fundamentais do espaço-tempo e do próprio equilíbrio universal — disse Kaelen, as correntes flutuando de forma pesada e ameaçadora. — Reverter a morte exige um preço que o cosmos cobra com destruição. Isso seria... um crime contra a ordem natural de todas as coisas. Mas quero que você me ajude a encontrar tal runa.
+Carolina sustentou o olhar frio do Ceifador, ajustando os óculos e mantendo o maxilar travado com a determinação calculista de quem não aceitava limites para o conhecimento.
+— Eu vou estudar sobre isso — respondeu Carolina, com um tom de voz firme e misterioso, que deixou claro que ela tentaria, mas sem nenhuma confirmação de que exista.
+O silêncio na sala de estar tornou-se sufocante. De repente, as correntes de Kaelen chicotearam o ar com força, batendo contra os móveis restaurados da sala. Ele deu dois passos rápidos à frente, invadindo o espaço pessoal de Carolina. Sua postura tornou-se brutal, e ele a encarou de cima, os olhos cinzentos e sem brilho emanando uma frieza assassina. Suas mãos agarraram os elos de ferro do machado de crista de Carolina.
+— Você não vai apenas estudar, Carolina — exigiu Kaelen, sua voz abandonando o sussurro e subindo para um tom imperioso, gélido e opressor, uma força de comando que forçou a pressão rúnica da sala a despencar. As correntes flutuaram rente ao pescoço da garota de forma ameaçadora. — Você vai decifrar esse feitiço. Você vai encontrar essa runa e vai me dar os símbolos para reverter o fim de William. Isso não é um pedido. Eu estou ordenando. Use sua mente quântica para rasgar as leis do universo se for preciso, mas traga ele de volta.
+— Eu aceito — respondeu Carolina, a voz firme retornando aos poucos, aceitando o desafio proibido do Ceifador. — Se o crime contra a ordem natural é o preço para termos a força máxima do Prisma contra o Eclipse, eu vou quebrar o universo para achar essa runa.
+Kaelen recuou um passo e pediu desculpa por perder o controle, as correntes finalmente acalmando-se ao redor de seus ombros, embora o peso de suas palavras continuasse esmagando o ambiente. Ele olhou para o trio, os olhos cinzentos fixando-se no Coração do Vácuo que pulsava fraco no chão.
+— Nós precisamos do William se quisermos acabar de uma vez por todas com o Eclipse e seus demônios — declarou Kaelen, sua voz ecoando com uma urgência sombria que fez as joias das três garotas reagirem. — Sozinhas, seria impossível vencer o Eclipse no seu reino.
+Bruna aproximou-se das duas, fincando a espada da família firmemente no chão e segurando o relógio de pulso de braço que brilhava em azul-escuro constante. Nayra colocou-se ao lado delas, cruzando os braços. No centro da sala restaurada do apartamento, a promessa de um crime cósmico pairava no ar. A Trindade Cósmica havia despertado, o artefato do inimigo estava em mãos humanas e a busca pela ressurreição de William daria o tom dos próximos e brutais confrontos que mudariam o universo para sempre.</p>
+            </div>
+
         </div>
-      `;
-      list.appendChild(div);
-    }
 
-    function handleImagePreview(e) {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(evt) {
-          currentBase64Image = evt.target.result;
-          const img = document.getElementById('image-preview');
-          img.src = currentBase64Image;
-          img.style.display = 'block';
-        };
-        reader.readAsDataURL(file);
-      }
-    }
+      <!-- HABILIDADES -->
+        <div id="habilidades" class="tab-content">
+            <div class="character-grid">
+                
+                <!-- BRUNA -->
+                <div class="char-card bruna">
+                    <div class="char-header">
+                        <h3>Bruna</h3>
+                        <span>Líder & Guardiã Azul-Bebê / Azul-Escuro</span>
+                    </div>
+                    <div class="char-body">
+                        <p>Jovem negra, focada e praticante de ginástica rítmica. Amante incondicional de K-pop e colecionadora de photocards. Líder das Guardiãs Estelares e detentora do legado de sua irmã Pirolina.</p>
+                        <ul class="skills-list">
+                            <li><strong>Espada de Família / Espada Ancestral:</strong> Lâmina que abrigou a alma de Pirolina. Executa o <em>Corte Estelar Purificador</em> e canaliza energia estelar em sintonia com sua alma.</li>
+                            <li><strong>Relógio Cinético Ancestral:</strong> Herança de sua falecida mãe com o visor que pisca em tom azul-escuro alarmante. Possui a habilidade de <em>Manipulação Cinética de Impacto</em>, absorvendo danos e choques para converter em impulsos e saltos sobre-humanos.</li>
+                            <li><strong>Traje de Cristais Estelares:</strong> Corpete branco e saia azul-escuro cravados de pedras mágicas que reluzem como diamantes cósmicos, amplificando força física e espiritual.</li>
+                            <li><strong>Trindade Cósmica Prismática (Prisma Navidus Universum):</strong> Invocação suprema manifestada em trio, disparando um feixe de luz tricolor incandescente que anula antimatéria e rasga vilões do Vazio.</li>
+                        </ul>
+                    </div>
+                </div>
 
-    function handleSaveBook(e) {
-      e.preventDefault();
-      const editId = document.getElementById('edit-book-id').value;
-      const title = document.getElementById('book-title').value.trim();
-      const author = document.getElementById('book-author').value.trim() || 'Autor Anônimo';
-      const isChapters = document.querySelector('input[name="structure-type"]:checked').value === 'chapters';
+                <!-- NAYRA -->
+                <div class="char-card nayra">
+                    <div class="char-header">
+                        <h3>Nayra</h3>
+                        <span>Guardiã Vermelha</span>
+                    </div>
+                    <div class="char-body">
+                        <p>Garota introvertida, brava e rebelde, fã incondicional de rock pesado e mestre na arte da maquiagem marcante. Transforma sua fúria e isolamento em proteção e combate ritmado.</p>
+                        <ul class="skills-list">
+                            <li><strong>Chicote de Pedras Preciosas:</strong> Fio de seus fones de ouvido transformado em um chicote pesado incrustado de rubis cintilantes.</li>
+                            <li><strong>Tempestade de Riffs:</strong> Técnica ritmada que corta o ar em movimentos frenéticos, criando ondas de choque sonoras e centelhas vermelhas violentas.</li>
+                            <li><strong>Aria de Sangue:</strong> Feitiço supremo e inédito em que joga o chicote ao alto para dissolvê-lo em uma cortina de luz vermelha puríssima, fazendo o tempo e a matéria correrem ao contrário de forma mágica para restaurar qualquer destruição e curar ferimentos.</li>
+                        </ul>
+                    </div>
+                </div>
 
-      let singleContent = "";
-      let chapters = [];
+                <!-- CAROLINA -->
+                <div class="char-card carolina">
+                    <div class="char-header">
+                        <h3>Carolina</h3>
+                        <span>Estrategista & Guardiã Amarela</span>
+                    </div>
+                    <div class="char-body">
+                        <p>Estudante de postura imponente, calculista e ameaçadora. Apaixonada por astrofísica quântica e leitura de runas antigas, com unhas longas sempre pintadas de azul e óculos rúnicos.</p>
+                        <ul class="skills-list">
+                            <li><strong>Machado Kawaii de Batalha:</strong> Arma pesada cravejada de pedras preciosas e safiras douradas para golpes de impacto direto.</li>
+                            <li><strong>Óculos Rúnicos de Cristais:</strong> Permitem decodificar mapas holográficos, sequências universais de luz e mapear fluxos de energia no corpo dos aliados.</li>
+                            <li><strong>Ruptura de Astrofísica (Colapso Estelar):</strong> Altera a densidade de massa local para criar microzonas de pressão gravitacional esmagadora.</li>
+                            <li><strong>Conhecimento Rúnico Proibido:</strong> Habilidade para decifrar a poeira cósmica e buscar a <em>Runa de Ressurreição</em> para desafiar as leis do espaço-tempo.</li>
+                        </ul>
+                    </div>
+                </div>
 
-      if (isChapters) {
-        document.querySelectorAll('.chapter-card').forEach((card, idx) => {
-          chapters.push({
-            title: card.querySelector('.chap-title').value.trim() || `Capítulo ${idx + 1}`,
-            content: card.querySelector('.chap-content').value
-          });
-        });
-      } else {
-        singleContent = document.getElementById('single-content').value;
-      }
+                <!-- KAELEN -->
+                <div class="char-card kaelen">
+                    <div class="char-header">
+                        <h3>Kaelen</h3>
+                        <span>O Ceifador do Eclipse</span>
+                    </div>
+                    <div class="char-body">
+                        <p>Antigo cavaleiro da Ordem do Prisma (originalmente com cabelos pretos e olhos cheios de vida) que mergulhou na matéria escura para sobreviver e vingar a morte de William. Possui cabelos brancos como a neve, olhos cinzentos e veste terno preto.</p>
+                        <ul class="skills-list">
+                            <li><strong>Foice de Cristal Negro:</strong> Arma devastadora capaz de desferir golpes que cortam o tecido do espaço-tempo e fecham portais dimensionais.</li>
+                            <li><strong>Correntes de Prata Pura:</strong> Elos prateados manipulados cineticamente que flutuam ao redor de seu corpo para rasgar, prender e mutilar inimigos.</li>
+                            <li><strong>Matéria Escura do Vazio:</strong> Energia negra que corre em suas veias, permitindo abrir portais de sombras cinzentas e rastrear anomalias pelo cosmos.</li>
+                        </ul>
+                    </div>
+                </div>
 
-      if (editId) {
-        const idx = books.findIndex(b => b.id === editId);
-        if (idx !== -1) {
-          books[idx] = { ...books[idx], title, author, image: currentBase64Image || books[idx].image, hasChapters: isChapters, content: singleContent, chapters };
+                <!-- WILLIAM -->
+                <div class="char-card william">
+                    <div class="char-header">
+                        <h3>William</h3>
+                        <span>Comandante Supremo da Ordem</span>
+                    </div>
+                    <div class="char-body">
+                        <p>O mais respeitado cavaleiro da Ordem do Prisma, mentor e melhor amigo de Kaelen. Guerreiro nobre de voz calorosa, cabelos brancos e armadura dourada com o sol nascente em alto-relevo.</p>
+                        <ul class="skills-list">
+                            <li><strong>Lâmina do Alvorecer:</strong> Espada dourada sagrada alimentada por plasma solar fervente.</li>
+                            <li><strong>Explores Navidus:</strong> Lâmina de plasma solar disparada com força devastadora para decapitar e purificar hordas de antimatéria.</li>
+                            <li><strong>Aegis Luminis:</strong> Invocação de uma cúpula impenetrável de prismas hexagonais de luz sólida para proteger aliados.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- MÃE DE BRUNA -->
+                <div class="char-card mae-bruna">
+                    <div class="char-header">
+                        <h3>Mãe de Bruna</h3>
+                        <span>Soberana da Luz Azul-Bebê</span>
+                    </div>
+                    <div class="char-body">
+                        <p>Líder das Guardiãs Estelares Ancestrais e soberana no Palácio de Cristal. Mulher negra de postura impecável e tranças adornadas com presilhas de cristal. Mão de Pirolina e Bruna.</p>
+                        <ul class="skills-list">
+                            <li><strong>Transmigração Cósmica Proibida:</strong> Feitiço supremo que arranca a alma física de um corpo e a transmigra para o metal de um objeto sagrado.</li>
+                            <li><strong>Explosão do Núcleo Estelar:</strong> Onda purificadora monumental de energia azul-bebê que se desintegra ao ser ativada para selar fendas dimensionais.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- MÃE DE CAROLINA -->
+                <div class="char-card mae-carolina">
+                    <div class="char-header">
+                        <h3>Mãe de Carolina</h3>
+                        <span>Guardiã Ancestral Amarela</span>
+                    </div>
+                    <div class="char-body">
+                        <p>Guardiã tática de longos cabelos ondulados e unhas afiadas banhadas em ouro líquido místico. Mão biológica de Carolina que usou seus últimos momentos na Terra para protegê-la.</p>
+                        <ul class="skills-list">
+                            <li><strong>Runas do Sangue Místico:</strong> Capacidade de desenhar e cravar runas com o próprio sangue na casca de elementos da natureza.</li>
+                            <li><strong>Runas de Ocultação e Cegueira:</strong> Feitiço rúnico capaz de cegar a visão do Eclipse e tornar objetos ou seres completamente invisíveis ao Vazio.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Guardiãs Estelares: O Legado de Prata. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
         }
-      } else {
-        books.unshift({
-          id: 'book_' + Date.now(),
-          title, author, image: currentBase64Image, hasChapters: isChapters, content: singleContent, chapters
-        });
-      }
-
-      saveBooks();
-      resetForm();
-      switchPage('obras');
-      showToast("Obra salva no Scriptorium!");
-    }
-
-    function resetForm() {
-      document.getElementById('book-form').reset();
-      document.getElementById('edit-book-id').value = "";
-      document.getElementById('editor-main-title').innerText = "Ateliê de Escrita";
-      document.getElementById('image-preview').style.display = 'none';
-      document.getElementById('chapters-list').innerHTML = '';
-      currentBase64Image = "";
-      toggleStructureType();
-    }
-
-    // ESTANTE DE OBRAS
-    function renderBookshelf() {
-      const grid = document.getElementById('bookshelf-grid');
-      grid.innerHTML = '';
-
-      if (books.length === 0) {
-        grid.innerHTML = '<p style="text-align: center; grid-column: 1/-1; color: var(--ink-brown);">Nenhuma obra salva ainda.</p>';
-        return;
-      }
-
-      books.forEach(book => {
-        const card = document.createElement('div');
-        card.className = 'book-card-item';
-        card.innerHTML = `
-          <div>
-            <div class="book-card-title">${book.title}</div>
-            <div class="book-card-author">Por ${book.author}</div>
-            <p style="font-size: 0.9rem; color: #d2b48c;">${book.hasChapters ? book.chapters.length + ' Capítulo(s)' : 'Manuscrito Único'}</p>
-          </div>
-          <div class="book-card-actions">
-            <button class="btn-read-book" onclick="openReader('${book.id}')">📖 Ler</button>
-            <button class="btn-edit-book" onclick="editBook('${book.id}')">✎ Edit</button>
-            <button class="btn-delete-book" onclick="deleteBook('${book.id}')">🗑</button>
-          </div>
-        `;
-        grid.appendChild(card);
-      });
-    }
-
-    // LEITURA EM NOVA PÁGINA
-    function openReader(id) {
-      currentBookId = id;
-      currentChapterIdx = 0;
-      const book = books.find(b => b.id === id);
-      if (!book) return;
-
-      document.getElementById('read-title').innerText = book.title;
-      document.getElementById('read-author').innerText = `Por ${book.author}`;
-      document.getElementById('btn-edit-reading').onclick = () => editBook(book.id);
-
-      const coverImg = document.getElementById('read-cover');
-      if (book.image) {
-        coverImg.src = book.image;
-        coverImg.style.display = 'block';
-      } else {
-        coverImg.style.display = 'none';
-      }
-
-      const tabs = document.getElementById('reader-chapter-tabs');
-      if (book.hasChapters && book.chapters.length > 0) {
-        tabs.style.display = 'flex';
-        renderReaderTabs(book);
-        showChapterText(book, 0);
-      } else {
-        tabs.style.display = 'none';
-        document.getElementById('read-body-text').innerText = book.content || '(Sem texto)';
-      }
-
-      switchPage('leitura');
-    }
-
-    function renderReaderTabs(book) {
-      const tabs = document.getElementById('reader-chapter-tabs');
-      tabs.innerHTML = '';
-      book.chapters.forEach((chap, idx) => {
-        const btn = document.createElement('button');
-        btn.className = `chapter-tab ${idx === currentChapterIdx ? 'active' : ''}`;
-        btn.innerText = chap.title;
-        btn.onclick = () => {
-          currentChapterIdx = idx;
-          renderReaderTabs(book);
-          showChapterText(book, idx);
-        };
-        tabs.appendChild(btn);
-      });
-    }
-
-    function showChapterText(book, idx) {
-      document.getElementById('read-body-text').innerText = book.chapters[idx]?.content || '(Capítulo sem texto)';
-    }
-
-    function editBook(id) {
-      const book = books.find(b => b.id === id);
-      if (!book) return;
-
-      resetForm();
-      document.getElementById('edit-book-id').value = book.id;
-      document.getElementById('book-title').value = book.title;
-      document.getElementById('book-author').value = book.author;
-      document.getElementById('editor-main-title').innerText = "Editar Obra";
-
-      if (book.image) {
-        currentBase64Image = book.image;
-        document.getElementById('image-preview').src = book.image;
-        document.getElementById('image-preview').style.display = 'block';
-      }
-
-      if (book.hasChapters) {
-        document.querySelectorAll('input[name="structure-type"]')[1].checked = true;
-        toggleStructureType();
-        document.getElementById('chapters-list').innerHTML = '';
-        book.chapters.forEach(ch => addChapterInput(ch.title, ch.content));
-      } else {
-        document.querySelectorAll('input[name="structure-type"]')[0].checked = true;
-        toggleStructureType();
-        document.getElementById('single-content').value = book.content || '';
-      }
-
-      switchPage('criacao');
-    }
-
-    function deleteBook(id) {
-      if (confirm('Deseja excluir esta obra permanentemente?')) {
-        books = books.filter(b => b.id !== id);
-        saveBooks();
-        renderBookshelf();
-        showToast("Obra removida!");
-      }
-    }
-
-    function showToast(msg) {
-      const toast = document.getElementById('toast');
-      document.getElementById('toast-message').innerText = msg;
-      toast.style.display = 'block';
-      setTimeout(() => toast.style.display = 'none', 3000);
-    }
-  </script>
+    </script>
 </body>
 </html>
