@@ -41,7 +41,7 @@
       background-color: var(--bg-dark);
       background-image: 
         radial-gradient(circle at center, rgba(30, 18, 10, 0.8) 0%, rgba(10, 5, 2, 0.98) 100%),
-        url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43 -7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z' fill='%3C/svg%3E");
+        url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134-7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43 -7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z' fill='%3C/svg%3E");
       color: var(--ink-black);
       font-family: 'IM Fell English', serif;
       min-height: 100vh;
@@ -655,7 +655,12 @@
 
     document.addEventListener("DOMContentLoaded", () => {
       loadBooks();
-      if (books.length === 0) createSampleBook();
+      
+      // Se não houver obras gravadas no navegador, inicializa com os capítulos abaixo:
+      if (books.length === 0) {
+        createSampleBook();
+      }
+      
       renderBookshelf();
     });
 
@@ -682,19 +687,39 @@
       localStorage.setItem('scriptorium_books', JSON.stringify(books));
     }
 
+    /* ==========================================================================
+       SUA OBRA PRINCIPAL PERMANENTE
+       Altere o Título, Autor e os Textos dos Capítulos aqui diretamente:
+       ========================================================================== */
     function createSampleBook() {
-      books.push({
-        id: 'sample-1',
-        title: 'Guardiãs Estelares',
-        author: 'Guardiã Mãe',
+      books = [{
+        id: 'obra-principal',
+        title: 'Guardiãs Estelares', // <-- DIGITE O TÍTULO AQUI
+        author: 'Guardiã Mãe',        // <-- DIGITE O NOME DO AUTOR AQUI
         image: '',
         hasChapters: true,
         content: '',
         chapters: [
-          { title: 'O Despertar das Estrelas', content: 'Antes de enfrentarem generais do vácuo, existia três garotas do ensino médio...' },
-          { title: 'O Ataque na Arena', content: 'O céu noturno brilhou intensamente enquanto as estrelas respondiam ao chamado...' }
+          { 
+            title: 'Capítulo 1: O Despertar', 
+            content: `Cole aqui o texto completo do Capítulo 1...` 
+          },
+          { 
+            title: 'Capítulo 2: A Jornada', 
+            content: `Cole aqui o texto completo do Capítulo 2...` 
+          },
+          { 
+            title: 'Capítulo 3: O Confronto', 
+            content: `Cole aqui o texto completo do Capítulo 3...` 
+          },
+          { 
+            title: 'Capítulo 4: O Novo Amanhã', 
+            content: `Cole aqui o texto completo do Capítulo 4...` 
+          }
+          /* Se quiser adicionar mais capítulos futuramente, basta copiar o bloco acima
+             colocar uma vírgula após o último capítulo e colar abaixo! */
         ]
-      });
+      }];
       saveBooks();
     }
 
