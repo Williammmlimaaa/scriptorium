@@ -1,475 +1,573 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guardiãs Estelares: O Legado de Prata</title>
-    <style>
-        :root {
-            --bg-primary: #0a0c10;
-            --bg-secondary: #121620;
-            --bg-card: #1a202c;
-            --accent-blue: #70d6ff;
-            --accent-red: #ff70a6;
-            --accent-yellow: #ffd670;
-            --accent-silver: #e0e6ed;
-            --accent-gold: #f7d070;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border-color: #2d3748;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guardiãs Estelares: O Legado de Prata</title>
+  <!-- Google Fonts para Tipografia Vintage / Pergaminho -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==========================================================================
+       ESTILOS GLOBAIS - PALETA DE CORES PERGAMINHO E VINTAGE SCRIPTORIUM
+       ========================================================================== */
+    :root {
+      --bg-dark: #120c08;
+      --paper-base: #f3e5ab;
+      --paper-dark: #d2b48c;
+      --paper-aged: #e6c894;
+      --ink-black: #2b1e16;
+      --ink-brown: #3d2314;
+      --gold-primary: #d4af37;
+      --gold-dark: #aa7c11;
+      --gold-bright: #ffd700;
+      --burgundy: #6b1d2f;
+      --leather: #4a2511;
+      --border-ornate: #8b5a2b;
+      --shadow-heavy: rgba(0, 0, 0, 0.75);
+    }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        body {
-            background-color: var(--bg-primary);
-            color: var(--text-main);
-            line-height: 1.6;
-            padding-bottom: 50px;
-        }
+    body {
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(circle at center, rgba(30, 18, 10, 0.8) 0%, rgba(10, 5, 2, 0.98) 100%),
+        url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43 -7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z' fill='%3C/svg%3E");
+      color: var(--ink-black);
+      font-family: 'IM Fell English', serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 10px;
+    }
 
-        header {
-            background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
-            border-bottom: 2px solid var(--border-color);
-            padding: 2rem 1rem;
-            text-align: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-        }
+    /* Scrollbar Vintage */
+    ::-webkit-scrollbar {
+      width: 12px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--leather);
+      border: 1px solid var(--gold-dark);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--burgundy);
+      border: 1px solid var(--gold-primary);
+      border-radius: 2px;
+    }
 
-        header h1 {
-            font-size: 2.2rem;
-            background: linear-gradient(90deg, var(--accent-blue), var(--accent-red), var(--accent-yellow));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
+    /* Navegação Superior */
+    .nav-header {
+      width: 100%;
+      max-width: 1100px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 25px;
+      margin-bottom: 25px;
+      background: linear-gradient(180deg, #3d2010 0%, #201007 100%);
+      border: 2px solid var(--gold-primary);
+      box-shadow: 0 5px 15px var(--shadow-heavy), inset 0 0 10px rgba(212, 175, 55, 0.3);
+      border-radius: 4px;
+      position: sticky;
+      top: 10px;
+      z-index: 100;
+    }
 
-        header p {
-            color: var(--text-muted);
-            font-size: 1rem;
-        }
+    .brand-title {
+      font-family: 'Cinzel Decorative', serif;
+      color: var(--gold-bright);
+      font-size: 1.4rem;
+      text-shadow: 2px 2px 4px #000;
+      letter-spacing: 2px;
+    }
 
-        nav.tabs {
-            display: flex;
-            justify-content: center;
-            background-color: var(--bg-secondary);
-            border-bottom: 1px solid var(--border-color);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+    .nav-buttons {
+      display: flex;
+      gap: 15px;
+    }
 
-        nav.tabs button {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            padding: 1rem 1.5rem;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-bottom: 3px solid transparent;
-        }
+    .nav-btn {
+      background: linear-gradient(180deg, #5c1827 0%, #3a0d17 100%);
+      color: var(--gold-primary);
+      border: 1px solid var(--gold-primary);
+      padding: 8px 18px;
+      font-family: 'Cinzel', serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      border-radius: 2px;
+    }
 
-        nav.tabs button:hover {
-            color: var(--text-main);
-            background-color: rgba(255, 255, 255, 0.03);
-        }
+    .nav-btn:hover, .nav-btn.active {
+      background: linear-gradient(180deg, var(--gold-primary) 0%, var(--gold-dark) 100%);
+      color: #1a0d00;
+      box-shadow: 0 0 10px var(--gold-primary);
+    }
 
-        nav.tabs button.active {
-            color: var(--accent-blue);
-            border-bottom-color: var(--accent-blue);
-            background-color: rgba(112, 214, 255, 0.05);
-        }
+    /* Moldura de Livro Vintage */
+    .book-frame {
+      width: 100%;
+      max-width: 1100px;
+      background-color: var(--paper-base);
+      background-image: 
+        radial-gradient(ellipse at center, rgba(255,255,255,0.4) 0%, rgba(210,180,140,0.6) 100%),
+        url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+      border: 12px solid #2d180c;
+      outline: 3px solid var(--gold-primary);
+      outline-offset: -8px;
+      box-shadow: 0 0 0 15px #1a0d06, 0 20px 40px var(--shadow-heavy), inset 0 0 100px rgba(80, 50, 20, 0.5);
+      position: relative;
+      padding: 40px;
+      box-sizing: border-box;
+      border-radius: 6px;
+      min-height: 80vh;
+    }
 
-        .container {
-            max-width: 1000px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
+    /* Cantoneiras */
+    .corner-ornament {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      pointer-events: none;
+      z-index: 10;
+    }
+    .corner-top-left { top: 5px; left: 5px; border-top: 4px double var(--gold-dark); border-left: 4px double var(--gold-dark); }
+    .corner-top-right { top: 5px; right: 5px; border-top: 4px double var(--gold-dark); border-right: 4px double var(--gold-dark); }
+    .corner-bottom-left { bottom: 5px; left: 5px; border-bottom: 4px double var(--gold-dark); border-left: 4px double var(--gold-dark); }
+    .corner-bottom-right { bottom: 5px; right: 5px; border-bottom: 4px double var(--gold-dark); border-right: 4px double var(--gold-dark); }
 
-        .tab-content {
-            display: none;
-        }
+    .ornamental-divider {
+      text-align: center;
+      margin: 20px 0;
+      color: var(--burgundy);
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+    .ornamental-divider::before, .ornamental-divider::after {
+      content: '';
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--burgundy), transparent);
+    }
 
-        .tab-content.active {
-            display: block;
-        }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+      animation: fadeInPage 0.4s ease;
+    }
 
-        .chapter-card {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1.8rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        }
+    @keyframes fadeInPage {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-        .chapter-card h2 {
-            color: var(--accent-blue);
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding-bottom: 0.5rem;
-        }
+    /* CAPÍTULOS DE HISTÓRIA */
+    .chapter-card {
+      background: rgba(255, 252, 242, 0.7);
+      border: 1px solid var(--border-ornate);
+      padding: 25px;
+      margin-bottom: 25px;
+      border-radius: 4px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
 
-        .chapter-card p {
-            margin-bottom: 1rem;
-            color: #cbd5e1;
-            text-align: justify;
-            white-space: pre-line;
-        }
+    .chapter-card h2 {
+      font-family: 'Cinzel Decorative', serif;
+      color: var(--burgundy);
+      font-size: 1.6rem;
+      margin-bottom: 15px;
+      border-bottom: 1px solid var(--border-ornate);
+      padding-bottom: 8px;
+    }
 
-        .character-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
+    .chapter-card p {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: var(--ink-black);
+      text-align: justify;
+      white-space: pre-line;
+    }
 
-        .char-card {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+    .chapter-card p::first-letter {
+      font-family: 'UnifrakturMaguntia', serif;
+      font-size: 3.2rem;
+      float: left;
+      line-height: 0.8;
+      padding-top: 2px;
+      padding-right: 8px;
+      color: var(--burgundy);
+    }
 
-        .char-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-        }
+    /* HABILIDADES DOS PERSONAGENS */
+    .character-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 15px;
+    }
 
-        .char-header {
-            padding: 1.2rem;
-            text-align: center;
-            border-bottom: 1px solid var(--border-color);
-        }
+    .char-card {
+      background: rgba(255, 252, 242, 0.95);
+      border: 2px solid var(--border-ornate);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
 
-        .char-card.bruna .char-header { background: rgba(112, 214, 255, 0.1); border-top: 4px solid var(--accent-blue); }
-        .char-card.nayra .char-header { background: rgba(255, 112, 166, 0.1); border-top: 4px solid var(--accent-red); }
-        .char-card.carolina .char-header { background: rgba(255, 214, 112, 0.1); border-top: 4px solid var(--accent-yellow); }
-        .char-card.kaelen .char-header { background: rgba(224, 230, 237, 0.1); border-top: 4px solid var(--accent-silver); }
-        .char-card.william .char-header { background: rgba(247, 208, 112, 0.15); border-top: 4px solid var(--accent-gold); }
-        .char-card.mae-bruna .char-header { background: rgba(0, 180, 216, 0.1); border-top: 4px solid #00b4d8; }
-        .char-card.mae-carolina .char-header { background: rgba(255, 183, 3, 0.1); border-top: 4px solid #ffb703; }
+    .char-header {
+      background: linear-gradient(180deg, #3d2010 0%, #201007 100%);
+      color: var(--gold-bright);
+      padding: 15px;
+      text-align: center;
+      border-bottom: 2px solid var(--gold-primary);
+    }
 
-        .char-header h3 {
-            font-size: 1.3rem;
-            color: var(--text-main);
-        }
+    .char-header h3 {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 1.4rem;
+    }
 
-        .char-header span {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+    .char-header span {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      color: var(--paper-dark);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
 
-        .char-body {
-            padding: 1.2rem;
-        }
+    .char-body {
+      padding: 18px;
+    }
 
-        .char-body p {
-            font-size: 0.9rem;
-            color: #cbd5e1;
-            margin-bottom: 1rem;
-        }
+    .char-body p {
+      font-size: 0.95rem;
+      color: var(--ink-brown);
+      margin-bottom: 12px;
+      font-style: italic;
+    }
 
-        .skills-list {
-            list-style: none;
-        }
+    .skills-list {
+      list-style: none;
+    }
 
-        .skills-list li {
-            font-size: 0.85rem;
-            background-color: rgba(0, 0, 0, 0.2);
-            padding: 0.5rem;
-            border-radius: 4px;
-            margin-bottom: 0.5rem;
-            border-left: 3px solid var(--border-color);
-        }
+    .skills-list li {
+      font-size: 0.9rem;
+      background: rgba(210, 180, 140, 0.3);
+      padding: 8px 12px;
+      border-radius: 3px;
+      margin-bottom: 8px;
+      border-left: 3px solid var(--burgundy);
+    }
 
-        .skills-list li strong {
-            color: var(--text-main);
-            display: block;
-        }
+    .skills-list li strong {
+      font-family: 'Cinzel', serif;
+      color: var(--burgundy);
+      display: block;
+      margin-bottom: 2px;
+    }
 
-        footer {
-            text-align: center;
-            padding: 2rem;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            border-top: 1px solid var(--border-color);
-            margin-top: 3rem;
-        }
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      color: var(--paper-dark);
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+    }
 
-        @media (max-width: 600px) {
-            header h1 { font-size: 1.6rem; }
-            nav.tabs button { padding: 0.8rem 0.8rem; font-size: 0.85rem; }
-            .chapter-card { padding: 1.2rem; }
-        }
-    </style>
+    @media (max-width: 600px) {
+      .nav-header { flex-direction: column; gap: 10px; }
+      .book-frame { padding: 20px 15px; }
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <h1>Guardiãs Estelares</h1>
-        <p>O Legado de Prata & A Saga das Estrelas</p>
-    </header>
+  <!-- NAVEGAÇÃO SUPERIOR -->
+  <nav class="nav-header">
+    <div class="brand-title">Scriptorium</div>
+    <div class="nav-buttons">
+      <button class="nav-btn active" onclick="openTab(event, 'temp1')">Temporada 1</button>
+      <button class="nav-btn" onclick="openTab(event, 'temp2')">Temporada 2</button>
+      <button class="nav-btn" onclick="openTab(event, 'habilidades')">Habilidades</button>
+    </div>
+  </nav>
 
-    <nav class="tabs">
-        <button class="tab-btn active" onclick="openTab(event, 'temp1')">Temporada 1</button>
-        <button class="tab-btn" onclick="openTab(event, 'temp2')">Temporada 2</button>
-        <button class="tab-btn" onclick="openTab(event, 'habilidades')">Habilidades</button>
-    </nav>
+  <!-- MOLDURA DE LIVRO VINTAGE PERGAMINHO -->
+  <div class="book-frame">
+    <div class="corner-ornament corner-top-left"></div>
+    <div class="corner-ornament corner-top-right"></div>
+    <div class="corner-ornament corner-bottom-left"></div>
+    <div class="corner-ornament corner-bottom-right"></div>
 
-    <div class="container">
-        
-        <!-- TEMPORADA 1 -->
-        <div id="temp1" class="tab-content active">
-            <div class="chapter-card">
-                <h2>Capítulo 1: O Despertar das Estrelas</h2>
-                <p>No Início de Tudo
-                 Antes de enfrentarem generais do vácuo, demônios e duques interdimensionais. Existia três garotas: Bruna, Nayra e Carolina. Elas eram apenas garotas comuns que frequentavam a mesma escola de ensino médio, embora vivessem em mundos completamente diferentes e mal se falassem nos corredores.
-                 Bruna era uma jovem negra focada, disciplinada e de poucas palavras. Ela passava os seus finais de tarde treinando exaustivamente ginástica rítmica e acrobatas, usando a alta intensidade dos exercícios físicos como uma válvula de escape para preencher um vazio que sempre sentiu no peito. Além do amor pelos aparelhos de ginástica, Bruna tinha uma paixão avassaladora e contagiante por K-pop.
-                 Ela sabia todas as coreografias, colecionava photocards e passava horas imersa no universo dos idols, que traziam cor e alegria para a sua rotina rígida.
-                 Bruna cresceu acreditando ser filha única. Ela não fazia a menor ideia de que tinha uma irmã perdida chamada Pirolina, cuja existência havia sido apagada de seu passado, e muito menos sabia sobre a existência de qualquer espada mágica. Sua única conexão com o passado de sua família era um relógio de pulso antigo, herdado de sua falecida mãe. Durante anos, o acessório permaneceu parado em seu braço direito, com os ponteiros travados. No entanto, na noite em que um misterioso eclipse começou a se desenhar no céu, o relógio de repente ganhou vida. Além de emitir uma pulsação azul-bebê e funcionar como um rastreador mágico para achar objetos perdidos, ele manifestou uma habilidade oculta: a Manipulação Cinética de Impacto. Sempre que Bruna sofria uma queda ou um golpe violento, o relógio absorvia a força do impacto e a convertia em impulso físico, permitindo que ela realizasse saltos e acrobacias com o dobro da altura e velocidade sobre-humanas.
-                 Guiada pelos estalos magnéticos do relógio em seu braço, Bruna foi levada para os confins da cidade, onde a civilização dava lugar a uma floresta densa e esquecida. Lá estava a árvore mais antiga daquela cidade, uma estrutura colossal com raízes que pareciam abraçar a própria terra. O relógio de pulso brilhou intensamente quando Bruna se aproximou do tronco oco da árvore ancestral. Ao colocar a mão em uma fenda na casca antiga, seus dedos tocaram o cabo de uma espada perdida, desgastada pelo tempo.
-                 No momento em que Bruna puxou a lâmina para fora, uma onda de memórias esquecidas inundou sua mente, junto com uma revelação avassaladora: a essência de sua irmã perdida, Pirolina, estava ali. Pirolina fora uma guardiã ancestral e, para proteger o universo e salvar a linhagem de sua família do avanço devastador da entidade Eclipse, havia sacrificado sua forma física. Ela transferira toda a sua alma e energia cósmica para dentro daquele metal antigo, adormecendo na árvore mais antiga do mundo até que o relógio de braço herdado da mãe guiasse Bruna para encontrá-la. A relíquia passou a pulsar com uma aura azul-bebê calorosa ao toque de Bruna, restabelecendo um laço de sangue que o tempo tentou apagar.
+    <!-- TEMPORADA 1 -->
+    <div id="temp1" class="tab-content active">
+      <h1 style="font-family: 'Cinzel Decorative', serif; color: var(--burgundy); text-align: center; font-size: 2.2rem;">
+        Temporada 1: O Legado de Prata
+      </h1>
+      <div class="ornamental-divider">❦ ════════ ❦</div>
 
-                 Nayra vivia uma realidade completamente interna. Ela era uma garota profundamente introvertida e rebelde, que usava uma parede de silêncio para se proteger do mundo. Seu maior refúgio era a arte da maquiagem, que ela dominava com traços ousados, cores escuras e contornos marcantes, transformando seu próprio rosto em uma espécie de escudo para o cotidiano. Nayra quase sempre chegava à escola parecendo zangada, com uma expressão fechada e fones de ouvido enormes no talo. Ela passava os dias isolada escutando o rock mais pesado e rebelde que encontrava, batendo cabeça e se desligando do mundo ao redor. Ela se sentia uma peça que não se encaixava em lugar nenhum, sem saber que sua fúria e isolamento eram, na verdade, o reflexo de uma energia vermelha ardente latente de herança familiar em sua alma, esperando o momento certo para se libertar em forma de proteção e combate.
+      <div class="chapter-card">
+        <h2>Capítulo 1: O Despertar das Estrelas</h2>
+        <p>No Início de Tudo
+         Antes de enfrentarem generais do vácuo, demônios e duques interdimensionais. Existia três garotas: Bruna, Nayra e Carolina. Elas eram apenas garotas comuns que frequentavam a mesma escola de ensino médio, embora vivessem em mundos completamente diferentes e mal se falassem nos corredores.
+         Bruna era uma jovem negra focada, disciplinada e de poucas palavras. Ela passava os seus finais de tarde treinando exaustivamente ginástica rítmica e acrobatas, usando a alta intensidade dos exercícios físicos como uma válvula de escape para preencher um vazio que sempre sentiu no peito. Além do amor pelos aparelhos de ginástica, Bruna tinha uma paixão avassaladora e contagiante por K-pop.
+         Ela sabia todas as coreografias, colecionava photocards e passava horas imersa no universo dos idols, que traziam cor e alegria para a sua rotina rígida.
+         Bruna cresceu acreditando ser filha única. Ela não fazia a menor ideia de que tinha uma irmã perdida chamada Pirolina, cuja existência havia sido apagada de seu passado, e muito menos sabia sobre a existência de qualquer espada mágica. Sua única conexão com o passado de sua família era um relógio de pulso antigo, herdado de sua falecida mãe. Durante anos, o acessório permaneceu parado em seu braço direito, com os ponteiros travados. No entanto, na noite em que um misterioso eclipse começou a se desenhar no céu, o relógio de repente ganhou vida. Além de emitir uma pulsação azul-bebê e funcionar como um rastreador mágico para achar objetos perdidos, ele manifestou uma habilidade oculta: a Manipulação Cinética de Impacto. Sempre que Bruna sofria uma queda ou um golpe violento, o relógio absorvia a força do impacto e a convertia em impulso físico, permitindo que ela realizasse saltos e acrobacias com o dobro da altura e velocidade sobre-humanas.
+         Guiada pelos estalos magnéticos do relógio em seu braço, Bruna foi levada para os confins da cidade, onde a civilização dava lugar a uma floresta densa e esquecida. Lá estava a árvore mais antiga daquela cidade, uma estrutura colossal com raízes que pareciam abraçar a própria terra. O relógio de pulso brilhou intensamente quando Bruna se aproximou do tronco oco da árvore ancestral. Ao colocar a mão em uma fenda na casca antiga, seus dedos tocaram o cabo de uma espada perdida, desgastada pelo tempo.
+         No momento em que Bruna puxou a lâmina para fora, uma onda de memórias esquecidas inundou sua mente, junto com uma revelação avassaladora: a essência de sua irmã perdida, Pirolina, estava ali. Pirolina fora uma guardiã ancestral e, para proteger o universo e salvar a linhagem de sua família do avanço devastador da entidade Eclipse, havia sacrificado sua forma física. Ela transferira toda a sua alma e energia cósmica para dentro daquele metal antigo, adormecendo na árvore mais antiga do mundo até que o relógio de braço herdado da mãe guiasse Bruna para encontrá-la. A relíquia passou a pulsar com uma aura azul-bebê calorosa ao toque de Bruna, restabelecendo um laço de sangue que o tempo tentou apagar.
 
-                 Carolina era o mistério acadêmico da escola. Branca, de cabelos ondulados e unhas sempre longas, afiadas e impecavelmente pintadas, ela usava óculos de grau grossos e passava a maior parte do tempo isolada na biblioteca. Carolina sempre foi completamente apaixonada por astrofísica, mas sua relação com a matéria ia muito além do interesse acadêmico. Ela sentia uma ligação incomum, profunda e quase espiritual com o cosmos, como se o movimento das estrelas, a mecânica das galáxias e o vazio do espaço estivessem, de alguma forma, chamando por ela desde que nascera. Além das ciências exatas, Carolina tinha o estranho hábito de ler runas antigas. Sempre que tocava as pedras rúnicas, uma sensação avassaladora de familiaridade tomava conta dela, como se ela já tivesse visto aqueles símbolos milenares em algum lugar no passado. Carolina carregava uma aura genuinamente ameaçadora e calculista; ela não tinha paciência para futilidades e sua postura imponente impedia qualquer um de cruzar seu caminho. Ela achava que estava apenas obcecada por mistérios universais, sem perceber que sua mente já estava sintonizada com o conhecimento das antigas Guardiãs Estelares.
-                 O destino das três colidiu de forma abrupta numa tarde de tempestade violenta, semanas após Bruna resgatar a espada. O céu havia escurecido e a biblioteca da escola estava praticamente vazia. Carolina manuseava um pergaminho antigo que havia encontrado esquecido nos arquivos proibidos, decifrando notas sobre o alinhamento das estrelas e a iminente abertura de fendas sombrias. Quando ela murmurou em voz alta sobre a "energia estelar aprisionada em objetos estelares", uma vibração estranha correu pelo ar, foi como um feitiço citado.
-                 Bruna, que estava fazendo seus alongamentos perto das janelas imaginando as coreografias de seus grupos favoritos, com a espada escondida em sua bolsa de treino, e Nayra, que escutava um rock ensurdecedor em seus fones sentada no chão, com sua habitual expressão brava e maquiagem impecável, pararam instantaneamente. Um chamado silencioso, mas esmagador, ecoou no peito de cada uma. No mesmo segundo, três jóias mágicas ocultas no teto da biblioteca despencaram e brilharam com uma intensidade divina:
+         Nayra vivia uma realidade completamente interna. Ela era uma garota profundamente introvertida e rebelde, que usava uma parede de silêncio para se proteger do mundo. Seu maior refúgio era a arte da maquiagem, que ela dominava com traços ousados, cores escuras e contornos marcantes, transformando seu próprio rosto em uma espécie de escudo para o cotidiano. Nayra quase sempre chegava à escola parecendo zangada, com uma expressão fechada e fones de ouvido enormes no talo. Ela passava os dias isolada escutando o rock mais pesado e rebelde que encontrava, batendo cabeça e se desligando do mundo ao redor. Ela se sentia uma peça que não se encaixava em lugar nenhum, sem saber que sua fúria e isolamento eram, na verdade, o reflexo de uma energia vermelha ardente latente de herança familiar em sua alma, esperando o momento certo para se libertar em forma de proteção e combate.
 
-                 * Uma jóia azul-bebê prendeu-se ao cabelo de Bruna, transformando-se em uma piranha de cabelo estilizada;
-                 * Uma joia vermelha fundiu-se ao cabo dos fones de ouvido que estavam no pescoço de Nayra, transformando o fio instantaneamente em um poderoso chicote adornado com pedras preciosas brilhantes;
-                 * Uma jóia amarela incrustou-se na armação dos óculos de Carolina e em um pesado machado mágico que estava guardado na joia mágica apareceu instantaneamente.
+         Carolina era o mistério acadêmico da escola. Branca, de cabelos ondulados e unhas sempre longas, afiadas e impecavelmente pintadas, ela usava óculos de grau grossos e passava a maior parte do tempo isolada na biblioteca. Carolina sempre foi completamente apaixonada por astrofísica, mas sua relação com a matéria ia muito além do interesse acadêmico. Ela sentia uma ligação incomum, profunda e quase espiritual com o cosmos, como se o movimento das estrelas, a mecânica das galáxias e o vazio do espaço estivessem, de alguma forma, chamando por ela desde que nascera. Além das ciências exatas, Carolina tinha o estranho hábito de ler runas antigas. Sempre que tocava as pedras rúnicas, uma sensação avassaladora de familiaridade tomava conta dela, como se ela já tivesse visto aqueles símbolos milenares em algum lugar no passado. Carolina carregava uma aura genuinamente ameaçadora e calculista; ela não tinha paciência para futilidades e sua postura imponente impedia qualquer um de cruzar seu caminho. Ela achava que estava apenas obcecada por mistérios universais, sem perceber que sua mente já estava sintonizada com o conhecimento das antigas Guardiãs Estelares.
+         O destino das três colidiu de forma abrupta numa tarde de tempestade violenta, semanas após Bruna resgatar a espada. O céu havia escurecido e a biblioteca da escola estava praticamente vazia. Carolina manuseava um pergaminho antigo que havia encontrado esquecido nos arquivos proibidos, decifrando notas sobre o alinhamento das estrelas e a iminente abertura de fendas sombrias. Quando ela murmurou em voz alta sobre a "energia estelar aprisionada em objetos estelares", uma vibração estranha correu pelo ar, foi como um feitiço citado.
+         Bruna, que estava fazendo seus alongamentos perto das janelas imaginando as coreografias de seus grupos favoritos, com a espada escondida em sua bolsa de treino, e Nayra, que escutava um rock ensurdecedor em seus fones sentada no chão, com sua habitual expressão brava e maquiagem impecável, pararam instantaneamente. Um chamado silencioso, mas esmagador, ecoou no peito de cada uma. No mesmo segundo, três jóias mágicas ocultas no teto da biblioteca despencaram e brilharam com uma intensidade divina:
 
-                 A conexão mental foi instantânea. Suas mentes se abriram e elas compreenderam, sem precisar de palavras, que eram as últimas Guardiãs Estelares. Carolina finalmente entendeu o porquê de seu chamado pela astrofísica e a familiaridade com as runas: ela era a mente tática que decodificaria o universo. Nayra encontrou em sua rebeldia e no ritmo do rock a força motriz para lutar com o chicote vermelho, aue apenas membros de sua familia a gerações antigas poderiam fazer o manuseio. Bruna, unida pelo calor da alma de sua querida irmã Pirolina — que finalmente despertou dentro da lâmina —, assumiu a liderança com sua flexibilidade impecável, a paixão brilhante pela cultura pop que trazia leveza ao grupo, e os saltos potencializados pelo relógio cinético.
-                 Durante meses, elas treinaram em segredo absoluto na dimensão mágica que se abria ao recitarem uma magia unindo todas suas jóias, aprimorando seus poderes e combinando suas habilidades de combate.
-                 Um show de kpop de um idol extremamente famoso foi anunciado…
+         * Uma jóia azul-bebê prendeu-se ao cabelo de Bruna, transformando-se em uma piranha de cabelo estilizada;
+         * Uma joia vermelha fundiu-se ao cabo dos fones de ouvido que estavam no pescoço de Nayra, transformando o fio instantaneamente em um poderoso chicote adornado com pedras preciosas brilhantes;
+        * Uma jóia amarela incrustou-se na armação dos óculos de Carolina e em um pesado machado mágico que estava guardado na joia mágica apareceu instantaneamente.
+
+        A conexão mental foi instantânea. Suas mentes se abriram e elas compreenderam, sem precisar de palavras, que eram as últimas Guardiãs Estelares. Carolina finalmente entendeu o porquê de seu chamado pela astrofísica e a familiaridade com as runas: ela era a mente tática que decodificaria o universo. Nayra encontrou em sua rebeldia e no ritmo do rock a força motriz para lutar com o chicote vermelho, aue apenas membros de sua familia a gerações antigas poderiam fazer o manuseio. Bruna, unida pelo calor da alma de sua querida irmã Pirolina — que finalmente despertou dentro da lâmina —, assumiu a liderança com sua flexibilidade impecável, a paixão brilhante pela cultura pop que trazia leveza ao grupo, e os saltos potencializados pelo relógio cinético.
+        Durante meses, elas treinaram em segredo absoluto na dimensão mágica que se abria ao recitarem uma magia unindo todas suas jóias, aprimorando seus poderes e combinando suas habilidades de combate.
+        Um show de kpop de um idol extremamente famoso foi anunciado…
 </p>
-            </div>
+      </div>
 
-            <div class="chapter-card">
-                <h2>Capítulo 2: O Ataque na Arena K-Pop</h2>
-                <p>Cole o texto completo e diálogos do Capítulo 2 da Temporada 1 aqui...</p>
-            </div>
+      <div class="chapter-card">
+        <h2>Capítulo 2: O Ataque na Arena K-Pop</h2>
+        <p>Cole o texto completo e diálogos do Capítulo 2 da Temporada 1 aqui...</p>
+      </div>
 
-            <div class="chapter-card">
-                <h2>Capítulo 3: A Origem de Kaelen: O Caminho do Ceifador</h2>
-                <p>Cole o texto completo e diálogos do Capítulo 3 da Temporada 1 aqui...</p>
-            </div>
+      <div class="chapter-card">
+        <h2>Capítulo 3: A Origem de Kaelen: O Caminho do Ceifador</h2>
+        <p>Cole o texto completo e diálogos do Capítulo 3 da Temporada 1 aqui...</p>
+      </div>
 
-            <div class="chapter-card">
-                <h2>Capítulo 4: A Jornada Oculta</h2>
-                <p>Cole o texto completo e diálogos do Capítulo 4 da Temporada 1 aqui...</p>
-            </div>
+      <div class="chapter-card">
+        <h2>Capítulo 4: A Jornada Oculta</h2>
+        <p>Cole o texto completo e diálogos do Capítulo 4 da Temporada 1 aqui...</p>
+      </div>
 
-            <div class="chapter-card">
-                <h2>Capítulo 5: Confronto Final</h2>
-                <p>Cole o texto completo e diálogos do Capítulo 5 da Temporada 1 aqui...</p>
-            </div>
+      <div class="chapter-card">
+        <h2>Capítulo 5: Confronto Final</h2>
+        <p>Cole o texto completo e diálogos do Capítulo 5 da Temporada 1 aqui...</p>
+      </div>
 
-            <div class="chapter-card">
-                <h2>Capítulo 6: Epílogo: O Brilho de um Novo Amanhecer</h2>
-                <p>Cole o texto completo e diálogos do Capítulo 6 da Temporada 1 aqui...</p>
-            </div>
-        </div>
-
-        <!-- TEMPORADA 2 -->
-        <div id="temp2" class="tab-content">
-            <div class="chapter-card">
-                <h2>Capítulo 1: Eco nos Salões de Cristal</h2>
-                <p>Cole o texto completo e diálogos do Capítulo 1 da Temporada 2 aqui...</p>
-            </div>
-
-            <div class="chapter-card">
-                <h2>Capítulo 2: A Batalha na Árvore Ancestral</h2>
-                <p>Cole o texto completo e diálogos do Capítulo 2 da Temporada 2 aqui...</p>
-            </div>
-
-            <div class="chapter-card">
-                <h2>Capítulo 3: O Renascimento do Ceifador</h2>
-                <p>Cole o texto completo e diálogos do Capítulo 3 da Temporada 2 aqui...</p>
-            </div>
-
-            <div class="chapter-card">
-                <h2>Capítulo 4: Calmaria Ilusória</h2>
-                <p>Cole o texto completo e diálogos do Capítulo 4 da Temporada 2 aqui...</p>
-            </div>
-
-            <div class="chapter-card">
-                <h2>Capítulo 5: Vespera, A Heralda Do Vácuo</h2>
-                <p>Cole o texto completo e diálogos do Capítulo 5 da Temporada 2 aqui...</p>
-            </div>
-
-            <div class="chapter-card">
-                <h2>Capítulo 6: A Pedra do Vácuo</h2>
-                <p>Cole o texto completo e diálogos do Capítulo 6 da Temporada 2 aqui...</p>
-            </div>
-
-            <div class="chapter-card">
-                <h2>Capítulo 7: Estabilização do Cristal</h2>
-                <p>Cole o texto completo e diálogos do Capítulo 7 da Temporada 2 aqui...</p>
-            </div>
-
-            <div class="chapter-card">
-                <h2>Capítulo 8: Crime Contra A Ordem Natural</h2>
-                <p>Cole o texto completo e diálogos do Capítulo 8 da Temporada 2 aqui...</p>
-            </div>
-        </div>
-
-        <!-- HABILIDADES -->
-        <div id="habilidades" class="tab-content">
-            <div class="character-grid">
-                
-                <!-- BRUNA -->
-                <div class="char-card bruna">
-                    <div class="char-header">
-                        <h3>Bruna</h3>
-                        <span>Líder & Guardiã Azul-Bebê / Azul-Escuro</span>
-                    </div>
-                    <div class="char-body">
-                        <p>Jovem negra, focada e praticante de ginástica rítmica. Amante de K-pop e líder das Guardiãs Estelares, guardiã do legado de sua irmã Pirolina.</p>
-                        <ul class="skills-list">
-                            <li><strong>Espada de Família / Espada Ancestral:</strong> Lâmina que abrigou a alma de Pirolina. Desfere o Corte Estelar Purificador e canaliza energia estelar.</li>
-                            <li><strong>Relógio Cinético Ancestral:</strong> Absorve danos físicos/mecânicos e converte em força e impulso para saltos sobre-humanos (Manipulação Cinética de Impacto).</li>
-                            <li><strong>Traje de Cristais Estelares:</strong> Corpete branco e saia azul-escuro cravejados de diamantes cósmicos que amplificam a força física e espiritual.</li>
-                            <li><strong>Prisma Navidus Universum:</strong> Invocação suprema da Trindade Cósmica que dispara um feixe tricolor incandescente devastador.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- NAYRA -->
-                <div class="char-card nayra">
-                    <div class="char-header">
-                        <h3>Nayra</h3>
-                        <span>Guardiã Vermelha</span>
-                    </div>
-                    <div class="char-body">
-                        <p>Introvertida, rebelde e fã de rock pesado. Mestre em maquiagem marcante, transforma sua raiva e dor em combate ritmado.</p>
-                        <ul class="skills-list">
-                            <li><strong>Chicote de Pedras Preciosas:</strong> Fone de ouvido transformado em chicote pesado incrustado de rubis brilhantes.</li>
-                            <li><strong>Tempestade de Riffs:</strong> Movimentos frenéticos que criam ondas de choque sonoras e faíscas vermelhas destrutivas.</li>
-                            <li><strong>Aria de Sangue:</strong> Dissolve o chicote em luz vermelha que faz o tempo e a matéria correrem ao contrário, restaurando destruições e curando ferimentos graves.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- CAROLINA -->
-                <div class="char-card carolina">
-                    <div class="char-header">
-                        <h3>Carolina</h3>
-                        <span>Estrategista & Guardiã Amarela</span>
-                    </div>
-                    <div class="char-body">
-                        <p>Estudante imponente, calculista e ameaçadora. Apaixonada por astrofísica quântica e leitura de runas antigas.</p>
-                        <ul class="skills-list">
-                            <li><strong>Machado Kawaii de Batalha:</strong> Machado pesado cravejado de safiras douradas para ataques colossais.</li>
-                            <li><strong>Óculos Rúnicos:</strong> Mapeiam fluxos de luz, lêem dados rúnicos e decodificam poeira cósmica.</li>
-                            <li><strong>Ruptura de Astrofísica (Colapso Estelar):</strong> Altera a densidade de massa local criando microzonas de gravidade esmagadora.</li>
-                            <li><strong>Decodificação de Runas Proibidas:</strong> Estuda e busca a Runa de Ressurreição para quebrar as leis do universo.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- KAELEN -->
-                <div class="char-card kaelen">
-                    <div class="char-header">
-                        <h3>Kaelen</h3>
-                        <span>O Ceifador do Eclipse</span>
-                    </div>
-                    <div class="char-body">
-                        <p>Ex-cavaleiro do Prisma de cabelos pretos que mergulhou na matéria escura do Vazio, tornando-se o Ceifador de cabelos brancos e olhos cinzentos.</p>
-                        <ul class="skills-list">
-                            <li><strong>Foice de Cristal Negro:</strong> Rasga o tecido do espaço-tempo, abrindo e fechando fendas e cortando a escuridão.</li>
-                            <li><strong>Correntes de Prata Pura:</strong> Correntes flutuantes que preendem, cortam e mutilam inimigos sob comando mental.</li>
-                            <li><strong>Manipulação de Antimatéria:</strong> Usa a matéria escura em suas veias para viagem interdimensional e ocultação.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- WILLIAM -->
-                <div class="char-card william">
-                    <div class="char-header">
-                        <h3>William</h3>
-                        <span>Comandante Supremo da Ordem</span>
-                    </div>
-                    <div class="char-body">
-                        <p>Lendário líder dos Cavaleiros do Prisma e mentor de Kaelen. Guerreiro nobre de armadura dourada e presença calorosa do sol nascente.</p>
-                        <ul class="skills-list">
-                            <li><strong>Lâmina do Alvorecer:</strong> Espada dourada solar sagrada capaz de cortar e purificar a antimatéria do Vazio.</li>
-                            <li><strong>Explores Navidus:</strong> Golpe devastador que dispara uma lâmina de plasma solar fervente, cortando hordas inteiras de demônios.</li>
-                            <li><strong>Aegis Luminis:</strong> Invocação de uma cúpula impenetrável de prismas hexagonais de luz sólida para isolar e proteger aliados.</li>
-                            <li><strong>Essência do Sol Nascente:</strong> Aura passiva que fortalece a moral dos cavaleiros e dissipa a névoa negra ao redor.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- MÃE DE BRUNA -->
-                <div class="char-card mae-bruna">
-                    <div class="char-header">
-                        <h3>Mãe de Bruna</h3>
-                        <span>Soberana da Luz Azul-Bebê</span>
-                    </div>
-                    <div class="char-body">
-                        <p>Líder das Guardiãs Ancestrais. Mulher negra de presença majestosa e soberana no Palácio de Cristal.</p>
-                        <ul class="skills-list">
-                            <li><strong>Transmigração Cósmica Proibida:</strong> Extrai e move a alma física de um ser para dentro de metais místicos sagrados.</li>
-                            <li><strong>Explosão do Núcleo Estelar:</strong> Liberação de toda a energia vital em uma onda de luz azul purificadora que desintegra demônios e sela fendas.</li>
-                            <li><strong>Relógio Rúnico Protetor:</strong> Encantamento de proteção temporal e rastreio colocado na herança da filha.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- MÃE DE CAROLINA -->
-                <div class="char-card mae-carolina">
-                    <div class="char-header">
-                        <h3>Mãe de Carolina</h3>
-                        <span>Guardiã Ancestral Amarela</span>
-                    </div>
-                    <div class="char-body">
-                        <p>Guardiã tática ancestral de cabelos ondulados e unhas afiadas banhadas em ouro líquido místico.</p>
-                        <ul class="skills-list">
-                            <li><strong>Runas de Sangue Místico:</strong> Uso do próprio sangue para desenhar e fixar runas de alto nível de compressão.</li>
-                            <li><strong>Runas de Ocultação e Cegueira:</strong> Símbolos que cegam entidades divinas do Vazio e tornam berços e locais totalmente invisíveis.</li>
-                            <li><strong>Visão Quântica de Safira:</strong> Mapeamento imediato de pontos fracos na estrutura do espaço e do inimigo.</li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
+      <div class="chapter-card">
+        <h2>Capítulo 6: Epílogo: O Brilho de um Novo Amanhecer</h2>
+        <p>Cole o texto completo e diálogos do Capítulo 6 da Temporada 1 aqui...</p>
+      </div>
     </div>
 
-    <footer>
-        <p>&copy; 2026 Guardiãs Estelares: O Legado de Prata. Todos os direitos reservados.</p>
-    </footer>
+    <!-- TEMPORADA 2 -->
+    <div id="temp2" class="tab-content">
+      <h1 style="font-family: 'Cinzel Decorative', serif; color: var(--burgundy); text-align: center; font-size: 2.2rem;">
+        Temporada 2: A Saga das Estrelas
+      </h1>
+      <div class="ornamental-divider">❦ ════════ ❦</div>
 
-    <script>
-        function openTab(evt, tabName) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].classList.remove("active");
-            }
-            tablinks = document.getElementsByClassName("tab-btn");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].classList.remove("active");
-            }
-            document.getElementById(tabName).classList.add("active");
-            evt.currentTarget.classList.add("active");
-        }
-    </script>
+      <div class="chapter-card">
+        <h2>Capítulo 1: Eco nos Salões de Cristal</h2>
+        <p>Cole o texto completo e diálogos do Capítulo 1 da Temporada 2 aqui...</p>
+      </div>
+
+      <div class="chapter-card">
+        <h2>Capítulo 2: A Batalha na Árvore Ancestral</h2>
+        <p>Cole o texto completo e diálogos do Capítulo 2 da Temporada 2 aqui...</p>
+      </div>
+
+      <div class="chapter-card">
+        <h2>Capítulo 3: O Renascimento do Ceifador</h2>
+        <p>Cole o texto completo e diálogos do Capítulo 3 da Temporada 2 aqui...</p>
+      </div>
+
+      <div class="chapter-card">
+        <h2>Capítulo 4: Calmaria Ilusória</h2>
+        <p>Cole o texto completo e diálogos do Capítulo 4 da Temporada 2 aqui...</p>
+      </div>
+
+      <div class="chapter-card">
+        <h2>Capítulo 5: Vespera, A Heralda Do Vácuo</h2>
+        <p>Cole o texto completo e diálogos do Capítulo 5 da Temporada 2 aqui...</p>
+      </div>
+
+      <div class="chapter-card">
+        <h2>Capítulo 6: A Pedra do Vácuo</h2>
+        <p>Cole o texto completo e diálogos do Capítulo 6 da Temporada 2 aqui...</p>
+      </div>
+
+      <div class="chapter-card">
+        <h2>Capítulo 7: Estabilização do Cristal</h2>
+        <p>Cole o texto completo e diálogos do Capítulo 7 da Temporada 2 aqui...</p>
+      </div>
+
+      <div class="chapter-card">
+        <h2>Capítulo 8: Crime Contra A Ordem Natural</h2>
+        <p>Cole o texto completo e diálogos do Capítulo 8 da Temporada 2 aqui...</p>
+      </div>
+    </div>
+
+    <!-- HABILIDADES DOS PERSONAGENS -->
+    <div id="habilidades" class="tab-content">
+      <h1 style="font-family: 'Cinzel Decorative', serif; color: var(--burgundy); text-align: center; font-size: 2.2rem;">
+        Compêndio de Habilidades
+      </h1>
+      <div class="ornamental-divider">❦ ════════ ❦</div>
+
+      <div class="character-grid">
+        
+        <!-- BRUNA -->
+        <div class="char-card">
+          <div class="char-header">
+            <h3>Bruna</h3>
+            <span>Líder & Guardiã Azul-Bebê / Azul-Escuro</span>
+          </div>
+          <div class="char-body">
+            <p>Jovem negra, focada e praticante de ginástica rítmica. Amante de K-pop e líder das Guardiãs Estelares, guardiã do legado de sua irmã Pirolina.</p>
+            <ul class="skills-list">
+              <li><strong>Espada de Família / Espada Ancestral:</strong> Lâmina que abrigou a alma de Pirolina. Desfere o Corte Estelar Purificador e canaliza energia estelar.</li>
+              <li><strong>Relógio Cinético Ancestral:</strong> Absorve danos físicos/mecânicos e converte em força e impulso para saltos sobre-humanos (Manipulação Cinética de Impacto).</li>
+              <li><strong>Traje de Cristais Estelares:</strong> Corpete branco e saia azul-escuro cravejados de diamantes cósmicos que amplificam a força física e espiritual.</li>
+              <li><strong>Prisma Navidus Universum:</strong> Invocação suprema da Trindade Cósmica que dispara um feixe tricolor incandescente devastador.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- NAYRA -->
+        <div class="char-card">
+          <div class="char-header">
+            <h3>Nayra</h3>
+            <span>Guardiã Vermelha</span>
+          </div>
+          <div class="char-body">
+            <p>Introvertida, rebelde e fã de rock pesado. Mestre em maquiagem marcante, transforma sua raiva e dor em combate ritmado.</p>
+            <ul class="skills-list">
+              <li><strong>Chicote de Pedras Preciosas:</strong> Fone de ouvido transformado em chicote pesado incrustado de rubis brilhantes.</li>
+              <li><strong>Tempestade de Riffs:</strong> Movimentos frenéticos que criam ondas de choque sonoras e faíscas vermelhas destrutivas.</li>
+              <li><strong>Aria de Sangue:</strong> Dissolve o chicote em luz vermelha que faz o tempo e a matéria correrem ao contrário, restaurando destruições e curando ferimentos graves.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- CAROLINA -->
+        <div class="char-card">
+          <div class="char-header">
+            <h3>Carolina</h3>
+            <span>Estrategista & Guardiã Amarela</span>
+          </div>
+          <div class="char-body">
+            <p>Estudante imponente, calculista e ameaçadora. Apaixonada por astrofísica quântica e leitura de runas antigas.</p>
+            <ul class="skills-list">
+              <li><strong>Machado Kawaii de Batalha:</strong> Machado pesado cravejado de safiras douradas para ataques colossais.</li>
+              <li><strong>Óculos Rúnicos:</strong> Mapeiam fluxos de luz, lêem dados rúnicos e decodificam poeira cósmica.</li>
+              <li><strong>Ruptura de Astrofísica (Colapso Estelar):</strong> Altera a densidade de massa local criando microzonas de gravidade esmagadora.</li>
+              <li><strong>Decodificação de Runas Proibidas:</strong> Estuda e busca a Runa de Ressurreição para quebrar as leis do universo.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- KAELEN -->
+        <div class="char-card">
+          <div class="char-header">
+            <h3>Kaelen</h3>
+            <span>O Ceifador do Eclipse</span>
+          </div>
+          <div class="char-body">
+            <p>Ex-cavaleiro do Prisma de cabelos pretos que mergulhou na matéria escura do Vazio, tornando-se o Ceifador de cabelos brancos e olhos cinzentos.</p>
+            <ul class="skills-list">
+              <li><strong>Foice de Cristal Negro:</strong> Rasga o tecido do espaço-tempo, abrindo e fechando fendas e cortando a escuridão.</li>
+              <li><strong>Correntes de Prata Pura:</strong> Correntes flutuantes que prendem, cortam e mutilam inimigos sob comando mental.</li>
+              <li><strong>Manipulação de Antimatéria:</strong> Usa a matéria escura em suas veias para viagem interdimensional e ocultação.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- WILLIAM -->
+        <div class="char-card">
+          <div class="char-header">
+            <h3>William</h3>
+            <span>Comandante Supremo da Ordem</span>
+          </div>
+          <div class="char-body">
+            <p>Lendário líder dos Cavaleiros do Prisma e mentor de Kaelen. Guerreiro nobre de armadura dourada e presença calorosa do sol nascente.</p>
+            <ul class="skills-list">
+              <li><strong>Lâmina do Alvorecer:</strong> Espada dourada solar sagrada capaz de cortar e purificar a antimatéria do Vazio.</li>
+              <li><strong>Explores Navidus:</strong> Golpe devastador que dispara uma lâmina de plasma solar fervente, cortando hordas inteiras de demônios.</li>
+              <li><strong>Aegis Luminis:</strong> Invocação de uma cúpula impenetrável de prismas hexagonais de luz sólida para isolar e proteger aliados.</li>
+              <li><strong>Essência do Sol Nascente:</strong> Aura passiva que fortalece a moral dos cavaleiros e dissipa a névoa negra ao redor.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- MÃE DE BRUNA -->
+        <div class="char-card">
+          <div class="char-header">
+            <h3>Mãe de Bruna</h3>
+            <span>Soberana da Luz Azul-Bebê</span>
+          </div>
+          <div class="char-body">
+            <p>Líder das Guardiãs Ancestrais. Mulher negra de presença majestosa e soberana no Palácio de Cristal.</p>
+            <ul class="skills-list">
+              <li><strong>Transmigração Cósmica Proibida:</strong> Extrai e move a alma física de um ser para dentro de metais místicos sagrados.</li>
+              <li><strong>Explosão do Núcleo Estelar:</strong> Liberação de toda a energia vital em uma onda de luz azul purificadora que desintegra demônios e sela fendas.</li>
+              <li><strong>Relógio Rúnico Protetor:</strong> Encantamento de proteção temporal e rastreio colocado na herança da filha.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- MÃE DE CAROLINA -->
+        <div class="char-card">
+          <div class="char-header">
+            <h3>Mãe de Carolina</h3>
+            <span>Guardiã Ancestral Amarela</span>
+          </div>
+          <div class="char-body">
+            <p>Guardiã tática ancestral de cabelos ondulados e unhas afiadas banhadas em ouro líquido místico.</p>
+            <ul class="skills-list">
+              <li><strong>Runas de Sangue Místico:</strong> Uso do próprio sangue para desenhar e fixar runas de alto nível de compressão.</li>
+              <li><strong>Runas de Ocultação e Cegueira:</strong> Símbolos que cegam entidades divinas do Vazio e tornam berços e locais totalmente invisíveis.</li>
+              <li><strong>Visão Quântica de Safira:</strong> Mapeamento imediato de pontos fracos na estrutura do espaço e do inimigo.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Guardiãs Estelares: O Legado de Prata. Registado no Scriptorium.</p>
+  </footer>
+
+  <script>
+    function openTab(evt, tabName) {
+      var i, tabcontent, navlinks;
+      tabcontent = document.getElementsByClassName("tab-content");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].classList.remove("active");
+      }
+      navlinks = document.getElementsByClassName("nav-btn");
+      for (i = 0; i < navlinks.length; i++) {
+        navlinks[i].classList.remove("active");
+      }
+      document.getElementById(tabName).classList.add("active");
+      evt.currentTarget.classList.add("active");
+    }
+  </script>
 </body>
 </html>
