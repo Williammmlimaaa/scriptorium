@@ -11,7 +11,7 @@
   
   <style>
     /* ==========================================================================
-       VARIAVEIS E ESTILOS GLOBAIS - PALETA DE CORES PERGAMINHO E VINTAGE
+       VARIÁVEIS E ESTILOS GLOBAIS - PALETA DE CORES PERGAMINHO E VINTAGE
        ========================================================================== */
     :root {
       --bg-dark: #120c08;
@@ -41,7 +41,7 @@
       background-color: var(--bg-dark);
       background-image: 
         radial-gradient(circle at center, rgba(30, 18, 10, 0.8) 0%, rgba(10, 5, 2, 0.98) 100%),
-        url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134-7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43 -7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z' fill='%3C/svg%3E");
+        url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134-7 7 3.134-7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43 -7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 1.343 3 3 3z' fill='%3C/svg%3E");
       color: var(--ink-black);
       font-family: 'IM Fell English', serif;
       min-height: 100vh;
@@ -656,10 +656,8 @@
     document.addEventListener("DOMContentLoaded", () => {
       loadBooks();
       
-      // Se não houver obras gravadas no navegador, inicializa com os capítulos abaixo:
-      if (books.length === 0) {
-        createSampleBook();
-      }
+      // Carrega a obra completa por padrão
+      createSampleBook();
       
       renderBookshelf();
     });
@@ -688,117 +686,149 @@
     }
 
     /* ==========================================================================
-       SUA OBRA PRINCIPAL PERMANENTE
-       Altere o Título, Autor e os Textos dos Capítulos aqui diretamente:
+       SUA OBRA COMPLETA PERMANENTE
        ========================================================================== */
     function createSampleBook() {
       books = [{
         id: 'obra-principal',
-        title: 'Guardiãs Estelares: O Legado de Prata e Sangue
-', // <-- DIGITE O TÍTULO AQUI
-        author: 'Guardiã Mãe',        // <-- DIGITE O NOME DO AUTOR AQUI
+        title: 'Guardiãs Estelares: O Legado de Prata',
+        author: 'Guardiã Mãe',
         image: '',
         hasChapters: true,
         content: '',
         chapters: [
           { 
-            title: 'O Despertar das Estrelas', 
+            title: 'Capítulo 1: O Despertar das Estrelas', 
             content: `No Início de Tudo
 Antes de enfrentarem generais do vácuo, demônios e duques interdimensionais. Existia três garotas: Bruna, Nayra e Carolina. Elas eram apenas garotas comuns que frequentavam a mesma escola de ensino médio, embora vivessem em mundos completamente diferentes e mal se falassem nos corredores.
-    Bruna era uma jovem negra focada, disciplinada e de poucas palavras. Ela passava os seus finais de tarde treinando exaustivamente ginástica rítmica e acrobatas, usando a alta intensidade dos exercícios físicos como uma válvula de escape para preencher um vazio que sempre sentiu no peito. Além do amor pelos aparelhos de ginástica, Bruna tinha uma paixão avassaladora e contagiante por K-pop.
- Ela sabia todas as coreografias, colecionava photocards e passava horas imersa no universo dos idols, que traziam cor e alegria para a sua rotina rígida.
+
+Bruna era uma jovem negra focada, disciplinada e de poucas palavras. Ela passava os seus finais de tarde treinando exaustivamente ginástica rítmica e acrobatas, usando a alta intensidade dos exercícios físicos como uma válvula de escape para preencher um vazio que sempre sentiu no peito. Além do amor pelos aparelhos de ginástica, Bruna tinha uma paixão avassaladora e contagiante por K-pop.
+Ela sabia todas as coreografias, colecionava photocards e passava horas imersa no universo dos idols, que traziam cor e alegria para a sua rotina rígida.
 Bruna cresceu acreditando ser filha única. Ela não fazia a menor ideia de que tinha uma irmã perdida chamada Pirolina, cuja existência havia sido apagada de seu passado, e muito menos sabia sobre a existência de qualquer espada mágica. Sua única conexão com o passado de sua família era um relógio de pulso antigo, herdado de sua falecida mãe. Durante anos, o acessório permaneceu parado em seu braço direito, com os ponteiros travados. No entanto, na noite em que um misterioso eclipse começou a se desenhar no céu, o relógio de repente ganhou vida. Além de emitir uma pulsação azul-bebê e funcionar como um rastreador mágico para achar objetos perdidos, ele manifestou uma habilidade oculta: a Manipulação Cinética de Impacto. Sempre que Bruna sofria uma queda ou um golpe violento, o relógio absorvia a força do impacto e a convertia em impulso físico, permitindo que ela realizasse saltos e acrobacias com o dobro da altura e velocidade sobre-humanas.
 Guiada pelos estalos magnéticos do relógio em seu braço, Bruna foi levada para os confins da cidade, onde a civilização dava lugar a uma floresta densa e esquecida. Lá estava a árvore mais antiga daquela cidade, uma estrutura colossal com raízes que pareciam abraçar a própria terra. O relógio de pulso brilhou intensamente quando Bruna se aproximou do tronco oco da árvore ancestral. Ao colocar a mão em uma fenda na casca antiga, seus dedos tocaram o cabo de uma espada perdida, desgastada pelo tempo.
 No momento em que Bruna puxou a lâmina para fora, uma onda de memórias esquecidas inundou sua mente, junto com uma revelação avassaladora: a essência de sua irmã perdida, Pirolina, estava ali. Pirolina fora uma guardiã ancestral e, para proteger o universo e salvar a linhagem de sua família do avanço devastador da entidade Eclipse, havia sacrificado sua forma física. Ela transferira toda a sua alma e energia cósmica para dentro daquele metal antigo, adormecendo na árvore mais antiga do mundo até que o relógio de braço herdado da mãe guiasse Bruna para encontrá-la. A relíquia passou a pulsar com uma aura azul-bebê calorosa ao toque de Bruna, restabelecendo um laço de sangue que o tempo tentou apagar.
-…………
+
 Nayra vivia uma realidade completamente interna. Ela era uma garota profundamente introvertida e rebelde, que usava uma parede de silêncio para se proteger do mundo. Seu maior refúgio era a arte da maquiagem, que ela dominava com traços ousados, cores escuras e contornos marcantes, transformando seu próprio rosto em uma espécie de escudo para o cotidiano. Nayra quase sempre chegava à escola parecendo zangada, com uma expressão fechada e fones de ouvido enormes no talo. Ela passava os dias isolada escutando o rock mais pesado e rebelde que encontrava, batendo cabeça e se desligando do mundo ao redor. Ela se sentia uma peça que não se encaixava em lugar nenhum, sem saber que sua fúria e isolamento eram, na verdade, o reflexo de uma energia vermelha ardente latente de herança familiar em sua alma, esperando o momento certo para se libertar em forma de proteção e combate.
-…………….
+
 Carolina era o mistério acadêmico da escola. Branca, de cabelos ondulados e unhas sempre longas, afiadas e impecavelmente pintadas, ela usava óculos de grau grossos e passava a maior parte do tempo isolada na biblioteca. Carolina sempre foi completamente apaixonada por astrofísica, mas sua relação com a matéria ia muito além do interesse acadêmico. Ela sentia uma ligação incomum, profunda e quase espiritual com o cosmos, como se o movimento das estrelas, a mecânica das galáxias e o vazio do espaço estivessem, de alguma forma, chamando por ela desde que nascera. Além das ciências exatas, Carolina tinha o estranho hábito de ler runas antigas. Sempre que tocava as pedras rúnicas, uma sensação avassaladora de familiaridade tomava conta dela, como se ela já tivesse visto aqueles símbolos milenares em algum lugar no passado. Carolina carregava uma aura genuinamente ameaçadora e calculista; ela não tinha paciência para futilidades e sua postura imponente impedia qualquer um de cruzar seu caminho. Ela achava que estava apenas obcecada por mistérios universais, sem perceber que sua mente já estava sintonizada com o conhecimento das antigas Guardiãs Estelares.
+
 O destino das três colidiu de forma abrupta numa tarde de tempestade violenta, semanas após Bruna resgatar a espada. O céu havia escurecido e a biblioteca da escola estava praticamente vazia. Carolina manuseava um pergaminho antigo que havia encontrado esquecido nos arquivos proibidos, decifrando notas sobre o alinhamento das estrelas e a iminente abertura de fendas sombrias. Quando ela murmurou em voz alta sobre a "energia estelar aprisionada em objetos estelares", uma vibração estranha correu pelo ar, foi como um feitiço citado.
-   Bruna, que estava fazendo seus alongamentos perto das janelas imaginando as coreografias de seus grupos favoritos, com a espada escondida em sua bolsa de treino, e Nayra, que escutava um rock ensurdecedor em seus fones sentada no chão, com sua habitual expressão brava e maquiagem impecável, pararam instantaneamente. Um chamado silencioso, mas esmagador, ecoou no peito de cada uma. No mesmo segundo, três jóias mágicas ocultas no teto da biblioteca despencaram e brilharam com uma intensidade divina:
+Bruna, que estava fazendo seus alongamentos perto das janelas imaginando as coreografias de seus grupos favoritos, com a espada escondida em sua bolsa de treino, e Nayra, que escutava um rock ensurdecedor em seus fones sentada no chão, com sua habitual expressão brava e maquiagem impecável, pararam instantaneamente. Um chamado silencioso, mas esmagador, ecoou no peito de cada uma. No mesmo segundo, três jóias mágicas ocultas no teto da biblioteca despencaram e brilharam com uma intensidade divina:
 
-* Uma jóia azul-bebê prendeu-se ao cabelo de Bruna, transformando-se em uma piranha de cabelo estilizada;
-* Uma joia vermelha fundiu-se ao cabo dos fones de ouvido que estavam no pescoço de Nayra, transformando o fio instantaneamente em um poderoso chicote adornado com pedras preciosas brilhantes;
-* Uma jóia amarela incrustou-se na armação dos óculos de Carolina e em um pesado machado mágico que estava guardado na joia mágica apareceu instantaneamente.
+• Uma jóia azul-bebê prendeu-se ao cabelo de Bruna, transformando-se em uma piranha de cabelo estilizada;
+• Uma joia vermelha fundiu-se ao cabo dos fones de ouvido que estavam no pescoço de Nayra, transformando o fio instantaneamente em um poderoso chicote adornado com pedras preciosas brilhantes;
+• Uma jóia amarela incrustou-se na armação dos óculos de Carolina e em um pesado machado mágico que estava guardado na joia mágica apareceu instantaneamente.
 
-A conexão mental foi instantânea. Suas mentes se abriram e elas compreenderam, sem precisar de palavras, que eram as últimas Guardiãs Estelares. Carolina finalmente entendeu o porquê de seu chamado pela astrofísica e a familiaridade com as runas: ela era a mente tática que decodificaria o universo. Nayra encontrou em sua rebeldia e no ritmo do rock a força motriz para lutar com o chicote vermelho, aue apenas membros de sua familia a gerações antigas poderiam fazer o manuseio. Bruna, unida pelo calor da alma de sua querida irmã Pirolina — que finalmente despertou dentro da lâmina —, assumiu a liderança com sua flexibilidade impecável, a paixão brilhante pela cultura pop que trazia leveza ao grupo, e os saltos potencializados pelo relógio cinético.
+A conexão mental foi instantânea. Suas mentes se abriram e elas compreenderam, sem precisar de palavras, que eram as últimas Guardiãs Estelares. Carolina finalmente entendeu o porquê de seu chamado pela astrofísica e a familiaridade com as runas: ela era a mente tática que decodificaria o universo. Nayra encontrou em sua rebeldia e no ritmo do rock a força motriz para lutar com o chicote vermelho, que apenas membros de sua família a gerações antigas poderiam fazer o manuseio. Bruna, unida pelo calor da alma de sua querida irmã Pirolina — que finalmente despertou dentro da lâmina —, assumiu a liderança com sua flexibilidade impecável, a paixão brilhante pela cultura pop que trazia leveza ao grupo, e os saltos potencializados pelo relógio cinético.
 Durante meses, elas treinaram em segredo absoluto na dimensão mágica que se abria ao recitarem uma magia unindo todas suas jóias, aprimorando seus poderes e combinando suas habilidades de combate.
-……………
 
-Um show de kpop de um idol extremamente famoso foi anunciado… 
+Um show de kpop de um idol extremamente famoso foi anunciado…` 
           },
           { 
-            title: 'O Ataque na Arena K-Pop'
-', 
+            title: 'Capítulo 2: O Ataque na Arena K-Pop', 
             content: `Hoje era o grande dia em que o idol extremamente famoso ia dar um show naquela cidade. O dia do grande show de K-pop chegou. Bruna havia implorado, comprado os ingressos na pré-venda e arrastado as amigas para a primeira fileira da arena para ver o grupo de seu idol favorito. Nayra aceitou ir apenas pelo fato de sua amiga estar extremamente feliz e Carolina para observar a acústica e o comportamento das massas. Tudo estava perfeito, mas no ápice da performance, o teto da arena desabou sob o peso de uma névoa negra. As sombras do Vazio atacaram e o idol masculino foi arremessado ao chão, ferido e cercado. Sem hesitar, Bruna, Nayra e Carolina invocaram seus trajes de Magical Girls e saltaram em direção ao palco destruído.
+
 A poeira cósmica ainda flutuava sobre a estrutura devastada. O trio de garotas mágicas respirava com dificuldade após conter a primeira horda da invasão das sombras. Ao fundo, o jovem idol resgatado por Bruna — que usou o impulso cinético de seu relógio para saltar sobre os destroços e defendê-lo — era levado em segurança por paramédicos, enquanto a multidão na arena ainda ecoava gritos de desespero e espanto.
 Bruna olhou para sua espada do poder. O brilho azul-bebê na lâmina pulsava de forma fraca e trêmula. Ela sentia que a alma de Pirolina estava exausta e confusa; a batalha havia exigido energia demais.
-— Conseguimos... mas o preço foi alto — sussurrou a líder, tocando as pedras mágicas em seu peito, que agora pareciam opacas.
+– Conseguimos... mas o preço foi alto – sussurrou a líder, tocando as pedras mágicas em seu peito, que agora pareciam opacas.
 Nayra guardou seu chicote de coração, que já não brilhava com a mesma intensidade. Ela olhou para a mais alta do grupo, Carolina, que limpava o sangue escuro das sombras de seu enorme machado kawaii. Seus óculos com joias refletiam a escuridão que ainda rondava o horizonte.
-— Ainda não acabou, meninas — disse Carolina, com sua voz fria e cortante que sempre impunha respeito. — Olhem para o céu.
-O teto desabado da arena revelava uma fenda dimensional que começava a se abrir novamente. O relógio de pulso de Bruna começou a girar ao contrário, como se estivesse possuído por uma força estranha, emitindo um bipe desesperador. Uma onda de energia gravitacional esmagadora atingiu o trio, forçando-as a se ajoelharem e sussurrar de dor. O chão tremeu. Três portais gigantescos se abriram simultaneamente no alto, e de dentro deles, criaturas colossais e  os generais do Vazio, começaram a emergir.
+– Ainda não acabou, meninas – disse Carolina, com sua voz fria e cortante que sempre impunha respeito. – Olhem para o céu.
+O teto desabado da arena revelava uma fenda dimensional que começava a se abrir novamente. O relógio de pulso de Bruna começou a girar ao contrário, como se estivesse possuído por uma força estranha, emitindo um bipe desesperador. Uma onda de energia gravitacional esmagadora atingiu o trio, forçando-as a se ajoelharem e sussurrar de dor. O chão tremeu. Três portais gigantescos se abriram simultaneamente no alto, e de dentro deles, criaturas colossais e os generais do Vazio, começaram a emergir.
 O trio estava esgotado. Nayra mal conseguia levantar o chicote, e o véu amarelo da saia de Carolina desfazia-se em partículas sem brilho. Bruna segurou a espada com as duas mãos, lágrimas nos olhos ao perceber que forçar mais um ataque poderia apagar a essência de Pirolina para sempre.
-— Eu preciso de respostas... — chorou a protagonista, abraçando o cabo da espada enquanto os monstros estendiam suas garras. A derrota parecia inevitável.
+– Eu preciso de respostas... – chorou a protagonista, abraçando o cabo da espada enquanto os monstros estendiam suas garras. A derrota parecia inevitável.
+
 TOC. TOC. TOC.
 Um som rítmico e metálico ecoou por toda a arena, sobrepondo-se ao rugido dos monstros. Não vinha do céu, mas das sombras dos escombros do palco. Os monstros pararam no ar, como se estivessem paralisados por uma força desconhecida.
 Passos calmos avançaram pela fumaça. Uma silhueta esguia revelou-se. Era um garoto de cabelos brancos curtos e olhos completamente cinzentos, sem vida. Ele vestia um terno preto impecável, adornado apenas por correntes de prata pura que flutuavam ao seu redor como serpentes vivas. Em sua mão direita, ele carregava uma imensa foice de cristal negro que absorvia a pouca luz que restava no ambiente.
 Ele parou exatamente à frente do trio de joias. Não olhou para trás, mantendo os olhos fixos nos generais do Vazio.
-— Vocês lutaram bem, Novas Guardiãs — a voz do jovem era um sussurro ecoante que fez o próprio espaço-tempo vibrar. —  “O equilíbrio exige o Fim, e o fim sou eu”.
+– Vocês lutaram bem, Novas Guardiãs – a voz do jovem era um sussurro ecoante que fez o próprio espaço-tempo vibrar. – “O equilíbrio exige o Fim, e o fim sou eu”.
 Com um único gesto movimento circular de sua foice, o garoto de terno preto cortou o ar. Uma fenda de vácuo absoluto rasgou o cenário, engolindo os três generais colossais instantaneamente, fechando os portais em uma fração de segundo.
-Ele virou-se lentamente para o trio, a foice desaparecendo em partículas de cinzas. Seu olhar frio fixou-se no relógio de Bruna, que havia parado de girar. Ele estendeu a mão para ajudá-la a se levantar.
-— Meu nome é Kaelen, o Ceifador do Eclipse — disse ele.
-` 
+Ele virou-se lentamente para o trio, a foice disappearing em partículas de cinzas. Seu olhar frio fixou-se no relógio de Bruna, que havia parado de girar. Ele estendeu a mão para ajudá-la a se levantar.
+– Meu nome é Kaelen, o Ceifador do Eclipse – disse ele.` 
           },
           { 
-            title: 'A Origem de Kaelen: O Caminho do Ceifador'
-            , 
+            title: 'Capítulo 3: A Origem de Kaelen', 
             content: `No instante em que Kaelen pronunciou seu nome, o relógio de pulso no braço de Bruna reagiu à presença do rapaz. Os ponteiros mágicos vibraram intensamente e uma poderosa explosão mágica involuntária se abriu, projetando a trágica história de Kaelen diretamente da mente dele na mente do trio de guardiãs.
-     Muito antes de Bruna resgatar sua espada, o Quadrante de Prata do universo era um lugar de paz absoluta, protegido pela Ordem dos Cavaleiros do Prisma. Lá vivia Kaelen, um jovem guerreiro promissor de cabelos pretos como a asa de um corvo e olhos cinzentos que, na época, transbordavam determinação, vida e esperança. Kaelen não andava sozinho; ele tinha como seu braço direito, mentor e melhor amigo um cavaleiro lendário chamado William.
-     William era o guerreiro mais brilhante da ordem. Ele possuía cabelos brancos,olhos cinzas e uma presença calorosa e era o portador da lendária Lâmina do Alvorecer. Kaelen e William eram inseparáveis. Juntos, eles patrulhavam as fronteiras dimensionais e protegiam os portões sagrados que mantinham a escuridão do Eclipse exilada nos confins do universo. William era quem ensinava Kaelen a canalizar a energia cósmica pura e, acima de tudo, era quem mantinha o jovem com os pés no chão, lembrando-o sempre de que um verdadeiro cavaleiro luta para proteger a vida e seus princípios. Kaelen via em William o irmão mais velho que nunca teve, e a lealdade entre os dois era o maior pilar de defesa daquele quadrante que os unia.
-      No entanto, a tragédia que destruiu o Quadrante de Prata começou com um sussurro maligno. A entidade conhecida como “O Eclipse” percebeu que a única forma de derrubar as defesas do Prisma era quebrando a ordem por dentro. Sorrateiramente, ele começou a envenenar a mente do Alto Comandante da ordem, alimentando sua ganância por poder e medo da morte.
-     Na noite que ficou conhecida como “A Queda de Prata”, o Comandante traiu seu próprio povo. Ele desativou os escudos planetários e abriu os portais sagrados de dentro para fora, permitindo que as hordas do Vazio invadissem o planeta. Kaelen e William acordaram com os céus queimando em chamas roxas e pretas. O pânico foi absoluto. Os cavaleiros tentaram resistir, mas a traição foi avassaladora. Um a um, os companheiros de Kaelen eram derrubados e transformados em estátuas de cinzas corruptas ambulantes pelas forças do Eclipse.
-   No meio do caos do palácio central, Kaelen e William abriram caminho à força até a sala do trono para confrontar o traidor. Mas o que encontraram foi uma armadilha. Eles foram emboscados pelo próprio Comandante, que agora canalizava um poder sombrio colossal, que podia matar alguém com um só golpel. A batalha foi brutal. Kaelen foi arremessado contra as colunas de cristal, ferido e sem forças. Ao ver o amigo prestes a ser executado, William usou o restante de sua energia vital para criar uma barreira protetora ao redor de Kaelen e avançou sozinho para o ataque final.
+
+Muito antes de Bruna resgatar sua espada, o Quadrante de Prata do universo era um lugar de paz absoluta, protegido pela Ordem dos Cavaleiros do Prisma. Lá vivia Kaelen, um jovem guerreiro promissor de cabelos pretos como a asa de um corvo e olhos cinzentos que, na época, transbordavam determinação, vida e esperança. Kaelen não andava sozinho; ele tinha como seu braço direito, mentor e melhor amigo um cavaleiro lendário chamado William.
+
+William era o guerreiro mais brilhante da ordem. Ele possuía cabelos brancos, olhos cinzas e uma presença calorosa e era o portador da lendária Lâmina do Alvorecer. Kaelen e William eram inseparáveis. Juntos, eles patrulhavam as fronteiras dimensionais e protegiam os portões sagrados que mantinham a escuridão do Eclipse exilada nos confins do universo. William era quem ensinava Kaelen a canalizar a energia cósmica pura e, acima de tudo, era quem mantinha o jovem com os pés no chão, lembrando-o sempre de que um verdadeiro cavaleiro luta para proteger a vida e seus princípios. Kaelen via em William o irmão mais velho que nunca teve, e a lealdade entre os dois era o maior pilar de defesa daquele quadrante que os unia.
+
+No entanto, a tragédia que destruiu o Quadrante de Prata começou com um sussurro maligno. A entidade conhecida como “O Eclipse” percebeu que a única forma de derrubar as defesas do Prisma era quebrando a ordem por dentro. Sorrateiramente, ele começou a envenenar a mente do Alto Comandante da ordem, alimentando sua ganância por poder e medo da morte.
+
+Na noite que ficou conhecida como “A Queda de Prata”, o Comandante traiu seu próprio povo. Ele desativou os escudos planetários e abriu os portais sagrados de dentro para fora, permitindo que as hordas do Vazio invadissem o planeta. Kaelen e William acordaram com os céus queimando em chamas roxas e pretas. O pânico foi absoluto. Os cavaleiros tentaram resistir, mas a traição foi avassaladora. Um a um, os companheiros de Kaelen eram derrubados e transformados em estátuas de cinzas corruptas ambulantes pelas forças do Eclipse.
+
+No meio do caos do palácio central, Kaelen e William abriram caminho à força até a sala do trono para confrontar o traidor. Mas o que encontraram foi uma armadilha. Eles foram emboscados pelo próprio Comandante, que agora canalizava um poder sombrio colossal, que podia matar alguém com um só golpe. A batalha foi brutal. Kaelen foi arremessado contra as colunas de cristal, ferido e sem forças. Ao ver o amigo prestes a ser executado, William usou o restante de sua energia vital para criar uma barreira protetora ao redor de Kaelen e avançou sozinho para o ataque final.
+
 William conseguiu desferir um golpe fatal no Comandante traidor, mas o preço foi devastador. A energia escura acumulada no corpo do Comandante explodiu, liberando uma onda de anti-matéria que começou a consumir a Lâmina do Alvorecer e o próprio corpo de William.
-   Kaelen esmurrou a barreira protetora, gritando em desespero enquanto assistia ao horror. A escuridão subia pelas pernas de William, transformando sua carne em cinzas negras. Antes de desintegrado por completo na imensidão do vácuo, William olhou para Kaelen com os olhos marejados, sorriu e usou seu último suspiro para dizer: "Sobreviva, Kaelen... proteja a luz do universo."
+Kaelen esmurrou a barreira protetora, gritando em desespero enquanto assistia ao horror. A escuridão subia pelas pernas de William, transformando sua carne em cinzas negras. Antes de desintegrado por completo na imensidão do vácuo, William olhou para Kaelen com os olhos marejados, sorriu e usou seu último suspiro para dizer: "Sobreviva, Kaelen... proteja a luz do universo."
+
 O escudo se desfez e Kaelen caiu de joelhos no chão cinzento, completamente sozinho no meio das ruínas de seu mundo. A dor da perda de William, misturada ao ódio pela traição e pela impotência, quebrou algo dentro do jovem guerreiro. Ele percebeu que a luz pura dos cavaleiros não havia sido suficiente para salvar as pessoas que ele amava. Se ele quisesse vingança e uma forma de selar o Eclipse para sempre, ele precisaria usar as armas do próprio inimigo.
+
 Tomado pelo rastro da loucura e do desespero, Kaelen caminhou até o epicentro da explosão, onde a matéria escura do Eclipse borbulhava nas cinzas de William. Sem hesitar, ele mergulhou os braços diretamente na poeira negra e corrupta.
 A agonia foi indescritível. Era como se sua alma estivesse sendo rasgada e reconstruída mil vezes por segundo. A energia do vácuo foi tão violenta e invasiva que arrancou violentamente toda a cor e a vivacidade de seu corpo: seus cabelos pretos tornaram-se brancos como a neve em uma fração de segundo, e o brilho castanho de seus olhos foi completamente apagado, transformando-se em poços cinzentos, frios e sem vida.
+
 Kaelen não morreu, mas o cavaleiro que ele fora um dia deixou de existir ali. Ele renasceu como o Ceifador do Eclipse. Usando a matéria escura que agora corria em suas veias, ele forjou suas correntes de prata — símbolos dos laços que o prendiam ao seu passado e à promessa feita a William — e a sua imensa foice de cristal negro, uma arma terrível capaz de cortar o próprio tecido do espaço-tempo e ceifar a escuridão. Como um ato definitivo de isolamento e rejeição às cores vibrantes da Ordem do Prisma, ele adotou um terno preto impecável, tornando-se um vigilante sombrio e solitário que vagava pelas dimensões.
-Por anos, Kaelen caçou maneiras de reviver William, procurando de mundo em mundo, movido pelo fantasma de William e pelo desejo de cumprir sua última promessa. Quando ele finalmente sentiu a colossal onda de energia estelar vinda do planeta Terra — desencadeada pelo despertar da espada de Bruna durante o ataque ao show de K-pop —, ele soube que era o Eclipse, ele havia encontrado seu alvo final. Ele cruzou as barreiras dimensionais e surgiu no palco destruído bem a tempo de interceptar os monstros.
-` 
+
+Por anos, Kaelen caçou maneiras de reviver William, procurando de mundo em mundo, movido pelo fantasma de William e pelo desejo de cumprir sua última promessa. Quando ele finalmente sentiu a colossal onda de energia estelar vinda do planeta Terra — desencadeada pelo despertar da espada de Bruna durante o ataque ao show de K-pop —, ele soube que era o Eclipse, ele havia encontrado seu alvo final. Ele cruzou as barreiras dimensionais e surgiu no palco destruído bem a tempo de interceptar os monstros.` 
           },
           { 
-            title: ' A Jornada Oculta
-', 
-            content: ` A visão do passado de Kaelen se dispensou na mente das garotas, deixando o trio ofegante diante da revelação. O Ceifador soltou a mão da líder e encarou o grupo com firmeza.
-— Eu vim avisar que o verdadeiro inimigo de vocês acabou de acordar — continuou Kaelen. — Vocês acham que Pirolina foi selada por acidente? O Eclipse não é um fenômeno, é uma entidade. E ele quer o que está aí dentro para abrir o verdadeiro Portal do Fim. Os templos das Guardiãs Estelares em outros quadrantes caíram nesta noite. Vocês três são as últimas de sua geração.
+            title: 'Capítulo 4: A Jornada Oculta', 
+            content: `A visão do passado de Kaelen se dissipou na mente das garotas, deixando o trio ofegante diante da revelação. O Ceifador soltou a mão da líder e encarou o grupo com firmeza.
+– Eu vim avisar que o verdadeiro inimigo de vocês acabou de acordar – continuou Kaelen. – Vocês acham que Pirolina foi selada por acidente? O Eclipse não é um fenômeno, é uma entidade. E ele quer o que está aí dentro para abrir o verdadeiro Portal do Fim. Os templos das Guardiãs Estelares em outros quadrantes caíram nesta noite. Vocês três são as últimas de sua geração.
+
 Kaelen estendeu a mão livre para o alto. As correntes de prata ao seu redor começaram a girar rapidamente, abrindo um portal de sombras cinzentas no chão sob os pés do grupo.
-— Para onde vamos agora? — perguntou Bruna, assumindo seu papel de líder, apesar do medo.
-— Para o único lugar onde a luz de vocês não pode ser rastreada: o Submundo do Eclipse.
-    Sem tempo para hesitar, Nayra saltou primeiro, seguida por Carolina, que exibia um sorriso desafiador diante do perigo. Bruna olhou para a arena vazia uma última vez antes de pular junto com Kaelen, deixando para trás o mundo humano que cresceu em ruínas.
+– Para onde vamos agora? – perguntou Bruna, assumindo seu papel de líder, apesar do medo.
+– Para o único lugar onde a luz de vocês não pode ser rastreada: o Submundo do Eclipse.
+
+Sem tempo para hesitar, Nayra saltou primeiro, seguida por Carolina, que exibia um sorriso desafiador diante do perigo. Bruna olhou para a arena vazia uma última vez antes de pular junto com Kaelen, deixando para trás o mundo humano que cresceu em ruínas.
+
 O portal se fechou, e o silêncio dominou o local por alguns instantes. No entanto, o chão onde Kaelen havia desferido o golpe começou a borbulhar. Da fenda dimensional restante, uma gosma negra e brilhante subiu, moldando-se lentamente na forma de um trono.
 Uma gargalhada ecoou pelas paredes desabadas. Sentado no trono, um novo personagem observava os rastros de energia das garotas mágicas. Ele usava uma armadura feita de espelhos quebrados que refletiam o vazio e uma máscara teatral que sorria malevolamente.
-— Corram o quanto quiserem, criaturinhas estelares — sibilou o Duque dos Espelhos Partidos, o braço direito do Eclipse, enquanto estilhaçava um photocard do idol que havia sido deixado para trás. — O Ceifador acha que pode escondê-las... mas o reflexo de vocês já me pertence.
-` 
-          }
+– Corram o quanto quiserem, criaturinhas estelares – sibilou o Duque dos Espelhos Partidos, o braço direito do Eclipse, enquanto estilhaçava um photocard do idol que havia sido deixado para trás. – O Ceifador acha que pode escondê-las... mas o reflexo de vocês já me pertence.` 
+          },
           { 
-            title: ' Confronto Final', 
+            title: 'Capítulo 5: Confronto Final', 
             content: `O portal de sombras de Kaelen cuspiu o grupo diretamente no coração do Submundo do Eclipse, uma dimensão distorcida onde o ar era pesado, não existia vida, o chão era feito de puro vidro negro e o céu brilhava em tons de cinza e roxo. No entanto, eles não estavam seguros. O chão começou a rachar ao redor deles, e reflexos distorcidos das próprias garotas mágicas emergiram das fendas, soltando uma risada extremamente alta.
-— Ele nos encontrou rápido demais — rosnou Carolina, apertando o cabo de seu machado de batalha, seus olhos brilhando através dos óculos rúnicos com pedras preciosas enquanto assumia sua postura mais ameaçadora.
+– Ele nos encontrou rápido demais – rosnou Carolina, apertando o cabo de seu machado de batalha, seus olhos brilhando através dos óculos rúnicos com pedras preciosas enquanto assumia sua postura mais ameaçadora.
+
 Do centro dos espelhos partidos, a silhueta do Duque surgiu, flutuando com sua máscara sorridente.
-— Vocês não podem se esconder do próprio reflexo! O Eclipse exige a alma da espada! — ele gritou, disparando centenas de estilhaços de espelhos cortantes na direção do grupo.
-— Fiquem atrás de mim! — comandou Nayra. Com uma fúria rebelde sintonizada ao ritmo de suas guitarras mentais, ela girou seu chicote em alta velocidade, criando um escudo de faíscas vermelhas e brilhantes que estraçalhou os projéteis no ar.
+– Vocês não podem se esconder do próprio reflexo! O Eclipse exige a alma da espada! – ele gritou, disparando centenas de estilhaços de espelhos cortantes na direção do grupo.
+– Fiquem atrás de mim! – comandou Nayra. Com uma fúria rebelde sintonizada ao ritmo de suas guitarras mentais, ela girou seu chicote em alta velocidade, criando um escudo de faíscas vermelhas e brilhantes que estraçalhou os projéteis no ar.
+
 Kaelen avançou pelas laterais, correntes de prata voando como serpentes enquanto ele desferia um golpe devastador com sua foice de cristal negro contra o vilão. O impacto rachou a armadura de espelhos do Duque, mas a energia do Eclipse começou a sobrecarregar o lugar. Rachaduras de luz negra cobriram o teto da dimensão, ameaçando colapsar tudo e destruir o universo estelar.
-— Bruna! Não há energia suficiente para derrotá-lo e fechar a fenda! — gritou Carolina, analisando a estrutura do portal que desmoronava com seus conhecimentos de astrofísica. — Alguém precisa servir de catalisador... ou todos nós desapareceremos para sempre!
+
+– Bruna! Não há energia suficiente para derrotá-lo e fechar a fenda! – gritou Carolina, analisando a estrutura do portal que desmoronava com seus conhecimentos de astrofísica. – Alguém precisa servir de catalisador... ou todos nós desapareceremos para sempre!
+
 Bruna olhou para sua espada do poder. Dentro da lâmina, a forma de fada de Pirolina pulsava com um brilho azul-bebê puro e caloroso, contrastando com a frieza daquele submundo. Bruna entendeu o que precisava ser feito, e as lágrimas escorreram por seu rosto negro.
-— Não... eu acabei de te encontrar, queria ter conhecer de verdade... — sussurrou Bruna para a espada.
+– Não... eu acabei de te encontrar, queria te conhecer de verdade... – sussurrou Bruna para a espada.
+
 A voz de Pirolina ecoou diretamente na mente de Bruna, doce e reconfortante: "Minha querida irmã, meu poder sempre foi o seu amor. Deixe-me ir para que você possa viver. Eu sempre estarei nas estrelas que você protege. Sua jornada está apenas começando."
+
 Com um grito de dor e determinação, Bruna ergueu a espada ao céu. A alma de Pirolina se libertou da lâmina em uma explosão de luz azul-bebê incandescente, transformando-se em uma fênix de energia estelar pura. A criatura de luz incandescente avançou contra o Duque dos Espelhos Partidos, estraçalhando sua armadura e sua máscara, se fundindo de uma vez por todas, enquanto a onda de poder da junção selava todas as fendas dimensionais do Eclipse.
+
 Quando a luz finalmente baixou, o silêncio dominou o Submundo. O Duque havia sumido, e a dimensão escura agora estava banhada por poeira estelar azulada.
 Bruna caiu de joelhos. Sua espada do poder agora era uma lâmina comum de aço brilhante, sem a alma de sua irmã. Nayra e Carolina correram para abraçá-la, chorando junto com a líder. Kaelen aproximou-se lentamente, recolhendo sua foice e olhando para o céu que agora exibia uma constelação inédita no formato de uma fada.
-— Ela não desapareceu — disse Kaelen, com um raro tom de suavidade em sua voz fria. — Ela se tornou o próprio selo que protegerá o universo para sempre. Ela não estava limitada a uma espada.
-Bruna limpou as lágrimas, olhou para as suas fiéis amigas, Nayra e Carolina, e depois para o céu estrelado do submundo. Pirolina havia partido, mas o sacrifício de seu amor fraternal havia dado ao trio de guardiãs, e ao seu novo aliado Kaelen, a chance de um novo amanhecer. O universo estava, finalmente, salvo.
- ` 
+
+– Ela não desapareceu – disse Kaelen, com um raro tom de suavidade em sua voz fria. – Ela se tornou o próprio selo que protegerá o universo para sempre. Ela não estava limitada a uma espada.
+
+Bruna limpou as lágrimas, olhou para as suas fiéis amigas, Nayra e Carolina, e depois para o céu estrelado do submundo. Pirolina havia partido, mas o sacrifício de seu amor fraternal havia dado ao trio de guardiãs, e ao seu novo aliado Kaelen, a chance de um novo amanhecer. O universo estava, finalmente, salvo.` 
+          },
+          { 
+            title: 'Epílogo: O Brilho de um Novo Amanhecer', 
+            content: `Semanas se passaram desde a queda do Duque dos Espelhos Partidos. Na superfície, a vida na Terra lentamente retornava ao normal. A arena de K-pop havia sido interditada para reformas sob a justificativa governamental de uma "falha estrutural grave". O idol resgatado estava totalmente recuperado e postava mensagens nas redes sociais procurando pelas misteriosas salvadoras.
+
+No colégio, Bruna, Nayra e Carolina já não andavam mais separadas. O segredo que compartilhavam e os laços forjados no campo de batalha as uniram para sempre. Elas se encontravam todos os dias no telhado da escola durante o intervalo.
+Nayra agora usava o chicote de pedras preciosas em treinos escondidos, canalizando a energia vermelha que possuía sua alma. Carolina continuava seus estudos na biblioteca, mas agora usava seus conhecimentos de astrofísica para monitorar o céu e runas para trancar novos possíveis perigos.
+
+Bruna ainda carregava sua espada de família na mochila de ginástica. A arma não brilhava mais sozinha, mas o metal agora ostentava um polimento perfeito e indestrutível. Bruna encontrou paz. Ela sabia que sua amada irmã cumpriu sua missão e que seu espírito agora velava pelo mundo do alto.
+
+Em uma noite de céu limpo, o trio se reuniu no topo do prédio mais alto da cidade para fofocar e ter uma noite das garotas. Kaelen surgiu silenciosamente por entre as sombras do prédio, com as correntes de prata descansando tranquilamente ao redor de seu terno preto. Ele olhou para as garotas e deu um aceno sutil com a cabeça.
+– O quadrante está limpo. O sacrifício dela garantiu séculos de segurança – informou o Ceifador, mantendo o tom calmo.
+– E o que você vai fazer agora, Kaelen? – perguntou Bruna, ajeitando a piranha azul-bebê em seu coque.
+– Continuar minha missão principal. Não descansarei até achar uma forma de trazer os cavaleiros de volta da escuridão. Mas, por enquanto... aproveitem a juventude de vocês.
+
+Kaelen desapareceu em uma névoa cinzenta, deixando as três garotas sob a luz do luar. Bruna olhou para cima. Bem no centro do céu noturno, a constelação em formato de fada brilhava intensamente em azul-bebê. Nayra segurou sua mão esquerda, e Carolina colocou a mão firmemente em seu ombro direito. Bruna sorriu, respirando fundo. Elas eram, para sempre, as Guardiãs Estelares.` 
           }
         ]
       }];
